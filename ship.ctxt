@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=ship
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ ship\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=ship()
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ ship\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment3.params=reloadTime
+comment3.target=void\ setGunReloadTime(int)
+comment3.text=\r\n\ Set\ the\ time\ needed\ for\ re-loading\ the\ rocket's\ gun.\ The\ shorter\ this\ time\ is,\r\n\ the\ faster\ the\ rocket\ can\ fire.\ The\ (initial)\ standard\ time\ is\ 20.\r\n
+numComments=4
