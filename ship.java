@@ -8,34 +8,44 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ship extends goodShips
 {
-    bullet bullet;
-    private int gunReloadTime;                  // The minimum delay between firing the gun.
+    private final int gunReloadTime = 50;                  // The minimum delay between firing the gun.
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
-    public ship()
+    private spaceWorld world;
+    public ship(spaceWorld world)
     {
+        this.world = world;
         reloadDelayCount = 0;
-        gunReloadTime = 50;
     }
+
     /**
      * Act - do whatever the ship wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
+        //Make sure we didn't die
+        manDown();
+
         reloadDelayCount++;//keeps you from firing to often
         if (Greenfoot.isKeyDown("LEFT") || Greenfoot.isKeyDown("a"))
         {
-            move(-5);
             //moves right
+            if(getX() - 5 <= 160 && !DevOptions.hiding)
+                setLocation(160,getY());
+            else
+                move(-5);
         }
-        if (Greenfoot.isKeyDown("RIGHT") || Greenfoot.isKeyDown("d"))
+        else if (Greenfoot.isKeyDown("RIGHT") || Greenfoot.isKeyDown("d"))
         {
-            move(5);
             //moves left
+            if(getX() + 5 >= 870 && !DevOptions.hiding)
+                setLocation(870,getY());
+            else
+                move(5);
         }
         if (Greenfoot.isKeyDown("space") || Greenfoot.isKeyDown("UP"))
         {
-            if(reloadDelayCount >= gunReloadTime) 
+            if(reloadDelayCount >= gunReloadTime || DevOptions.minigun) 
             {
                 getWorld().addObject(new bullet(),getX(),getY());
                 reloadDelayCount = 0;
@@ -43,13 +53,21 @@ public class ship extends goodShips
             } 
         }
     }    
-    
-     /**
-     * Set the time needed for re-loading the rocket's gun. The shorter this time is,
-     * the faster the rocket can fire. The (initial) standard time is 20.
-     */
-    public void setGunReloadTime(int reloadTime)
+
+    public void manDown()
     {
-        gunReloadTime = reloadTime;
+        bullet7 bullet = getOneObjectAtOffset(0,0,bullet7.class);
+        if(bullet != null && !DevOptions.invulnerable)
+        {
+            getWorld().removeObject(bullet);
+            int lives = world.lives.toArray().length;
+            if(lives > 0)
+            {
+                getWorld().removeObject(world.lives.get(lives - 1));
+                world.lives.remove(lives - 1);
+                getWorld().addObject(new ship(world),500,800);
+            }
+            getWorld().removeObject(this);
+        }
     }
 }

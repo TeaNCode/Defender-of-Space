@@ -8,10 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class enemyShip2 extends enemyShips
 {
-    //declares classes and int's
-    bullet bullet;
-    enemyShip3 ship3;
-    score Score;
     /**
      * Act - do whatever the enemyShip2 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -19,7 +15,7 @@ public class enemyShip2 extends enemyShips
     public void act() 
     {
         move();
-         if(Greenfoot.getRandomNumber(2000) == 1)
+         if(Greenfoot.getRandomNumber(999) + 1 <= 1 * DevOptions.attackMultiplier)
         {
             //fires
             getWorld().addObject(new bullet7(), getX(), getY());
@@ -32,16 +28,13 @@ public class enemyShip2 extends enemyShips
     }
     public void destroyed()
     {
-       //Actor enemyShip2 = getOneIntersectingObject(enemyShip2.class);
-       //blows up the ship
-        if(getOneIntersectingObject(bullet.class) != null) 
+        bullet Bullet = getOneIntersectingObject(bullet.class);
+        if( Bullet != null) 
         {
-            //return true;
+            getWorld().removeObject(Bullet);
             getWorld().removeObject(this);
-           // getWorld().removeObject(bullet);
-            edestroyed = true;
-            ship3.score = ship3.score + 100;
-            Score.enemysKilled++;
+            enemyShip3.score = enemyShip3.score + 100;
+            score.enemysKilled++;
         }
     }
 }

@@ -7,16 +7,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class bullet extends goodShips
 {
-    boolean edestroyed;
-    private GreenfootImage ship5;
-    private GreenfootImage ship;
     public bullet()
     {
         turn(-90);
-        enemyShip2 EnemyShip2;
-        enemyShips EnemyShips;
-        ship5 = new GreenfootImage("ship5.png");
-        ship = new GreenfootImage("enemy ship 3.png");
     }
 
     /**
@@ -26,9 +19,21 @@ public class bullet extends goodShips
     public void act() 
     {
         move(6);//flys
+        boolean deleted = false;
         if (getY() == 0)
         {
             getWorld().removeObject(this);//removes at edge
+            deleted = true;
+        }
+        
+        if(DevOptions.realism && !deleted)
+        {
+            bullet7 bullet = getOneObjectAtOffset(0,0,bullet7.class);
+            if(bullet != null)
+            {
+                getWorld().removeObject(bullet);
+                getWorld().removeObject(this);
+            }
         }
     }    
 }
