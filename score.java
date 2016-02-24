@@ -21,7 +21,7 @@ public class score extends Actor
     public void act() 
     {
        //displays the score board
-        setImage(new GreenfootImage("Score: " + ship3.score + " Enemys Killed: " + enemysKilled, 20, Color.WHITE, Color.BLACK));
+        setImage(new GreenfootImage("Score: " + ship3.score + " Enemies Killed: " + enemysKilled, 20, Color.WHITE, Color.BLACK));
        if(enemysKilled == 44)
        {
            //displays "you win" and "next level"

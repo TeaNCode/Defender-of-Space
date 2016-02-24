@@ -18,18 +18,17 @@ public class bullet extends goodShips
         ship5 = new GreenfootImage("ship5.png");
         ship = new GreenfootImage("enemy ship 3.png");
     }
+
     /**
      * Act - do whatever the bullet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-          
         move(6);//flys
-          if (getY() == 0)
-           {
-              getWorld().removeObject(this);
-              //removes at edge
-          }
+        if (getY() == 0)
+        {
+            getWorld().removeObject(this);//removes at edge
+        }
     }    
-    }
+}
