@@ -17,61 +17,21 @@ public class spaceWorld extends World
     public spaceWorld()
     {    
         // Create a new world with 1000x900 cells with a cell size of 1x1 pixels.
-        super(1000, 900, 1); 
+        super(800, 575, 1); 
         //populate the world
         Once = false;//makes the score board invisible
-        for( int Y = 1; Y < 3; Y++)
-        {
-           for( int X = 1; X < 11; X++)
-            {
-                addObject(new enemyShip2(),250 + (X * 50),150 + (Y * 50));
-            }
-        }
-        for( int Y = 1; Y < 3; Y++)
-        {
-           for( int X = 1; X < 11; X++)
-            {
-                addObject(new enemyShip1(),250 + (X * 50),50 + (Y * 50));
-            }
-        }
-        addObject(new enemyShip3(),500,50);
-        addObject(new enemyShip3(),550,50);
-        addObject(new enemyShip3(),600,50);
-        addObject(new enemyShip3(),450,50);
-        addObject(new ship(),500,800);
-        addObject(new lives("1"),850,800);
-        addObject(new lives("2"),950,800);
-        addObject(new lives("3"),900,800);
-        
+        addObject(new ship(),400,540);
     }
    
     public void levelUp()
     {
-        //brings you to the next level
-        if(Score.enemysKilled == 44)
-        {
-          //  Score.enemysKilled = 0;
-            for( int Y = 1; Y < 3; Y++)
-        {
-           for( int X = 1; X < 11; X++)
-            {
-                addObject(new enemyShip2(),250 + (X * 50),150 + (Y * 50));
-            }
-        }
-        for( int Y = 1; Y < 3; Y++)
-        {
-           for( int X = 1; X < 11; X++)
-            {
-                addObject(new enemyShip1(),250 + (X * 50),50 + (Y * 50));
-            }
-        }
-        }
+        //probably need to create seperate worlds for diffrent levels
     }
     public void act()
     {
         //run the other levels
         once();
-        levelUp();
+        //levelUp();
         
     }
     public void once()

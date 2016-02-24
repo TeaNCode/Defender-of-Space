@@ -23,17 +23,17 @@ public class ship extends goodShips
     public void act() 
     {
         reloadDelayCount++;//keeps you from firing to often
-        if (Greenfoot.isKeyDown("a"))
+        if (Greenfoot.isKeyDown("LEFT") || Greenfoot.isKeyDown("a"))
         {
             move(-5);
             //moves right
         }
-        if (Greenfoot.isKeyDown("d"))
+        if (Greenfoot.isKeyDown("RIGHT") || Greenfoot.isKeyDown("d"))
         {
             move(5);
             //moves left
         }
-        if (Greenfoot.isKeyDown("space"))
+        if (Greenfoot.isKeyDown("space") || Greenfoot.isKeyDown("UP"))
         {
             if(reloadDelayCount >= gunReloadTime) 
             {
