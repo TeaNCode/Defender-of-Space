@@ -20,6 +20,7 @@ public class spaceWorld extends World
         super(1000, 900, 1); 
         //populate the world
         populate();
+        addObject(new button("cup"), 25, 15);
         addObject(new score(), 100, 60);
         addObject(new ship(this),500,800);
         addObject(new lives(this),850,800);

@@ -1,0 +1,60 @@
+import greenfoot.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.util.*;
+/**
+ * Write a description of class button here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class button extends Actor
+{
+    private String type;
+    private String i;
+    public button(String typ){
+        type = typ;
+        setPicture();
+        i = "cup";
+    }
+    /**
+     * Act - do whatever the button wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act() 
+    {
+        if(Greenfoot.mouseClicked(this))
+        {
+            switch(type)
+            {
+                case "start": Greenfoot.setWorld(new spaceWorld()); break;
+                case "title": getWorld().removeObject(this); break;
+                case "cup": change(); break;
+            }
+        }
+    }    
+     public void setPicture()
+    {
+        switch(type)
+        {
+            case "start": setImage(new GreenfootImage("Start",40,Color.LIGHT_GRAY,
+                    new Color(0,0,0,0))); break;
+            case "title": setImage("TeaNCode.png"); break;
+            case "cup": setImage("tecup.png");
+            case "title2": setImage(new GreenfootImage("Defender of/nSpace!",60,Color.GREEN,
+                    new Color(0,0,0,0))); break;
+           }
+    }
+   public void change(){
+       if(i.equals("cup")){
+           setLocation(75, 25);
+           setImage(new GreenfootImage("Made by TeaNCode, Copyright 2016", 12, Color.WHITE, new Color(0,0,0,0)));
+           i = "info";
+        }
+        else{
+            setLocation(30, 15);
+            setImage("tecup.png");
+            i = "cup";
+        }
+    }
+}
