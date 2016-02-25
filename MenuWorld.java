@@ -16,8 +16,8 @@ public class MenuWorld extends World
     public MenuWorld()
     {    
         super(600, 400, 1); 
-        addObject(new Button("start"), 500, 250);
-        addObject(new Button("title2"), 300, 150);
+        addObject(new Button("single"), 500, 250);
+        addObject(new Button("multi"), 500, 200);
         addObject(new Button("title"), 300, 200);
         Greenfoot.start();
     }

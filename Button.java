@@ -28,7 +28,8 @@ public class Button extends Actor
         {
             switch(type)
             {
-                case "start": Greenfoot.setWorld(new SpaceWorld()); break;
+                case "single": Greenfoot.setWorld(new SpaceWorld()); break;
+                case "multi": Greenfoot.setWorld(new SpaceWorldMulti()); break;
                 case "title": getWorld().removeObject(this); break;
                 case "cup": change(); break;
             }
@@ -39,12 +40,12 @@ public class Button extends Actor
     {
         switch(type)
         {
-            case "start": setImage(new GreenfootImage("Start",40,Color.LIGHT_GRAY,
+            case "single": setImage(new GreenfootImage("Single Player",40,Color.LIGHT_GRAY,
+                    new Color(0,0,0,0))); break;
+            case "multi": ; setImage(new GreenfootImage("Multi-Player",40,Color.LIGHT_GRAY,
                     new Color(0,0,0,0))); break;
             case "title": setImage("TeaNCode.png"); break;
             case "cup": setImage("tecup.png");
-            case "title2": setImage(new GreenfootImage("Defender of/nSpace!",60,Color.GREEN,
-                    new Color(0,0,0,0))); break;
         }
     }
 
