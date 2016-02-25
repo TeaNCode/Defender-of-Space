@@ -1,16 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.Scanner;
 /**
  * Write a description of class enemyShip1 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class enemyShip1 extends enemyShips
+public class EnemyShip1 extends EnemyShip
 {
-    public enemyShip1()
+    public EnemyShip1()
     {
         direction = 1;
+        script = "normal";
     }
 
     /**
@@ -19,24 +20,51 @@ public class enemyShip1 extends enemyShips
      */
     public void act() 
     {
-        move();
-        if(Greenfoot.getRandomNumber(1999) + 1 <= 1 * DevOptions.attackMultiplier)
+        moveCheck();
+        if(script.equals("normal"))
         {
-            //fires
-            getWorld().addObject(new bullet7(), getX(), getY());
+            move();
+            if(Greenfoot.getRandomNumber(1999) + 1 <= 1 * DevConsole.attackMultiplier)
+            {
+                //fires
+                getWorld().addObject(new EnemyRocket(), getX(), getY());
+            }
+            destroy();
         }
-        destroyed2();
+        else if(script.startsWith("down "))
+        {
+            Scanner input = new Scanner(script);
+            input.next();
+            int i = input.nextInt();
+            setLocation(getX(),getY() + 5);
+            if(i == 1)
+            {
+                script = "normal";
+                if(direction == 1)
+                {
+                    setLocation(getX() + 1, getY()); 
+                }
+                else
+                {
+                    setLocation(getX() - 1, getY());
+                }
+            }
+
+            else
+                script = "down " + String.valueOf(i - 1);
+        }
     }    
-    public void destroyed2()
+
+    public void destroy()
     {
         //Blows up the ship
-        bullet Bullet = getOneIntersectingObject(bullet.class);
-        if( Bullet != null) 
+        PlayerRocket rocket = getOneIntersectingObject(PlayerRocket.class);
+        if(rocket != null) 
         {
-            getWorld().removeObject(Bullet);
+            getWorld().removeObject(rocket);
             getWorld().removeObject(this);
-            enemyShip3.score = enemyShip3.score + 200;
-            score.enemysKilled++;
+            Score.score =+100;
+            Score.enemysKilled++;
         }
     }
 }

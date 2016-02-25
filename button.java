@@ -8,15 +8,16 @@ import java.util.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class button extends Actor
+public class Button extends Actor
 {
     private String type;
     private String i;
-    public button(String typ){
-        type = typ;
+    public Button(String type){
+        this.type = type;
         setPicture();
         i = "cup";
     }
+
     /**
      * Act - do whatever the button wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -27,13 +28,14 @@ public class button extends Actor
         {
             switch(type)
             {
-                case "start": Greenfoot.setWorld(new spaceWorld()); break;
+                case "start": Greenfoot.setWorld(new SpaceWorld()); break;
                 case "title": getWorld().removeObject(this); break;
                 case "cup": change(); break;
             }
         }
     }    
-     public void setPicture()
+
+    public void setPicture()
     {
         switch(type)
         {
@@ -43,13 +45,14 @@ public class button extends Actor
             case "cup": setImage("tecup.png");
             case "title2": setImage(new GreenfootImage("Defender of/nSpace!",60,Color.GREEN,
                     new Color(0,0,0,0))); break;
-           }
+        }
     }
-   public void change(){
-       if(i.equals("cup")){
-           setLocation(75, 25);
-           setImage(new GreenfootImage("Made by TeaNCode, Copyright 2016", 12, Color.WHITE, new Color(0,0,0,0)));
-           i = "info";
+
+    public void change(){
+        if(i.equals("cup")){
+            setLocation(75, 25);
+            setImage(new GreenfootImage("Made by TeaNCode, Copyright 2016", 12, Color.WHITE, new Color(0,0,0,0)));
+            i = "info";
         }
         else{
             setLocation(30, 15);

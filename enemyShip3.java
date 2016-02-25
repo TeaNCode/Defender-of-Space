@@ -6,17 +6,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class enemyShip3 extends enemyShips
+public class EnemyShip3 extends EnemyShip
 {
-    static int score;
     private boolean damaged;
-    score Score;
-    public enemyShip3()
+    public EnemyShip3()
     {
         //declares health, classes, and other ship images
         damaged = false;
-        goodShips GoodShips;
-        score = 0;
+        script = "normal";
     }
 
     /**
@@ -25,20 +22,23 @@ public class enemyShip3 extends enemyShips
      */
     public void act() 
     {
-        if(Greenfoot.getRandomNumber(1499) + 1 <= 1 * DevOptions.attackMultiplier)
+        if(script.equals("normal"))
         {
-            getWorld().addObject(new bullet7(), getX(), getY());
+            if(Greenfoot.getRandomNumber(1499) + 1 <= 1 * DevConsole.attackMultiplier)
+            {
+                getWorld().addObject(new EnemyRocket(), getX(), getY());
+            }
+            hit();
         }
-        proximity();
     }    
 
-    public void proximity()
+    public void hit()
     {
-        Actor bullet = getOneObjectAtOffset(0, 0, bullet.class);
-        if(bullet != null)
+        PlayerRocket rocket = getOneIntersectingObject(PlayerRocket.class);
+        if(rocket != null)
         {
             //blows up the ship
-            getWorld().removeObject(bullet);
+            getWorld().removeObject(rocket);
             if(!damaged)
             {
                 setImage("ship5.png");
@@ -47,7 +47,7 @@ public class enemyShip3 extends enemyShips
             else if(damaged)
             {
                 getWorld().removeObject(this);
-                score = score + 500;
+                Score.score =+500;
                 Score.enemysKilled++;
             }
         }
