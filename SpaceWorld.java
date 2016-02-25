@@ -22,7 +22,7 @@ public class SpaceWorld extends World
         populate();
         addObject(new Button("cup"), 25, 15);
         addObject(new Score(), 100, 60);
-        addObject(new Ship(this),500,800);
+        addObject(new PlayerShip(this),500,800);
         addLives(3);
         Greenfoot.setSpeed(50);
     }

@@ -6,14 +6,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Ship extends GoodShip
+public class PlayerShip extends GoodShip
 {
     private final int gunReloadTime = 50;                  // The minimum delay between firing the gun.
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
     private SpaceWorld world;
     private boolean delete;
     private int spawnProtection;
-    public Ship(SpaceWorld world)
+    public PlayerShip(SpaceWorld world)
     {
         this.world = world;
         reloadDelayCount = 50;
@@ -31,9 +31,6 @@ public class Ship extends GoodShip
         {
             spawnProtection--;
         }
-        else
-        //Make sure we didn't die
-            manDown();
 
         if(!delete)
         {
@@ -70,20 +67,21 @@ public class Ship extends GoodShip
         }
     }    
 
-    public void manDown()
+    public void hit(Projectile hitee)
     {
-        EnemyRocket rocket = getOneIntersectingObject(EnemyRocket.class);
-        if(rocket != null && !DevConsole.invulnerable && spawnProtection == 0)
+        if(hitee instanceof Plasma || hitee instanceof EnemyRocket)
         {
-            getWorld().removeObject(rocket);
-            int lives = world.lives.toArray().length;
-            if(lives > 0)
+            if(!DevConsole.invulnerable && spawnProtection == 0)
             {
-                getWorld().removeObject(world.lives.get(lives - 1));
-                world.lives.remove(lives - 1);
-                getWorld().addObject(new Ship(world),500,800);
+                int lives = world.lives.toArray().length;
+                if(lives > 0)
+                {
+                    getWorld().removeObject(world.lives.get(lives - 1));
+                    world.lives.remove(lives - 1);
+                    getWorld().addObject(new PlayerShip(world),500,800);
+                }
+                delete = true;
             }
-            delete = true;
         }
     }
 }

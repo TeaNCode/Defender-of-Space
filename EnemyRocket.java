@@ -10,7 +10,7 @@ public class EnemyRocket extends Projectile
 {
     public EnemyRocket()
     {
-        turn(90);
+        super(90);
     }
 
     /**
@@ -19,10 +19,22 @@ public class EnemyRocket extends Projectile
      */
     public void act() 
     {
+        super.act();
         move(10);
         if (getY() == 899)
         {
             getWorld().removeObject(this);
         }
     }    
+
+    public void collision(Projectile hitee)
+    {
+        if(DevConsole.realism)
+        {
+            if(hitee instanceof PlayerRocket || hitee instanceof Plasma)
+            {
+                getWorld().removeObject(this);
+            }
+        }
+    }
 }

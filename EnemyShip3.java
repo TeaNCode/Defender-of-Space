@@ -28,20 +28,16 @@ public class EnemyShip3 extends EnemyShip
             {
                 getWorld().addObject(new EnemyRocket(), getX(), getY());
             }
-            hit();
         }
     }    
 
-    public void hit()
+    public void hit(Projectile hitee)
     {
-        PlayerRocket rocket = getOneIntersectingObject(PlayerRocket.class);
-        if(rocket != null)
+        if(hitee instanceof Plasma || hitee instanceof PlayerRocket)
         {
-            //blows up the ship
-            getWorld().removeObject(rocket);
             if(!damaged)
             {
-                setImage("ship5.png");
+                setImage("enemyShip3-2.png");
                 damaged = true;
             }
             else if(damaged)

@@ -23,7 +23,6 @@ public class EnemyShip2 extends EnemyShip
                 //fires
                 getWorld().addObject(new EnemyRocket(), getX(), getY());
             }
-            destroyed();
         }
         else if(script.startsWith("down "))
         {
@@ -55,12 +54,10 @@ public class EnemyShip2 extends EnemyShip
         script = "normal";
     }
 
-    public void destroyed()
+    public void hit(Projectile hitee)
     {
-        PlayerRocket rocket = getOneIntersectingObject(PlayerRocket.class);
-        if(rocket != null) 
+        if(hitee instanceof Plasma || hitee instanceof PlayerRocket)
         {
-            getWorld().removeObject(rocket);
             getWorld().removeObject(this);
             Score.score =+200;
             Score.enemysKilled++;

@@ -6,10 +6,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EnemyShip extends ScriptedActor
+public abstract class EnemyShip extends Destroyable
 {
     public int direction;
-    public String script;
     public void move()
     {
         //moves the ships from side to side and down
