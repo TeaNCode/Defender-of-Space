@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class SpaceWorld extends World
 {
     public ArrayList<Life> lives = new ArrayList<Life>();
+    public ArrayList<Life> lives2 = new ArrayList<Life>();
     /**
      * Constructor for objects of class spaceWorld.
      * 
@@ -85,6 +86,12 @@ public class SpaceWorld extends World
     public void addLives(int n)
     {
         for(int i = 0; i < n; i++)
-            addObject(new Life(this),950,800 - 50 * lives.toArray().length);
+            addObject(new Life(this,1),950,800 - 50 * lives.toArray().length);
+    }
+    
+    public void addLives2(int n)
+    {
+        for(int i = 0; i < n; i++)
+            addObject(new Life(this,2),950,800 - 50 * lives2.toArray().length);
     }
 }

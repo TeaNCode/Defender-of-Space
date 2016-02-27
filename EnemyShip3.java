@@ -26,7 +26,7 @@ public class EnemyShip3 extends EnemyShip
         {
             if(Greenfoot.getRandomNumber(1499) + 1 <= 1 * DevConsole.attackMultiplier)
             {
-                getWorld().addObject(new EnemyRocket(), getX(), getY());
+                getWorld().addObject(new EnemyRocket(this), getX(), getY());
             }
         }
     }    
@@ -35,6 +35,7 @@ public class EnemyShip3 extends EnemyShip
     {
         if(hitee instanceof Plasma || hitee instanceof PlayerRocket)
         {
+            hitee.delete();
             if(!damaged)
             {
                 setImage("enemyShip3-2.png");
@@ -42,9 +43,10 @@ public class EnemyShip3 extends EnemyShip
             }
             else if(damaged)
             {
+                GoodShip killer = (GoodShip) (hitee.owner);
                 getWorld().removeObject(this);
-                Score.score =+500;
-                Score.enemysKilled++;
+                killer.score = killer.score + 500;
+                killer.enemiesKilled++;
             }
         }
     }

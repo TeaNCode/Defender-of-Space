@@ -8,9 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Plasma extends Projectile
 {
-    public Plasma(int rotation)
+    public Plasma(int rotation, Destroyable owner)
     {
-        super(rotation);
+        super(rotation, owner);
     }
     
     /**

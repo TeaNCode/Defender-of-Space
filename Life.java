@@ -8,8 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Life extends Actor
 {
-    public Life(SpaceWorld world)
+    public Life(SpaceWorld world, int n)
     {
+        if(n == 1)
         world.lives.add(this);
+        else if(n == 2)
+        world.lives2.add(this);
     }
 }

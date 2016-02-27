@@ -8,12 +8,11 @@ import java.awt.Color;
  */
 public class Score extends Actor
 {
-    static int enemysKilled;
-    static int score;
-    public Score()
+    private GoodShip owner;
+    public Score(GoodShip owner)
     {
-        enemysKilled = 0;
-        setImage(new GreenfootImage("Score: " + score + " Enemies Killed: " + enemysKilled, 20, Color.WHITE, Color.BLACK));
+        this.owner = owner;
+        setImage(new GreenfootImage("Score: " + owner.score + " Enemies Killed: " + owner.enemiesKilled, 20, Color.WHITE, Color.BLACK));
     }
 
     /**
@@ -23,17 +22,6 @@ public class Score extends Actor
     public void act() 
     {
         //displays the score board
-        setImage(new GreenfootImage("Score: " + score + " Enemies Killed: " + enemysKilled, 20, Color.WHITE, Color.BLACK));
-        if(enemysKilled == 44)
-        {
-            //displays "you win" and "next level"
-            setLocation(500,450);
-            setImage(new GreenfootImage("You Win!", 50, Color.YELLOW, Color.BLACK));
-            //Greenfoot.delay(10);
-
-            setImage(new GreenfootImage("Next Level!", 50, Color.YELLOW, Color.BLACK));
-            setLocation(100, 60);
-            //Greenfoot.delay(50);
-        }
+        setImage(new GreenfootImage("Score: " + owner.score + " Enemies Killed: " + owner.enemiesKilled, 20, Color.WHITE, Color.BLACK));
     }    
 }

@@ -8,9 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class EnemyRocket extends Projectile
 {
-    public EnemyRocket()
+    public EnemyRocket(EnemyShip owner)
     {
-        super(90);
+        super(90, owner);
     }
 
     /**
@@ -22,6 +22,11 @@ public class EnemyRocket extends Projectile
         super.act();
         move(10);
         if (getY() == 899)
+        {
+            delete = true;
+        }
+        
+        if(delete)
         {
             getWorld().removeObject(this);
         }

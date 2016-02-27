@@ -7,9 +7,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerRocket extends Projectile
 {
-    public PlayerRocket()
+    public PlayerRocket(GoodShip owner)
     {
-        super(-90);
+        super(-90,owner);
+        delete = false;
     }
 
     /**
@@ -20,21 +21,24 @@ public class PlayerRocket extends Projectile
     {
         super.act();
         move(6);//flys
-        boolean deleted = false;
         if (getY() == 0)
         {
-            getWorld().removeObject(this);//removes at edge
-            deleted = true;
+            delete = true;
         }
         
-        if(DevConsole.realism && !deleted)
+        if(DevConsole.realism && !delete)
         {
             EnemyRocket rocket = getOneIntersectingObject(EnemyRocket.class);
             if(rocket != null)
             {
-                getWorld().removeObject(rocket);
-                getWorld().removeObject(this);
+                rocket.delete();
+                delete();
             }
+        }
+        
+        if(delete)
+        {
+            getWorld().removeObject(this);
         }
     }    
     
@@ -44,7 +48,7 @@ public class PlayerRocket extends Projectile
         {
             if(hitee instanceof EnemyRocket || hitee instanceof Plasma)
             {
-                getWorld().removeObject(this);
+                delete();
             }
         }
     }

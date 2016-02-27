@@ -8,5 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public abstract class GoodShip extends Destroyable
 {
-    
+    public int score;
+    public int enemiesKilled;
 }

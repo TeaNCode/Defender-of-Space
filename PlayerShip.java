@@ -55,7 +55,7 @@ public class PlayerShip extends GoodShip
             {
                 if(reloadDelayCount >= gunReloadTime || DevConsole.minigun) 
                 {
-                    getWorld().addObject(new PlayerRocket(),getX(),getY());
+                    getWorld().addObject(new PlayerRocket(this),getX(),getY());
                     reloadDelayCount = 0;
                     //shoots
                 } 

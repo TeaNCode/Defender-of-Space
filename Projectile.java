@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public abstract class Projectile extends Actor
 {
+    public boolean delete;
+    public Destroyable owner;
     /**
      * Act - do whatever the Projectile wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -21,11 +23,18 @@ public abstract class Projectile extends Actor
         if(ship != null)
             ship.hit(this);
     }    
-    
-    public Projectile(int rotation)
+
+    public Projectile(int rotation, Destroyable owner)
     {
         setRotation(rotation);
+        this.owner = owner;
+        delete = false;
     }
-    
+
     public abstract void collision(Projectile hitee);
+
+    public void delete()
+    {
+        delete = true;
+    }
 }
