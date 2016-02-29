@@ -57,6 +57,7 @@ public class Player2Ship extends GoodShip
                 {
                     getWorld().addObject(new PlayerRocket(this),getX(),getY());
                     reloadDelayCount = 0;
+                    shots++;
                     //shoots
                 } 
             }
@@ -79,6 +80,7 @@ public class Player2Ship extends GoodShip
                 if(lives > 1)
                 {
                     setLocation(500,800);
+                    spawnProtection = 50;
                 }
                 else
                 delete = true;

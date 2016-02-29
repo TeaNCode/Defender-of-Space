@@ -10,4 +10,6 @@ public abstract class GoodShip extends Destroyable
 {
     public int score;
     public int enemiesKilled;
+    public int shots;
+    public int misses;
 }

@@ -24,6 +24,8 @@ public class PlayerRocket extends Projectile
         if (getY() == 0)
         {
             delete = true;
+            GoodShip goodOwner = (GoodShip)(owner);
+            goodOwner.misses++;
         }
         
         if(DevConsole.realism && !delete)
