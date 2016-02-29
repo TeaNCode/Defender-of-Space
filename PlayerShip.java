@@ -35,7 +35,7 @@ public class PlayerShip extends GoodShip
         if(!delete)
         {
             reloadDelayCount++;//keeps you from firing to often
-            if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("LEFT"))
+            if (Greenfoot.isKeyDown("LEFT"))
             {
                 //moves right
                 if(getX() - 5 <= 160 && !DevConsole.hiding)
@@ -43,7 +43,7 @@ public class PlayerShip extends GoodShip
                 else
                     move(-5);
             }
-            else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("RIGHT"))
+            else if (Greenfoot.isKeyDown("RIGHT"))
             {
                 //moves left
                 if(getX() + 5 >= 870 && !DevConsole.hiding)
@@ -51,7 +51,7 @@ public class PlayerShip extends GoodShip
                 else
                     move(5);
             }
-            if (Greenfoot.isKeyDown("space") || Greenfoot.isKeyDown("UP"))
+            if (Greenfoot.isKeyDown("UP"))
             {
                 if(reloadDelayCount >= gunReloadTime || DevConsole.minigun) 
                 {
@@ -74,12 +74,13 @@ public class PlayerShip extends GoodShip
             if(!DevConsole.invulnerable && spawnProtection == 0)
             {
                 int lives = world.lives.toArray().length;
-                if(lives > 0)
+                getWorld().removeObject(world.lives.get(lives - 1));
+                world.lives.remove(lives - 1);
+                if(lives > 1)
                 {
-                    getWorld().removeObject(world.lives.get(lives - 1));
-                    world.lives.remove(lives - 1);
-                    getWorld().addObject(new PlayerShip(world),500,800);
+                    setLocation(500,800);
                 }
+                else
                 delete = true;
             }
         }

@@ -10,20 +10,27 @@ public class SpaceWorld extends World
 {
     public ArrayList<Life> lives = new ArrayList<Life>();
     public ArrayList<Life> lives2 = new ArrayList<Life>();
-    /**
-     * Constructor for objects of class spaceWorld.
-     * 
-     */
-    public SpaceWorld()
-    {    
-        // Create a new world with 1000x900 cells with a cell size of 1x1 pixels.
-        super(1000, 900, 1); 
-        //populate the world
+
+    public SpaceWorld(int players)
+    {
+        super(1000, 900, 1);
         DevConsole.initialize();
         populate();
         addObject(new Button("cup"), 25, 15);
-        addObject(new Score(), 100, 60);
-        addObject(new PlayerShip(this),500,800);
+        PlayerShip player1 = new PlayerShip(this);
+        addObject(new Score(player1), 886, 60);
+        if(players == 1)
+        {
+            addObject(player1,500,800);
+        }
+        else
+        {
+            addObject(player1,600,800);
+            Player2Ship player2 = new Player2Ship(this);
+            addObject(new Score(player2), 126, 60);
+            addObject(player2,400,800);
+            addLives2(3);
+        }
         addLives(3);
         Greenfoot.setSpeed(50);
     }
@@ -53,24 +60,26 @@ public class SpaceWorld extends World
     public void levelUp()
     {
         //brings you to the next level
+        /**
         if(Score.enemysKilled == 44)
         {
-            //  Score.enemysKilled = 0;
-            for( int Y = 1; Y < 3; Y++)
-            {
-                for( int X = 1; X < 11; X++)
-                {
-                    addObject(new EnemyShip2(),250 + (X * 50),150 + (Y * 50));
-                }
-            }
-            for( int Y = 1; Y < 3; Y++)
-            {
-                for( int X = 1; X < 11; X++)
-                {
-                    addObject(new EnemyShip1(),250 + (X * 50),50 + (Y * 50));
-                }
-            }
+        //  Score.enemysKilled = 0;
+        for( int Y = 1; Y < 3; Y++)
+        {
+        for( int X = 1; X < 11; X++)
+        {
+        addObject(new EnemyShip2(),250 + (X * 50),150 + (Y * 50));
         }
+        }
+        for( int Y = 1; Y < 3; Y++)
+        {
+        for( int X = 1; X < 11; X++)
+        {
+        addObject(new EnemyShip1(),250 + (X * 50),50 + (Y * 50));
+        }
+        }
+        }
+         */
         //probably need to create seperate worlds for diffrent levels
     }
 
@@ -88,10 +97,10 @@ public class SpaceWorld extends World
         for(int i = 0; i < n; i++)
             addObject(new Life(this,1),950,800 - 50 * lives.toArray().length);
     }
-    
+
     public void addLives2(int n)
     {
         for(int i = 0; i < n; i++)
-            addObject(new Life(this,2),950,800 - 50 * lives2.toArray().length);
+            addObject(new Life(this,2),50,800 - 50 * lives2.toArray().length);
     }
 }

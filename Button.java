@@ -28,7 +28,8 @@ public class Button extends Actor
         {
             switch(type)
             {
-                case "single": Greenfoot.setWorld(new SpaceWorld()); break;
+                case "single": Greenfoot.setWorld(new SpaceWorld(1)); break;
+                case "multi": Greenfoot.setWorld(new SpaceWorld(2)); break;
                 case "title": getWorld().removeObject(this); break;
                 case "cup": change(); break;
             }
