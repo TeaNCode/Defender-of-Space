@@ -79,7 +79,7 @@ public class PlayerShip extends GoodShip
                 world.lives.remove(lives - 1);
                 if(lives > 1)
                 {
-                    setLocation(500,800);
+                    setLocation(500,750);
                     spawnProtection = 50;
                 }
                 else

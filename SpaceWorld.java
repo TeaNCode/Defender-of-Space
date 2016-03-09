@@ -13,7 +13,7 @@ public class SpaceWorld extends World
 
     public SpaceWorld(int players)
     {
-        super(1000, 900, 1);
+        super(1000, 800, 1);
         DevConsole.initialize();
         populate();
         addObject(new Button("cup"), 25, 15);
@@ -21,14 +21,14 @@ public class SpaceWorld extends World
         addObject(new Score(player1), 886, 60);
         if(players == 1)
         {
-            addObject(player1,500,800);
+            addObject(player1,500,750);
         }
         else
         {
-            addObject(player1,600,800);
+            addObject(player1,600,750);
             Player2Ship player2 = new Player2Ship(this);
             addObject(new Score(player2), 126, 60);
-            addObject(player2,400,800);
+            addObject(player2,400,750);
             addLives2(3);
         }
         addLives(3);

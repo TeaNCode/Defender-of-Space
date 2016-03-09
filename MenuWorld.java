@@ -15,10 +15,10 @@ public class MenuWorld extends World
      */
     public MenuWorld()
     {    
-        super(600, 400, 1); 
-        addObject(new Button("single"), 500, 250);
-        addObject(new Button("multi"), 500, 200);
-        addObject(new Button("title"), 300, 200);
+        super(1000, 800, 1); 
+        addObject(new Button("single"), getWidth() / 2, 450);
+        addObject(new Button("multi"), getWidth() / 2, 550);
+        addObject(new Button("title"), 301, 127);
         Greenfoot.start();
     }
 }

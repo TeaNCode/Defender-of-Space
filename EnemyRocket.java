@@ -20,8 +20,8 @@ public class EnemyRocket extends Projectile
     public void act() 
     {
         super.act();
-        move(10);
-        if (getY() == 899)
+        move(9);
+        if (getY() == 799)
         {
             delete = true;
         }
