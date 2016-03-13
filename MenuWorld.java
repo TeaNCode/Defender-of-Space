@@ -16,9 +16,10 @@ public class MenuWorld extends World
     public MenuWorld()
     {    
         super(1000, 800, 1); 
+        setBackground("gray.fw.png");
         addObject(new Button("single"), getWidth() / 2, 450);
         addObject(new Button("multi"), getWidth() / 2, 550);
-        addObject(new Button("title"), 301, 127);
+        addObject(new Display(new GreenfootImage("TeaNCode.png")), 301, 127);
         Greenfoot.start();
     }
 }

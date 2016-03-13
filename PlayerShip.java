@@ -15,6 +15,7 @@ public class PlayerShip extends GoodShip
     private int spawnProtection;
     public PlayerShip(SpaceWorld world)
     {
+        setImage("playerShip.png");
         this.world = world;
         reloadDelayCount = 50;
         delete = false;

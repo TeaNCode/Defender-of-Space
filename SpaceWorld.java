@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
+import java.util.List;
 /**
  * Write a description of class spaceWorld here.
  * 
@@ -14,6 +15,7 @@ public class SpaceWorld extends World
     public SpaceWorld(int players)
     {
         super(1000, 800, 1);
+        setBackground("space1.jpg");
         DevConsole.initialize();
         populate();
         addObject(new Button("cup"), 25, 15);
@@ -102,5 +104,12 @@ public class SpaceWorld extends World
     {
         for(int i = 0; i < n; i++)
             addObject(new Life(this,2),50,800 - 50 * lives2.toArray().length);
+    }
+    
+    public void showSummary()
+    {
+        List<GoodShip> players = getObjects(GoodShip.class);
+        removeObjects(getObjects(null));
+        setBackground("black.png");
     }
 }

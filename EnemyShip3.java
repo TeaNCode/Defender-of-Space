@@ -11,7 +11,7 @@ public class EnemyShip3 extends EnemyShip
     private boolean damaged;
     public EnemyShip3()
     {
-        //declares health, classes, and other ship images
+        setImage("enemyShip3.png");
         damaged = false;
         script = "normal";
     }

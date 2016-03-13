@@ -10,6 +10,7 @@ public class EnemyShip1 extends EnemyShip
 {
     public EnemyShip1()
     {
+        setImage("enemyShip1.png");
         direction = 1;
         script = "normal";
     }

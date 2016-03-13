@@ -11,6 +11,7 @@ public class EnemyRocket extends Projectile
     public EnemyRocket(EnemyShip owner)
     {
         super(90, owner);
+        setImage("enemyRocket.png");
     }
 
     /**

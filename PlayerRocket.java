@@ -10,6 +10,7 @@ public class PlayerRocket extends Projectile
     public PlayerRocket(GoodShip owner)
     {
         super(-90,owner);
+        setImage("playerRocket.png");
         delete = false;
     }
 

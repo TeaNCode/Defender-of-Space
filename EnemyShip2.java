@@ -50,6 +50,7 @@ public class EnemyShip2 extends EnemyShip
 
     public EnemyShip2()
     {
+        setImage("enemyShip2.png");
         direction = 2;
         script = "normal";
     }

@@ -10,6 +10,7 @@ public class Life extends Actor
 {
     public Life(SpaceWorld world, int n)
     {
+        setImage("heart.png");
         if(n == 1)
         world.lives.add(this);
         else if(n == 2)

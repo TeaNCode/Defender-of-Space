@@ -11,6 +11,7 @@ public class Plasma extends Projectile
     public Plasma(int rotation, Destroyable owner)
     {
         super(rotation, owner);
+        setImage("PlasmaBall.png");
     }
     
     /**

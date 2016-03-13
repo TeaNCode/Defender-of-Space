@@ -30,7 +30,6 @@ public class Button extends Actor
             {
                 case "single": Greenfoot.setWorld(new SpaceWorld(1)); break;
                 case "multi": Greenfoot.setWorld(new SpaceWorld(2)); break;
-                case "title": getWorld().removeObject(this); break;
                 case "cup": change(); break;
             }
         }
@@ -44,7 +43,6 @@ public class Button extends Actor
                     new Color(0,0,0,0))); break;
             case "multi": ; setImage(new GreenfootImage("Multi-Player",40,Color.LIGHT_GRAY,
                     new Color(0,0,0,0))); break;
-            case "title": setImage("TeaNCode.png"); break;
             case "cup": setImage("tecup.png");
         }
     }
