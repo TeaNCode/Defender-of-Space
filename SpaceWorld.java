@@ -1,6 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Color;
 /**
  * Write a description of class spaceWorld here.
  * 
@@ -111,5 +112,26 @@ public class SpaceWorld extends World
         List<GoodShip> players = getObjects(GoodShip.class);
         removeObjects(getObjects(null));
         setBackground("black.png");
+        
+        GoodShip player1 = players.get(0);
+        GoodShip player2 = new Player2Ship(this);
+        boolean players2;
+        try
+        {
+            player2 = players.get(1);
+            players2 = true;
+        }
+        catch(IndexOutOfBoundsException e)
+        {
+            players2 = false;
+        }
+        
+        addObject(new Display("Summary",60,Color.LIGHT_GRAY),getWidth() / 2, 100);
+        if(!players2)
+        {
+            addObject(new Display("Player 1",50,Color.LIGHT_GRAY), getWidth() / 2, 200);
+            addObject(new Display("Score: " + String.valueOf(player1.score),40,Color.LIGHT_GRAY), getWidth() / 2, 300);
+            addObject(new Display("Kills: " + String.valueOf(player1.enemiesKilled),40,Color.LIGHT_GRAY), getWidth() / 2, 400);
+        }
     }
 }
