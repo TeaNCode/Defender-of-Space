@@ -12,13 +12,16 @@ public class SpaceWorld extends World
 {
     public ArrayList<Life> lives = new ArrayList<Life>();
     public ArrayList<Life> lives2 = new ArrayList<Life>();
+    private Wave[] waves;
+    private int waveNumber;
 
-    public SpaceWorld(int players)
+    public SpaceWorld(int players, Wave[] waves)
     {
         super(1000, 800, 1);
         setBackground("space1.jpg");
         DevConsole.initialize();
-        populate();
+        waves[0].spawnWave();
+        waveNumber = 1;
         addObject(new Button("cup"), 25, 15);
         PlayerShip player1 = new PlayerShip(this);
         addObject(new Score(player1), 886, 60);
@@ -38,27 +41,6 @@ public class SpaceWorld extends World
         Greenfoot.setSpeed(50);
     }
 
-    public void populate()
-    {
-        for( int Y = 1; Y < 3; Y++)
-        {
-            for( int X = 1; X < 11; X++)
-            {
-                addObject(new EnemyShip2(),250 + (X * 50),150 + (Y * 50));
-            }
-        }
-        for( int Y = 1; Y < 3; Y++)
-        {
-            for( int X = 1; X < 11; X++)
-            {
-                addObject(new EnemyShip1(),250 + (X * 50),50 + (Y * 50));
-            }
-        }
-        addObject(new EnemyShip3(),500,50);
-        addObject(new EnemyShip3(),550,50);
-        addObject(new EnemyShip3(),600,50);
-        addObject(new EnemyShip3(),450,50);
-    }
 
     public void levelUp()
     {
@@ -132,6 +114,9 @@ public class SpaceWorld extends World
             addObject(new Display("Player 1",50,Color.LIGHT_GRAY), getWidth() / 2, 200);
             addObject(new Display("Score: " + String.valueOf(player1.score),40,Color.LIGHT_GRAY), getWidth() / 2, 300);
             addObject(new Display("Kills: " + String.valueOf(player1.enemiesKilled),40,Color.LIGHT_GRAY), getWidth() / 2, 400);
+            addObject(new Display("Accuracy: " + String.valueOf(Math.round((((double)(player1.shots) 
+            - player1.misses) / player1.shots) * 100.0)) + "% (" + String.valueOf(player1.shots - player1.misses) + " / "
+            + String.valueOf(player1.shots) + ")",40,Color.LIGHT_GRAY), getWidth() / 2, 500);
         }
     }
 }
