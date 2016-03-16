@@ -20,7 +20,7 @@ public class SpaceWorld extends World
         super(1000, 800, 1);
         setBackground("space1.jpg");
         DevConsole.initialize();
-        waves[0].spawnWave();
+        waves[0].spawnWave(this);
         waveNumber = 1;
         addObject(new Button("cup"), 25, 15);
         PlayerShip player1 = new PlayerShip(this);

@@ -1,3 +1,4 @@
+import greenfoot.World;
 /**
  * Write a description of class Wave here.
  * 
@@ -15,11 +16,11 @@ public class Wave
         this.contents = contents;
     }
     
-    public void spawnWave()
+    public void spawnWave(World world)
     {
         for(SpawnableEntity entity : contents)
         {
-            entity.spawn();
+            entity.spawn(world);
         }
     }
 }
