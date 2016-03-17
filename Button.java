@@ -35,7 +35,8 @@ public class Button extends Actor
             {
                 case "single": Greenfoot.setWorld(new SpaceWorld(1, getStartingWave())); break;
                 case "multi": Greenfoot.setWorld(new SpaceWorld(2, getStartingWave())); break;
-                case "cup": change(); break;
+                case "teacup": type = "teancodetext"; setPicture(); break;
+                case "teancodetext": type = "teacup"; setPicture(); break;
             }
         }
     }    
@@ -48,19 +49,9 @@ public class Button extends Actor
                     new Color(0,0,0,0))); break;
             case "multi": ; setImage(new GreenfootImage("Multi-Player",40,Color.LIGHT_GRAY,
                     new Color(0,0,0,0))); break;
-            case "cup": setImage(new GreenfootImage("tecup.png"));
-        }
-    }
-
-    public void change(){
-        setImage("tecup.png");
-        if(getImage() == new GreenfootImage("tecup.png")){
-            setLocation(25, 15);
-            setImage("tecup.png");
-        }
-        else{
-            setLocation(75, 25);
-            setImage(new GreenfootImage("Made by TeaNCode, Copyright 2016", 12, Color.WHITE, new Color(0,0,0,0)));
+            case "teacup": setImage(new GreenfootImage("tecup.png")); setLocation(25, 15); break;
+            case "teancodetext": setImage(new GreenfootImage("Made by TeaNCode, Copyright 2016", 12, Color.WHITE, new Color(0,0,0,0))); 
+            setLocation(87, 25);break;
         }
     }
     
