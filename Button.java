@@ -37,6 +37,7 @@ public class Button extends Actor
                 case "multi": Greenfoot.setWorld(new SpaceWorld(2, getStartingWave())); break;
                 case "teacup": type = "teancodetext"; setPicture(); break;
                 case "teancodetext": type = "teacup"; setPicture(); break;
+                case "continue": Greenfoot.setWorld(world); break;
             }
         }
     }    
@@ -52,10 +53,11 @@ public class Button extends Actor
             case "teacup": setImage(new GreenfootImage("tecup.png")); setLocation(25, 15); break;
             case "teancodetext": setImage(new GreenfootImage("Made by TeaNCode, Copyright 2016", 12, Color.WHITE, new Color(0,0,0,0))); 
             setLocation(87, 25);break;
+            case "continue": setImage(new GreenfootImage("Continue", 60, Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
         }
     }
     
-    public Wave[] getStartingWave()
+    static Wave[] getStartingWave()
     {
         ArrayList<SpawnableEntity> array = new ArrayList<SpawnableEntity>();
         for( int Y = 1; Y < 3; Y++)
