@@ -38,6 +38,8 @@ public class Button extends Actor
                 case "teacup": type = "teancodetext"; setPicture(); break;
                 case "teancodetext": type = "teacup"; setPicture(); break;
                 case "continue": Greenfoot.setWorld(world); break;
+                case "back": Greenfoot.setWorld(world); break;
+                case "help": Greenfoot.setWorld(new HelpWorld(world)); break;
             }
         }
     }    
@@ -54,6 +56,8 @@ public class Button extends Actor
             case "teancodetext": setImage(new GreenfootImage("Made by TeaNCode, Copyright 2016", 12, Color.WHITE, new Color(0,0,0,0))); 
             setLocation(87, 25);break;
             case "continue": setImage(new GreenfootImage("Continue", 60, Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
+            case "back": setImage(new GreenfootImage("Back",30,Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
+            case "help": setImage(new GreenfootImage("Help",40,Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
         }
     }
     

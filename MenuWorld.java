@@ -22,6 +22,7 @@ public class MenuWorld extends World
         addObject(new Button("single"), getWidth() / 2, 450);
         addObject(new Button("multi"), getWidth() / 2, 550);
         addObject(new Display(new GreenfootImage("TeaNCode.png")), 301, 127);
+        addObject(new Button("help",this), getWidth() / 2, 650);
         Greenfoot.start();
     }
 }

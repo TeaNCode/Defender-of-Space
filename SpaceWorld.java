@@ -15,6 +15,8 @@ public class SpaceWorld extends World
     private Wave[] waves;
     private int waveNumber;
     private boolean showingSummary;
+    private PlayerShip player1;
+    private Player2Ship player2;
 
     public SpaceWorld(int players, Wave[] waves)
     {
@@ -24,18 +26,18 @@ public class SpaceWorld extends World
         waveNumber = 1;
         showingSummary = false;
         addObject(new Button("teacup"), 25, 15);
-        PlayerShip player1 = new PlayerShip(this);
-        addObject(new Score(player1), 886, 60);
+        player1 = new PlayerShip(this);
+        addObject(new Score(player1), 126, 60);
         if(players == 1)
         {
             addObject(player1,500,750);
         }
         else
         {
-            addObject(player1,600,750);
-            Player2Ship player2 = new Player2Ship(this);
-            addObject(new Score(player2), 126, 60);
-            addObject(player2,400,750);
+            addObject(player1,400,750);
+            player2 = new Player2Ship(this);
+            addObject(new Score(player2), 886, 60);
+            addObject(player2,600,750);
             addLives2(3);
         }
         addLives(3);
@@ -44,7 +46,7 @@ public class SpaceWorld extends World
 
     public void levelUp()
     {
-        if(getObjects(EnemyShip.class).isEmpty())
+        if(getObjects(EnemyShip.class).isEmpty() || getObjects(GoodShip.class).isEmpty())
         {
             try
             {
@@ -85,25 +87,11 @@ public class SpaceWorld extends World
 
     public void showSummary()
     {
-        List<GoodShip> players = getObjects(GoodShip.class);
         removeObjects(getObjects(null));
         setBackground("black.png");
 
-        GoodShip player1 = players.get(0);
-        GoodShip player2 = new Player2Ship(this);
-        boolean players2;
-        try
-        {
-            player2 = players.get(1);
-            players2 = true;
-        }
-        catch(IndexOutOfBoundsException e)
-        {
-            players2 = false;
-        }
-
         addObject(new Display("Summary",60,Color.LIGHT_GRAY),getWidth() / 2, 100);
-        if(!players2)
+        if(player2 == null)
         {
             addObject(new Display("Player 1",50,Color.LIGHT_GRAY), getWidth() / 2, 200);
             addObject(new Display("Score: " + String.valueOf(player1.score),40,Color.LIGHT_GRAY), getWidth() / 2, 300);
@@ -121,14 +109,14 @@ public class SpaceWorld extends World
             addObject(new Display("Kills: " + String.valueOf(player1.enemiesKilled),40,Color.LIGHT_GRAY), getWidth() / 2 - 100, 400);
             addObject(new Display("Accuracy: " + String.valueOf(Math.round((((double)(player1.shots) 
                                     - player1.misses) / player1.shots) * 100.0)) + "% (" + String.valueOf(player1.shots - player1.misses) + " / "
-                    + String.valueOf(player1.shots) + ")",40,Color.LIGHT_GRAY), getWidth() / 2 - 100, 500);
+                    + String.valueOf(player1.shots) + ")",40,Color.LIGHT_GRAY), getWidth() / 2 - 200, 500);
                     
-            addObject(new Display("Player 2",50,Color.LIGHT_GRAY), getWidth() / 2 - 100, 200);
-            addObject(new Display("Score: " + String.valueOf(player2.score),40,Color.LIGHT_GRAY), getWidth() / 2 - 100, 300);
-            addObject(new Display("Kills: " + String.valueOf(player2.enemiesKilled),40,Color.LIGHT_GRAY), getWidth() / 2 - 100, 400);
+            addObject(new Display("Player 2",50,Color.LIGHT_GRAY), getWidth() / 2 + 100, 200);
+            addObject(new Display("Score: " + String.valueOf(player2.score),40,Color.LIGHT_GRAY), getWidth() / 2 + 100, 300);
+            addObject(new Display("Kills: " + String.valueOf(player2.enemiesKilled),40,Color.LIGHT_GRAY), getWidth() / 2 + 100, 400);
             addObject(new Display("Accuracy: " + String.valueOf(Math.round((((double)(player2.shots) 
                                     - player2.misses) / player2.shots) * 100.0)) + "% (" + String.valueOf(player2.shots - player2.misses) + " / "
-                    + String.valueOf(player2.shots) + ")",40,Color.LIGHT_GRAY), getWidth() / 2 - 100, 500);
+                    + String.valueOf(player2.shots) + ")",40,Color.LIGHT_GRAY), getWidth() / 2 + 200, 500);
                     
             addObject(new Button("continue", new SpaceWorld(2, Button.getStartingWave())), getWidth() / 2, 700);
         }
