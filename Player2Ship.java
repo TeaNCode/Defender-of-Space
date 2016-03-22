@@ -8,7 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player2Ship extends GoodShip
 {
-    private final int gunReloadTime = 50;                  // The minimum delay between firing the gun.
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
     private SpaceWorld world;
     private boolean delete;
@@ -17,7 +16,7 @@ public class Player2Ship extends GoodShip
     {
         setImage("player2Ship.png");
         this.world = world;
-        reloadDelayCount = 50;
+        reloadDelayCount = gunReloadTime;
         delete = false;
         spawnProtection = 50;
     }

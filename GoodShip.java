@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public abstract class GoodShip extends Destroyable
 {
+    public final int gunReloadTime = 65;
     public int score;
     public int enemiesKilled;
     public int shots;
