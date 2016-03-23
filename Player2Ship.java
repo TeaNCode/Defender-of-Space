@@ -35,7 +35,7 @@ public class Player2Ship extends GoodShip
         if(!delete)
         {
             reloadDelayCount++;//keeps you from firing to often
-            if (Greenfoot.isKeyDown("a"))
+            if (Greenfoot.isKeyDown("LEFT"))
             {
                 //moves right
                 if(getX() - 5 <= 160 && !DevConsole.hiding)
@@ -43,7 +43,7 @@ public class Player2Ship extends GoodShip
                 else
                     move(-5);
             }
-            else if (Greenfoot.isKeyDown("d"))
+            else if (Greenfoot.isKeyDown("RIGHT"))
             {
                 //moves left
                 if(getX() + 5 >= 870 && !DevConsole.hiding)
@@ -51,7 +51,7 @@ public class Player2Ship extends GoodShip
                 else
                     move(5);
             }
-            if (Greenfoot.isKeyDown("w"))
+            if (Greenfoot.isKeyDown("UP"))
             {
                 if(reloadDelayCount >= gunReloadTime || DevConsole.minigun) 
                 {

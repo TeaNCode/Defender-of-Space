@@ -26,9 +26,9 @@ public class HelpWorld extends World
         addObject(new Display(new GreenfootImage("enemyShip1.png")),575,156);
         addObject(new Display(new GreenfootImage("enemyShip2.png")),625,156);
         addObject(new Display(new GreenfootImage("enemyShip3.png")),675,154);
-        addObject(new Display("Player 1 shoots with the up arrow key and strafes with the left and",40,Color.LIGHT_GRAY),494,197);
-        addObject(new Display("right arrow keys. Player 2 uses w, a, and d. Your goal is to defeat",40,Color.LIGHT_GRAY),487,243);
-        addObject(new Display("the invading alien menace. The world is depending on you. Do not",40,Color.LIGHT_GRAY),500,285);
-        addObject(new Display("fail us.",40,Color.LIGHT_GRAY),65,325);
+        addObject(new Display("Player 1 shoots with the w key and strafes with the a and d keys.",40,Color.LIGHT_GRAY),489,197);
+        addObject(new Display("Player 2 uses the up, left, and right arrow keys. Your goal is to",40,Color.LIGHT_GRAY),469,243);
+        addObject(new Display("defeat the invading alien menace. The world is depending on you.",40,Color.LIGHT_GRAY),494,285);
+        addObject(new Display("Do not fail us.",40,Color.LIGHT_GRAY),115,325);
     }
 }
