@@ -17,7 +17,6 @@ public class SpaceWorld extends World
     private boolean showingSummary;
     private PlayerShip player1;
     private Player2Ship player2;
-
     public SpaceWorld(int players, Wave[] waves)
     {
         super(1000, 800, 1);
@@ -48,7 +47,7 @@ public class SpaceWorld extends World
 
     public void levelUp()
     {
-        if(getObjects(EnemyShip.class).isEmpty() || getObjects(GoodShip.class).isEmpty())
+        if(getObjects(EnemyShip.class).isEmpty())
         {
             try
             {
@@ -59,10 +58,15 @@ public class SpaceWorld extends World
             {
                 if(!showingSummary)
                 {
-                    showSummary();
+                    showSummary(true);
                     showingSummary = true;
                 }
             }
+        }
+        else if(getObjects(GoodShip.class).isEmpty())
+        {
+            showSummary(false);
+            showingSummary = true;
         }
     }
 
@@ -87,12 +91,15 @@ public class SpaceWorld extends World
             addObject(new Life(this,2),950,800 - 50 * lives2.toArray().length);
     }
 
-    public void showSummary()
+    public void showSummary(boolean win)
     {
         removeObjects(getObjects(null));
         setBackground("black.png");
 
-        addObject(new Display("Summary",60,Color.LIGHT_GRAY),getWidth() / 2, 100);
+        if(win)
+            addObject(new Display("Victory",60,Color.GREEN),getWidth() / 2, 100);
+        else
+            addObject(new Display("Loss",60,Color.RED),getWidth() / 2,100);
         if(player2 == null)
         {
             addObject(new Display("Player 1",50,Color.LIGHT_GRAY), getWidth() / 2, 200);

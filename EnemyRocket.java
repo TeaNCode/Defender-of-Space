@@ -8,9 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class EnemyRocket extends Projectile
 {
-    public EnemyRocket(EnemyShip owner)
+    public EnemyRocket(int rotation, EnemyShip owner)
     {
-        super(90, owner);
+        super(rotation, owner);
         setImage("enemyRocket.png");
     }
 

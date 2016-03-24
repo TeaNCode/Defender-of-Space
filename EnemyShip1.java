@@ -8,11 +8,13 @@ import java.util.Scanner;
  */
 public class EnemyShip1 extends EnemyShip
 {
+    private int cooldown;
     public EnemyShip1()
     {
         setImage("enemyShip1.png");
         direction = 1;
         script = "normal";
+        end = false;
     }
 
     /**
@@ -25,9 +27,13 @@ public class EnemyShip1 extends EnemyShip
         if(script.equals("normal"))
         {
             move();
-            if(Greenfoot.getRandomNumber(1999) + 1 <= 1 * DevConsole.attackMultiplier)
+            if(Greenfoot.getRandomNumber(3999) + 1 <= 1 && cooldown <= 0)
             {
-                //fires
+                script = "burst 0";
+            }
+            else if(Greenfoot.getRandomNumber(1999) + 1 <= 1 * DevConsole.attackMultiplier)
+            {
+                cooldown--;
                 getWorld().addObject(new EnemyRocket(this), getX(), getY());
             }
         }
@@ -52,6 +58,27 @@ public class EnemyShip1 extends EnemyShip
 
             else
                 script = "down " + String.valueOf(i - 1);
+        }
+        else if(script.startsWith("burst "))
+        {
+            move();
+            Scanner input = new Scanner(script);
+            input.next();
+            int i = input.nextInt();
+            if(i % 3 == 1)
+            {
+                getWorld().addObject(new EnemyRocket(this), getX(), getY());
+            }
+            if(i == 7)
+                script = "normal";
+            else
+                script = "burst " + String.valueOf(i + 1);
+        }
+
+        if(end)
+        {
+            SpaceWorld temp = (SpaceWorld)(getWorld());
+            temp.showSummary(false);
         }
     }    
 

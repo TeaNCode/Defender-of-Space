@@ -9,21 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public abstract class EnemyShip extends Destroyable
 {
     public int direction;
+    public boolean end;
     public void move()
     {
-        //moves the ships from side to side and down
+        //moves the ships from side to side
         int X = getX();
-        /*if(X == 870)
-        {
-        direction = 2;
-        setLocation(X, getY() + 100);
-        }
-        else if(X == 160)
-        {
-        direction = 1;
-        setLocation(X, getY() + 100);
-        }
-         */
         if(direction == 1)
         {
             setLocation(X + 1, getY()); 
@@ -47,6 +37,11 @@ public abstract class EnemyShip extends Destroyable
             {
                 script = "down 20";
                 direction = 1;
+            }
+            
+            if(getY() >= 750)
+            {
+                end = true;
             }
         }
     }
