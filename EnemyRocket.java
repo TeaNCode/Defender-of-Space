@@ -22,7 +22,7 @@ public class EnemyRocket extends Projectile
     {
         super.act();
         move(9);
-        if (getY() == 799)
+        if(getY() == 799 && !delete)
         {
             delete = true;
         }
@@ -39,7 +39,7 @@ public class EnemyRocket extends Projectile
         {
             if(hitee instanceof PlayerRocket || hitee instanceof Plasma)
             {
-                getWorld().removeObject(this);
+                delete();
             }
         }
     }

@@ -16,10 +16,13 @@ public abstract class Projectile extends Actor
      */
     public void act() 
     {
-        Projectile projectile = this.getOneIntersectingObject(Projectile.class);
-        Destroyable ship = getOneIntersectingObject(Destroyable.class);
+        Projectile projectile = (Projectile)(getOneIntersectingObject(Projectile.class));
+        Destroyable ship = (Destroyable)(getOneIntersectingObject(Destroyable.class));
         if(projectile != null)
+        {
             projectile.collision(this);
+            collision(projectile);
+        }
         if(ship != null)
             ship.hit(this);
     }    

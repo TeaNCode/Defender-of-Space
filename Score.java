@@ -12,7 +12,7 @@ public class Score extends Actor
     public Score(GoodShip owner)
     {
         this.owner = owner;
-        setImage(new GreenfootImage("Score: " + owner.score + " Enemies Killed: " + owner.enemiesKilled, 20, Color.WHITE, Color.BLACK));
+        setImage(new GreenfootImage("Score: " + owner.score + " Enemies Killed: " + owner.enemiesKilled, 20, Color.WHITE, new Color(0,0,0,0)));
     }
 
     /**
@@ -22,6 +22,6 @@ public class Score extends Actor
     public void act() 
     {
         //displays the score board
-        setImage(new GreenfootImage("Score: " + owner.score + " Enemies Killed: " + owner.enemiesKilled, 20, Color.WHITE, Color.BLACK));
+        setImage(new GreenfootImage("Score: " + owner.score + " Enemies Killed: " + owner.enemiesKilled, 20, Color.WHITE, new Color(0,0,0,0)));
     }    
 }

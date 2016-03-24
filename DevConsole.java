@@ -21,29 +21,32 @@ public class DevConsole
     static void showConsole()
     {
         String sInput = JOptionPane.showInputDialog("Enter a command: ");
-        Scanner input = new Scanner(sInput);
-        if(input.hasNext())
+        try
         {
-            String next = input.next();
-            next = next.toLowerCase();
-            switch(next)
+            Scanner input = new Scanner(sInput);
+            if(input.hasNext())
             {
-                case "invulnerable": invulnerable(input); break;
-                case "god": invulnerable(input); break;
-                case "attackmultiplier": attackMultiplier(input); break;
-                case "attack": attackMultiplier(input); break;
-                case "realism": realism(input); break;
-                case "real": realism(input); break;
-                case "realistic": realism(input); break;
-                case "hiding": hiding(input); break;
-                case "hide": hiding(input); break;
-                case "hider": hiding(input); break;
-                case "minigun": minigun(input); break;
+                String next = input.next();
+                next = next.toLowerCase();
+                switch(next)
+                {
+                    case "invulnerable": invulnerable(input); break;
+                    case "god": invulnerable(input); break;
+                    case "attackmultiplier": attackMultiplier(input); break;
+                    case "attack": attackMultiplier(input); break;
+                    case "realism": realism(input); break;
+                    case "real": realism(input); break;
+                    case "realistic": realism(input); break;
+                    case "hiding": hiding(input); break;
+                    case "hide": hiding(input); break;
+                    case "hider": hiding(input); break;
+                    case "minigun": minigun(input); break;
+                }
             }
         }
-        else
+        catch(NullPointerException e)
         {
-            JOptionPane.showMessageDialog(null,"Error: Input expected.");
+
         }
     }
 
@@ -78,7 +81,7 @@ public class DevConsole
         else
             JOptionPane.showMessageDialog(null,"Attack Multiplier is " + String.valueOf(attackMultiplier) + "x");
     }
-    
+
     static void realism(Scanner input)
     {
         if(input.hasNextBoolean())
@@ -88,7 +91,7 @@ public class DevConsole
         else
             JOptionPane.showMessageDialog(null,"Realism is " + String.valueOf(realism));
     }
-    
+
     static void hiding(Scanner input)
     {
         if(input.hasNextBoolean())
@@ -98,7 +101,7 @@ public class DevConsole
         else
             JOptionPane.showMessageDialog(null,"Hiding is " + String.valueOf(hiding));
     }
-    
+
     static void minigun(Scanner input)
     {
         if(input.hasNextBoolean())

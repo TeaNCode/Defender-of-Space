@@ -29,16 +29,6 @@ public class PlayerRocket extends Projectile
             goodOwner.misses++;
         }
         
-        if(DevConsole.realism && !delete)
-        {
-            EnemyRocket rocket = getOneIntersectingObject(EnemyRocket.class);
-            if(rocket != null)
-            {
-                rocket.delete();
-                delete();
-            }
-        }
-        
         if(delete)
         {
             getWorld().removeObject(this);
