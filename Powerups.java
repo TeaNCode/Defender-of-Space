@@ -1,22 +1,76 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Powerups here.
+ * creates powerups for the player to increase his ships abilities with for a short time
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @AaronCampbell 
+ * @3/24/2016-- _/__/____
  */
 public class Powerups extends Actor
 {
-    private String type;
-    
-    public Powerups(String type)
+    EnemyShip2 enemy;
+    public String typeDecide;
+    public Powerups(String typeD)
     {
-        this.type = type;
+        typeDecide = typeD;
+        turn(270);
     }
     
     public void act() 
     {
-        // Add your action code here.
+        move(-1);
+        
+        if(getOneIntersectingObject(GoodShip.class) != null)
+            {
+            getWorld().removeObject(this);
+            switch(typeDecide)
+                {
+                case "Attack": attackSpeed(); break;
+                case "Score": score(); break;
+                case "Sheild": shield(); break;
+                case "Penetrate": plasmaPenetrate(); break;
+                case "Mystery": mysteryBox(); break;
+                case "Burst": burst(); break;
+                case "Movement": movementSpeed(); break;
+                case "Life": extraLife(); break;
+            }
+        }
+        else if(getY() == 799)
+            {
+            getWorld().removeObject(this);
+        }
     }    
+    
+    public void attackSpeed(){
+        
+    }
+    
+    public void score(){
+        
+    }
+    
+    public void shield(){
+        
+    }
+    
+    public void plasmaPenetrate(){
+        
+    }
+    
+    public void mysteryBox(){
+        
+    }
+    
+    public void extraLife(){
+        
+    }
+    
+    public void burst(){
+        
+    }
+    
+    public void movementSpeed(){
+        
+    }
+    
 }
