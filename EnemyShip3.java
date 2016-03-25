@@ -26,7 +26,7 @@ public class EnemyShip3 extends EnemyShip
         {
             if(Greenfoot.getRandomNumber(1499) + 1 <= 1 * DevConsole.attackMultiplier)
             {
-                getWorld().addObject(new EnemyRocket(this), getX(), getY());
+                getWorld().addObject(new EnemyRocket(90,this), getX(), getY());
             }
         }
     }    

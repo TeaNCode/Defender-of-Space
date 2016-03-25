@@ -34,7 +34,7 @@ public class EnemyShip1 extends EnemyShip
             else if(Greenfoot.getRandomNumber(1999) + 1 <= 1 * DevConsole.attackMultiplier)
             {
                 cooldown--;
-                getWorld().addObject(new EnemyRocket(this), getX(), getY());
+                getWorld().addObject(new EnemyRocket(90,this), getX(), getY());
             }
         }
         else if(script.startsWith("down "))
@@ -67,7 +67,7 @@ public class EnemyShip1 extends EnemyShip
             int i = input.nextInt();
             if(i % 3 == 1)
             {
-                getWorld().addObject(new EnemyRocket(this), getX(), getY());
+                getWorld().addObject(new EnemyRocket(90,this), getX(), getY());
             }
             if(i == 7)
                 script = "normal";

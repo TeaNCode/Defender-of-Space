@@ -23,7 +23,7 @@ public class EnemyShip2 extends EnemyShip
             move();
             if(Greenfoot.getRandomNumber(999) + 1 <= 1 * DevConsole.attackMultiplier)
             {
-                getWorld().addObject(new EnemyRocket(this), getX(), getY());
+                getWorld().addObject(new EnemyRocket(90,this), getX(), getY());
             }
         }
         else if(script.startsWith("down "))
