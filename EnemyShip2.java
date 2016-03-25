@@ -12,7 +12,6 @@ public class EnemyShip2 extends EnemyShip
     private PlaceHolder placeHolder1;
     private PlaceHolder placeHolder2;
     public String[] powers = {"Attack", "Score", "Shield", "Penetrate", "Mystery", "Burst", "Movement", "Life"};
-    int when = Greenfoot.getRandomNumber(5000);
     /**
      * Act - do whatever the enemyShip2 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -87,7 +86,7 @@ public class EnemyShip2 extends EnemyShip
             SpaceWorld temp = (SpaceWorld)(getWorld());
             temp.showSummary(false);
         }
-        
+
         addPowers();
     }    
 
@@ -111,12 +110,11 @@ public class EnemyShip2 extends EnemyShip
             killer.enemiesKilled++;
         }
     }
-    
+
     public void addPowers(){
-        int which = Greenfoot.getRandomNumber(7);
-     if(when == 0){
-        getWorld().addObject(new Powerups(powers[which]), getX(), getY());
-    }
-    when = Greenfoot.getRandomNumber(5000);
+        if(Greenfoot.getRandomNumber(5000) + 1 <= 1 * DevConsole.powerupMultiplier)
+        {
+            getWorld().addObject(new Powerups(powers[Greenfoot.getRandomNumber(7)]), getX(), getY());
+        }
     }
 }

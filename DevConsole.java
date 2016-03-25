@@ -18,6 +18,8 @@ public class DevConsole
     static boolean hiding;
     //Allows the player to fire without reloading
     static boolean minigun;
+    //Enemies more likely to drop powerups
+    static int powerupMultiplier;
     static void showConsole()
     {
         String sInput = JOptionPane.showInputDialog("Enter a command: ");
@@ -41,6 +43,8 @@ public class DevConsole
                     case "hide": hiding(input); break;
                     case "hider": hiding(input); break;
                     case "minigun": minigun(input); break;
+                    case "powerup": powerupMultiplier(input); break;
+                    case "powerupMultiplier": powerupMultiplier(input); break;
                 }
             }
         }
@@ -57,6 +61,7 @@ public class DevConsole
         realism = true;
         hiding = false;
         minigun = false;
+        powerupMultiplier = 1;
     }
 
     /**
@@ -110,5 +115,15 @@ public class DevConsole
         }
         else
             JOptionPane.showMessageDialog(null,"Minigun is " + String.valueOf(minigun));
+    }
+    
+    static void powerupMultiplier(Scanner input)
+    {
+        if(input.hasNextInt())
+        {
+            powerupMultiplier = input.nextInt();
+        }
+        else
+            JOptionPane.showMessageDialog(null,"Powerup Multiplier is " + String.valueOf(powerupMultiplier) + "x");
     }
 }
