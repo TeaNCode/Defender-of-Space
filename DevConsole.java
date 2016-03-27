@@ -47,6 +47,8 @@ public class DevConsole
                     case "minigun": minigun(input); break;
                     case "powerup": powerupMultiplier(input); break;
                     case "powerupMultiplier": powerupMultiplier(input); break;
+                    case "special": specialMultiplier(input); break;
+                    case "specialMultiplier": specialMultiplier(input); break;
                 }
             }
         }
@@ -77,7 +79,7 @@ public class DevConsole
             invulnerable = input.nextBoolean();
         }
         else
-            JOptionPane.showMessageDialog(null,"Invulnerable is " + String.valueOf(invulnerable));
+            JOptionPane.showMessageDialog(null,"Invulnerablility is " + String.valueOf(invulnerable) + ".");
     }
 
     static void attackMultiplier(Scanner input)
@@ -87,7 +89,7 @@ public class DevConsole
             attackMultiplier = input.nextInt();
         }
         else
-            JOptionPane.showMessageDialog(null,"Attack Multiplier is " + String.valueOf(attackMultiplier) + "x");
+            JOptionPane.showMessageDialog(null,"Enemies' attack multiplier is " + String.valueOf(attackMultiplier) + "x.");
     }
 
     static void realism(Scanner input)
@@ -97,7 +99,7 @@ public class DevConsole
             realism = input.nextBoolean();
         }
         else
-            JOptionPane.showMessageDialog(null,"Realism is " + String.valueOf(realism));
+            JOptionPane.showMessageDialog(null,"Realism is " + String.valueOf(realism) + ".");
     }
 
     static void hiding(Scanner input)
@@ -107,7 +109,7 @@ public class DevConsole
             hiding = input.nextBoolean();
         }
         else
-            JOptionPane.showMessageDialog(null,"Hiding is " + String.valueOf(hiding));
+            JOptionPane.showMessageDialog(null,"Hiding is " + String.valueOf(hiding) + ".");
     }
 
     static void minigun(Scanner input)
@@ -117,7 +119,7 @@ public class DevConsole
             minigun = input.nextBoolean();
         }
         else
-            JOptionPane.showMessageDialog(null,"Minigun is " + String.valueOf(minigun));
+            JOptionPane.showMessageDialog(null,"Minigun is " + String.valueOf(minigun) + ".");
     }
     
     static void powerupMultiplier(Scanner input)
@@ -127,6 +129,16 @@ public class DevConsole
             powerupMultiplier = input.nextInt();
         }
         else
-            JOptionPane.showMessageDialog(null,"Powerup Multiplier is " + String.valueOf(powerupMultiplier) + "x");
+            JOptionPane.showMessageDialog(null,"Powerup drop rate multiplier is " + String.valueOf(powerupMultiplier) + "x.");
+    }
+    
+    static void specialMultiplier(Scanner input)
+    {
+        if(input.hasNextInt())
+        {
+            specialMultiplier = input.nextInt();
+        }
+        else
+            JOptionPane.showMessageDialog(null,"Enemies' special action rate multiplier is " + String.valueOf(specialMultiplier) + "x.");
     }
 }

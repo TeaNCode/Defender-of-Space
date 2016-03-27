@@ -11,7 +11,6 @@ public class EnemyShip2 extends EnemyShip
     private int cooldown;
     private PlaceHolder placeHolder1;
     private PlaceHolder placeHolder2;
-    public String[] powers = {"Attack", "Score", "Shield", "Penetrate", "Mystery", "Burst", "Movement", "Life"};
     /**
      * Act - do whatever the enemyShip2 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -85,9 +84,8 @@ public class EnemyShip2 extends EnemyShip
         {
             SpaceWorld temp = (SpaceWorld)(getWorld());
             temp.showSummary(false);
+            temp.showingSummary = true;
         }
-
-        addPowers();
     }    
 
     public EnemyShip2()
@@ -105,16 +103,10 @@ public class EnemyShip2 extends EnemyShip
         {
             hitee.delete();
             GoodShip killer = (GoodShip) (hitee.owner);
+            addPowerup();
             getWorld().removeObject(this);
             killer.score = killer.score + 200;
             killer.enemiesKilled++;
-        }
-    }
-
-    public void addPowers(){
-        if(Greenfoot.getRandomNumber(5000) + 1 <= 1 * DevConsole.powerupMultiplier)
-        {
-            getWorld().addObject(new Powerups(powers[Greenfoot.getRandomNumber(7)]), getX(), getY());
         }
     }
 }

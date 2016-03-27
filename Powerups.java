@@ -8,11 +8,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Powerups extends Actor
 {
-    EnemyShip2 enemy;
     public String typeDecide;
-    public Powerups(String typeD)
+    public Powerups(String typeDecide)
     {
-        typeDecide = typeD;
+        this.typeDecide = typeDecide;
+        turn(270);
+    }
+    
+    public Powerups()
+    {
+        String[] powers = {"Attack", "Score", "Shield", "Penetrate", "Mystery", "Burst", "Movement", "Life"};
+        typeDecide = powers[Greenfoot.getRandomNumber(powers.length)];
         turn(270);
     }
     

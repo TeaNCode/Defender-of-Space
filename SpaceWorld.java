@@ -14,7 +14,7 @@ public class SpaceWorld extends World
     public ArrayList<Life> lives2 = new ArrayList<Life>();
     private Wave[] waves;
     private int waveNumber;
-    private boolean showingSummary;
+    public boolean showingSummary;
     private PlayerShip player1;
     private Player2Ship player2;
     public SpaceWorld(int players, Wave[] waves)

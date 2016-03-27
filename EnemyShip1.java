@@ -45,14 +45,29 @@ public class EnemyShip1 extends EnemyShip
             setLocation(getX(),getY() + 5);
             if(i == 1)
             {
-                script = "normal";
-                if(direction == 1)
+                if(input.hasNext())
                 {
-                    setLocation(getX() + 1, getY()); 
+                    script = input.next() + " " + input.next();
+                    if(direction == 1)
+                    {
+                        setLocation(getX() + 1, getY()); 
+                    }
+                    else
+                    {
+                        setLocation(getX() - 1, getY());
+                    }
                 }
                 else
                 {
-                    setLocation(getX() - 1, getY());
+                    script = "normal";
+                    if(direction == 1)
+                    {
+                        setLocation(getX() + 1, getY()); 
+                    }
+                    else
+                    {
+                        setLocation(getX() - 1, getY());
+                    }
                 }
             }
 
@@ -79,6 +94,7 @@ public class EnemyShip1 extends EnemyShip
         {
             SpaceWorld temp = (SpaceWorld)(getWorld());
             temp.showSummary(false);
+            temp.showingSummary = true;
         }
     }    
 
@@ -88,6 +104,7 @@ public class EnemyShip1 extends EnemyShip
         {
             hitee.delete();
             GoodShip killer = (GoodShip) (hitee.owner);
+            addPowerup();
             getWorld().removeObject(this);
             killer.score = killer.score + 100;
             killer.enemiesKilled++;

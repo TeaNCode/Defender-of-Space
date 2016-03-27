@@ -38,11 +38,32 @@ public abstract class EnemyShip extends Destroyable
                 script = "down 20";
                 direction = 1;
             }
-            
+
             if(getY() >= 750)
             {
                 end = true;
             }
+        }
+        else if(script.startsWith("burst"))
+        {
+            if(getX() == 870)
+            {
+                script = "down 20 " + script;
+                direction = 2;
+            }
+            else if(getX() == 160)
+            {
+                script = "down 20 " + script;
+                direction = 1;
+            }
+        }
+    }
+    
+    public void addPowerup()
+    {
+        if(Greenfoot.getRandomNumber(19) + 1 <= 1 * DevConsole.powerupMultiplier)
+        {
+            getWorld().addObject(new Powerups(), getX(), getY());
         }
     }
 }

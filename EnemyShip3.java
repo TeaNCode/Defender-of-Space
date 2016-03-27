@@ -91,6 +91,7 @@ public class EnemyShip3 extends EnemyShip
             else if(damaged)
             {
                 GoodShip killer = (GoodShip) (hitee.owner);
+                addPowerup();
                 getWorld().removeObject(this);
                 killer.score = killer.score + 500;
                 killer.enemiesKilled++;

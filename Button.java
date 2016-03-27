@@ -68,14 +68,14 @@ public class Button extends Actor
         {
             for( int X = 1; X < 11; X++)
             {
-                array.add(new SpawnableEntity(new EnemyShip2(),250 + (X * 50),150 + (Y * 50)));
+                array.add(new SpawnableEntity(new EnemyShip1(),250 + (X * 50),150 + (Y * 50)));
             }
         }
         for( int Y = 1; Y < 3; Y++)
         {
             for( int X = 1; X < 11; X++)
             {
-                array.add(new SpawnableEntity(new EnemyShip1(),250 + (X * 50),50 + (Y * 50)));
+                array.add(new SpawnableEntity(new EnemyShip2(),250 + (X * 50),50 + (Y * 50)));
             }
         }
         array.add(new SpawnableEntity(new EnemyShip3(),500,50));
