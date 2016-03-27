@@ -20,6 +20,8 @@ public class DevConsole
     static boolean minigun;
     //Enemies more likely to drop powerups
     static int powerupMultiplier;
+    //Makes enemies more likely to do their special
+    static int specialMultiplier;
     static void showConsole()
     {
         String sInput = JOptionPane.showInputDialog("Enter a command: ");
@@ -62,6 +64,7 @@ public class DevConsole
         hiding = false;
         minigun = false;
         powerupMultiplier = 1;
+        specialMultiplier = 1;
     }
 
     /**

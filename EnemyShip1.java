@@ -27,7 +27,7 @@ public class EnemyShip1 extends EnemyShip
         if(script.equals("normal"))
         {
             move();
-            if(Greenfoot.getRandomNumber(3999) + 1 <= 1 && cooldown <= 0)
+            if(Greenfoot.getRandomNumber(3999) + 1 <= 1  * DevConsole.specialMultiplier && cooldown <= 0)
             {
                 script = "burst 0";
             }
