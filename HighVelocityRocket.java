@@ -1,31 +1,27 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class EnemyRocket here.
+ * Write a description of class HighVelocityRocket here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EnemyRocket extends Projectile
+public class HighVelocityRocket extends Projectile
 {
-    public EnemyRocket(int rotation, EnemyShip owner)
+    public HighVelocityRocket(int rotation, Destroyable owner)
     {
         super(rotation, owner);
-        setImage("enemyRocket.png");
+        setImage("highVelocityRocket.fw.png");
     }
 
     /**
-     * Act - do whatever the EnemyRocket wants to do. This method is called whenever
+     * Act - do whatever the Plasma wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
         super.act();
-        move(9);
-        if(getY() == 799 && !delete)
-        {
-            delete = true;
-        }
+        move(8);
         deleteCheck();
     }    
 
@@ -33,7 +29,8 @@ public class EnemyRocket extends Projectile
     {
         if(DevConsole.realism)
         {
-            if(hitee instanceof PlayerRocket || hitee instanceof Plasma)
+            if((hitee.owner instanceof EnemyShip && owner instanceof GoodShip) ||
+            (hitee.owner instanceof GoodShip && owner instanceof EnemyShip))
             {
                 delete();
             }

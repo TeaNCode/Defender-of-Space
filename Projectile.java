@@ -40,4 +40,12 @@ public abstract class Projectile extends Actor
     {
         delete = true;
     }
+    
+    public void deleteCheck()
+    {
+        if(delete)
+        {
+            getWorld().removeObject(this);
+        }
+    }
 }

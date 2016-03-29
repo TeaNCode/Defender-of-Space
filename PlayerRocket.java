@@ -28,11 +28,7 @@ public class PlayerRocket extends Projectile
             GoodShip goodOwner = (GoodShip)(owner);
             goodOwner.misses++;
         }
-        
-        if(delete)
-        {
-            getWorld().removeObject(this);
-        }
+        deleteCheck();
     }    
     
     public void collision(Projectile hitee)

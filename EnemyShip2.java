@@ -99,7 +99,7 @@ public class EnemyShip2 extends EnemyShip
 
     public void hit(Projectile hitee)
     {
-        if(hitee instanceof Plasma || hitee instanceof PlayerRocket)
+        if(hitee.owner instanceof GoodShip)
         {
             hitee.delete();
             GoodShip killer = (GoodShip) (hitee.owner);

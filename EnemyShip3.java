@@ -80,7 +80,7 @@ public class EnemyShip3 extends EnemyShip
 
     public void hit(Projectile hitee)
     {
-        if(hitee instanceof Plasma || hitee instanceof PlayerRocket)
+        if(hitee.owner instanceof GoodShip)
         {
             hitee.delete();
             if(!damaged)
