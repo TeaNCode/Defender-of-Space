@@ -9,6 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Powerups extends Actor
 {
     public String typeDecide;
+    GoodShip ship;
+    SpaceWorld world;
     public Powerups(String typeDecide)
     {
         this.typeDecide = typeDecide;
@@ -47,35 +49,43 @@ public class Powerups extends Actor
         }
     }    
     
-    public void attackSpeed(){
+    public void attackSpeed()
+    {
         
     }
     
-    public void score(){
+    public void score()
+    {
+        ship.score += 200;
+    }
+    
+    public void shield()
+    {
         
     }
     
-    public void shield(){
+    public void plasmaPenetrate()
+    {
         
     }
     
-    public void plasmaPenetrate(){
+    public void mysteryBox()
+    {
         
     }
     
-    public void mysteryBox(){
+    public void extraLife()
+    {
         
     }
     
-    public void extraLife(){
+    public void burst()
+    {
         
     }
     
-    public void burst(){
-        
-    }
-    
-    public void movementSpeed(){
+    public void movementSpeed()
+    {
         
     }
     
