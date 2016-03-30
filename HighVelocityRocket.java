@@ -22,6 +22,11 @@ public class HighVelocityRocket extends Projectile
     {
         super.act();
         move(8);
+        
+        if(getX() >= 799)
+        {
+            delete();
+        }
         deleteCheck();
     }    
 

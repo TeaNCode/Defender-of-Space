@@ -8,7 +8,6 @@ import java.util.Scanner;
  */
 public class EnemyShip2 extends EnemyShip
 {
-    private int cooldown;
     private PlaceHolder placeHolder1;
     private PlaceHolder placeHolder2;
     /**
@@ -93,7 +92,6 @@ public class EnemyShip2 extends EnemyShip
         setImage("enemyShip2.png");
         direction = 2;
         script = "normal";
-        cooldown = 0;
         end = false;
     }
 

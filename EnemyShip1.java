@@ -8,7 +8,6 @@ import java.util.Scanner;
  */
 public class EnemyShip1 extends EnemyShip
 {
-    private int cooldown;
     public EnemyShip1()
     {
         setImage("enemyShip1.png");
@@ -27,13 +26,12 @@ public class EnemyShip1 extends EnemyShip
         if(script.equals("normal"))
         {
             move();
-            if(Greenfoot.getRandomNumber(3999) + 1 <= 1  * DevConsole.specialMultiplier && cooldown <= 0)
+            if(Greenfoot.getRandomNumber(3999) + 1 <= 1  * DevConsole.specialMultiplier)
             {
                 script = "burst 0";
             }
             else if(Greenfoot.getRandomNumber(1999) + 1 <= 1 * DevConsole.attackMultiplier)
             {
-                cooldown--;
                 getWorld().addObject(new EnemyRocket(90,this), getX(), getY());
             }
         }
