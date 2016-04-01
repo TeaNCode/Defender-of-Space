@@ -12,6 +12,7 @@ public class Button extends Actor
 {
     private String type;
     private World world;
+    private Wave[] waves;
     public Button(String type){
         this.type = type;
         setPicture();
@@ -21,6 +22,14 @@ public class Button extends Actor
     {
         this(type);
         this.world = world;
+    }
+    
+    public Button(String type, World world, Wave[] waves, GreenfootImage image)
+    {
+        this.type = type;
+        this.world = world;
+        this.waves = waves;
+        setImage(image);
     }
 
     /**
@@ -58,6 +67,7 @@ public class Button extends Actor
             case "continue": setImage(new GreenfootImage("Continue", 60, Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
             case "back": setImage(new GreenfootImage("Back",30,Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
             case "help": setImage(new GreenfootImage("Help",40,Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
+            case "spaceWorld:
         }
     }
     
@@ -68,14 +78,14 @@ public class Button extends Actor
         {
             for( int X = 1; X < 11; X++)
             {
-                array.add(new SpawnableEntity(new EnemyShip1(),250 + (X * 50),150 + (Y * 50)));
+                array.add(new SpawnableEntity(new EnemyShip1(1),250 + (X * 50),150 + (Y * 50)));
             }
         }
         for( int Y = 1; Y < 3; Y++)
         {
             for( int X = 1; X < 11; X++)
             {
-                array.add(new SpawnableEntity(new EnemyShip2(),250 + (X * 50),50 + (Y * 50)));
+                array.add(new SpawnableEntity(new EnemyShip2(2),250 + (X * 50),50 + (Y * 50)));
             }
         }
         array.add(new SpawnableEntity(new EnemyShip3(),500,50));

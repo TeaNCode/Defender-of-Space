@@ -8,10 +8,10 @@ import java.util.Scanner;
  */
 public class EnemyShip1 extends EnemyShip
 {
-    public EnemyShip1()
+    public EnemyShip1(int direction)
     {
         setImage("enemyShip1.png");
-        direction = 1;
+        this.direction = direction;
         script = "normal";
         end = false;
     }

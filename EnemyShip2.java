@@ -87,10 +87,10 @@ public class EnemyShip2 extends EnemyShip
         }
     }    
 
-    public EnemyShip2()
+    public EnemyShip2(int direction)
     {
         setImage("enemyShip2.png");
-        direction = 2;
+        this.direction = direction;
         script = "normal";
         end = false;
     }

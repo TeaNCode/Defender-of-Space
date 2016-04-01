@@ -12,9 +12,10 @@ public class HubWorld extends World
      * Constructor for objects of class HubWorld.
      * 
      */
-    public HubWorld()
+    public HubWorld(boolean load)
     {    
         // Needs a coolio background image
         super(1000, 800, 1); 
+        addObject(new Button("continue",new SpaceWorld(
     }
 }
