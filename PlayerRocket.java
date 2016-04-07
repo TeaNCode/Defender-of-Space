@@ -35,7 +35,8 @@ public class PlayerRocket extends Projectile
     {
         if(DevConsole.realism)
         {
-            if(hitee instanceof EnemyRocket || hitee instanceof Plasma)
+            if((hitee.owner instanceof EnemyShip && owner instanceof GoodShip) ||
+            (hitee.owner instanceof GoodShip && owner instanceof EnemyShip))
             {
                 delete();
             }

@@ -40,6 +40,8 @@ public class SpaceWorld extends World
             addObject(new Display("Player 2",20,Color.WHITE,new Color(0,0,0,0)),823,43);
             addObject(player2,600,750);
             addLives2(3);
+            if(DevConsole.attackMultiplier == 1)
+                DevConsole.attackMultiplier = 2;
         }
         addLives(3);
         Greenfoot.setSpeed(50);
@@ -109,7 +111,7 @@ public class SpaceWorld extends World
                                     - player1.misses) / player1.shots) * 100.0)) + "% (" + String.valueOf(player1.shots - player1.misses) + " / "
                     + String.valueOf(player1.shots) + ")",40,Color.LIGHT_GRAY), getWidth() / 2, 500);
 
-            addObject(new Button("continue", new SpaceWorld(1, Button.getStartingWave())), getWidth() / 2, 700);
+            addObject(new Button("world", new HubWorld(false),new GreenfootImage("Continue",60,Color.LIGHT_GRAY,new Color(0,0,0,0))), getWidth() / 2, 700);
         }
         else
         {
@@ -127,7 +129,7 @@ public class SpaceWorld extends World
                                     - player2.misses) / player2.shots) * 100.0)) + "% (" + String.valueOf(player2.shots - player2.misses) + " / "
                     + String.valueOf(player2.shots) + ")",40,Color.LIGHT_GRAY), getWidth() / 2 + 200, 500);
 
-            addObject(new Button("continue", new SpaceWorld(2, Button.getStartingWave())), getWidth() / 2, 700);
+            addObject(new Button("world", new HubWorld(false),new GreenfootImage("Continue",60,Color.LIGHT_GRAY,new Color(0,0,0,0))), getWidth() / 2, 700);
         }
     }
 }
