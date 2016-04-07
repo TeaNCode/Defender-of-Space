@@ -40,8 +40,6 @@ public class SpaceWorld extends World
             addObject(new Display("Player 2",20,Color.WHITE,new Color(0,0,0,0)),823,43);
             addObject(player2,600,750);
             addLives2(3);
-            if(DevConsole.attackMultiplier == 1)
-                DevConsole.attackMultiplier = 2;
         }
         addLives(3);
         Greenfoot.setSpeed(50);
