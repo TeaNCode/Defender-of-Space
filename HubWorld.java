@@ -17,9 +17,9 @@ public class HubWorld extends World
     public HubWorld(boolean load)
     {    
         // Needs a coolio background image
-        super(1000, 800, 1); 
-        addObject(new Button("world",new SpaceWorld(1,getLevel(1)),new GreenfootImage("\n\nFly solo",50,Color.WHITE,Color.BLACK)),200,200);
-        addObject(new Button("world",new SpaceWorld(2,getLevel(1)),new GreenfootImage("\n\nTeamwork makes the dreamwork",50,Color.WHITE,Color.BLACK)),434,376);
+        super(1000, 800, 1);
+        addObject(new Button("world",new SpaceWorld(1,getLevel(Save.level)),new GreenfootImage("\n\nFly solo",50,Color.WHITE,Color.BLACK)),200,200);
+        addObject(new Button("world",new SpaceWorld(2,getLevel(Save.level)),new GreenfootImage("\n\nTeamwork makes the dreamwork",50,Color.WHITE,Color.BLACK)),434,376);
     }
 
     public Wave[] getLevel(int level)
@@ -52,6 +52,44 @@ public class HubWorld extends World
             
             
             waves.add(new Wave(wave1.toArray(blahSE)));
+        }
+        else if(level == 2)
+        {
+            ArrayList<SpawnableEntity> wave1 = new ArrayList<SpawnableEntity>();
+            ArrayList<SpawnableEntity> wave2 = new ArrayList<SpawnableEntity>();
+            
+            for( int Y = 1; Y < 3; Y++)
+            {
+                for( int X = 1; X < 11; X++)
+                {
+                    wave1.add(new SpawnableEntity(new EnemyShip1(1),250 + (X * 50),150 + (Y * 50)));
+                }
+            }
+            for( int Y = 1; Y < 3; Y++)
+            {
+                for( int X = 1; X < 11; X++)
+                {
+                    wave1.add(new SpawnableEntity(new EnemyShip1(2),250 + (X * 50),50 + (Y * 50)));
+                }
+            }
+            
+            for( int Y = 1; Y < 3; Y++)
+            {
+                for( int X = 1; X < 11; X++)
+                {
+                    wave2.add(new SpawnableEntity(new EnemyShip2(1),250 + (X * 50),150 + (Y * 50)));
+                }
+            }
+            for( int Y = 1; Y < 3; Y++)
+            {
+                for( int X = 1; X < 11; X++)
+                {
+                    wave2.add(new SpawnableEntity(new EnemyShip2(2),250 + (X * 50),50 + (Y * 50)));
+                }
+            }
+            
+            waves.add(new Wave(wave1.toArray(blahSE)));
+            waves.add(new Wave(wave2.toArray(blahSE)));
         }
         else
         {

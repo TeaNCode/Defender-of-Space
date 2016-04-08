@@ -49,6 +49,7 @@ public class DevConsole
                     case "powerupMultiplier": powerupMultiplier(input); break;
                     case "special": specialMultiplier(input); break;
                     case "specialMultiplier": specialMultiplier(input); break;
+                    
                 }
             }
         }
@@ -140,5 +141,15 @@ public class DevConsole
         }
         else
             JOptionPane.showMessageDialog(null,"Enemies' special action rate multiplier is " + String.valueOf(specialMultiplier) + "x.");
+    }
+    
+    static void level(Scanner input)
+    {
+        if(input.hasNextInt())
+        {
+            Save.level = input.nextInt();
+        }
+        else
+            JOptionPane.showMessageDialog(null,"Current level is " + String.valueOf(Save.level) + ".");
     }
 }
