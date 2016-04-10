@@ -2,6 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.util.Random;
 /**
  * Write a description of class HubWorld here.
  * 
@@ -93,9 +94,55 @@ public class HubWorld extends World
         }
         else
         {
-            JOptionPane.showMessageDialog(null,"You have requested a level that hasn't been coded yet.","Game over man, game over.",JOptionPane.WARNING_MESSAGE);
+            ArrayList<SpawnableEntity> wave1 = new ArrayList<SpawnableEntity>();
+            JOptionPane.showMessageDialog(null,"The next level will be a random level because you have requested a level that hasn't been coded yet.","Game over man, game over.",JOptionPane.WARNING_MESSAGE);
+            String input = JOptionPane.showInputDialog(null,"Enter a seed for the random level or press cancle for a random seed");
+            Random random;
+            if(input != null)
+            {
+                long seed;
+                try
+                {
+                    seed = Long.valueOf(input);
+                }
+                catch(Exception e)
+                {
+                    seed = input.hashCode();
+                }
+                random = new Random(seed);
+            }
+            else
+            {
+                random = new Random();
+            }
+            
+            int times = random.nextInt(31) + 10;
+            for(int i = 0; i < times; i++)
+            {
+                int enemyType = random.nextInt(3);
+                if(enemyType == 0)
+                {
+                    wave1.add(new SpawnableEntity(new EnemyShip1(random.nextInt(2) + 1),random.nextInt(711) + 130,random.nextInt(301) + 400));
+                }
+                else if(enemyType == 1)
+                {
+                    wave1.add(new SpawnableEntity(new EnemyShip2(random.nextInt(2) + 1),random.nextInt(711) + 130,random.nextInt(301) + 400));
+                }
+                else
+                {
+                    wave1.add(new SpawnableEntity(new EnemyShip3(),random.nextInt(711) + 130,random.nextInt(301) + 400));
+                }
+            }
         }
         
         return waves.toArray(blahW);
+    }
+    
+    public void act()
+    {
+        if(Greenfoot.isKeyDown("`"))
+        {
+            DevConsole.showConsole();
+        }
     }
 }

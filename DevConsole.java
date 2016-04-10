@@ -49,7 +49,7 @@ public class DevConsole
                     case "powerupMultiplier": powerupMultiplier(input); break;
                     case "special": specialMultiplier(input); break;
                     case "specialMultiplier": specialMultiplier(input); break;
-                    
+                    case "level": level(input); break;
                 }
             }
         }

@@ -48,6 +48,11 @@ public abstract class Save
         return toReturn;
     }
     
+    static void initialize()
+    {
+        level = 1;
+    }
+    
     
     
     static boolean loaded;

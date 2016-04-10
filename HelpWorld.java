@@ -31,4 +31,12 @@ public class HelpWorld extends World
         addObject(new Display("defeat the invading alien menace. The world is depending on you.",40,Color.LIGHT_GRAY),494,285);
         addObject(new Display("Do not fail us.",40,Color.LIGHT_GRAY),115,325);
     }
+    
+    public void act()
+    {
+        if(Greenfoot.isKeyDown("`"))
+        {
+            DevConsole.showConsole();
+        }
+    }
 }

@@ -18,6 +18,7 @@ public class MenuWorld extends World
         super(1000, 800, 1); 
         setBackground("gray.fw.png");
         DevConsole.initialize();
+        Save.initialize();
 
         addObject(new Button("newgame"), getWidth() / 2, 450);
         addObject(new Button("continuegame"), getWidth() / 2, 550);
@@ -25,5 +26,13 @@ public class MenuWorld extends World
         addObject(new Button("help",this), getWidth() / 2, 650);
         addObject(new Display("Defender of Space",100,Color.LIGHT_GRAY),getWidth() / 2,300);
         Greenfoot.start();
+    }
+    
+    public void act()
+    {
+        if(Greenfoot.isKeyDown("`"))
+        {
+            DevConsole.showConsole();
+        }
     }
 }

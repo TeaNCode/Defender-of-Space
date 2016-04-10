@@ -21,6 +21,7 @@ public class SpaceWorld extends World
     {
         super(1000, 800, 1);
         setBackground("space1.jpg");
+        this.waves = waves;
         waves[0].spawnWave(this);
         waveNumber = 1;
         showingSummary = false;
@@ -49,12 +50,12 @@ public class SpaceWorld extends World
     {
         if(getObjects(EnemyShip.class).isEmpty())
         {
-            try
+            if(waveNumber <= waves.length - 1)
             {
                 waves[waveNumber].spawnWave(this);
                 waveNumber++;
             }
-            catch(NullPointerException e)
+            else
             {
                 if(!showingSummary)
                 {
@@ -97,7 +98,10 @@ public class SpaceWorld extends World
         setBackground("black.png");
 
         if(win)
+        {
             addObject(new Display("Victory",60,Color.GREEN),getWidth() / 2, 100);
+            Save.level++;
+        }
         else
             addObject(new Display("Loss",60,Color.RED),getWidth() / 2,100);
         if(player2 == null)
