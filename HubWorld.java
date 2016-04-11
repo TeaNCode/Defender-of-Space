@@ -133,6 +133,8 @@ public class HubWorld extends World
                     wave1.add(new SpawnableEntity(new EnemyShip3(),random.nextInt(711) + 130,random.nextInt(301) + 400));
                 }
             }
+            
+            waves.add(new Wave(wave1.toArray(blahSE)));
         }
         
         return waves.toArray(blahW);
