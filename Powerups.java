@@ -56,7 +56,7 @@ public class Powerups extends Actor
     
     public void score()
     {
-        ship.score += 200;
+        
     }
     
     public void shield()
@@ -76,7 +76,7 @@ public class Powerups extends Actor
     
     public void extraLife()
     {
-        
+        world.addLives(1);
     }
     
     public void burst()
