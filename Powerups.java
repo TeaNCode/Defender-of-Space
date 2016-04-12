@@ -9,7 +9,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Powerups extends Actor
 {
     public String typeDecide;
-    GoodShip ship;
     SpaceWorld world;
     public Powerups(String typeDecide)
     {
@@ -33,14 +32,14 @@ public class Powerups extends Actor
             getWorld().removeObject(this);
             switch(typeDecide)
                 {
-                case "Attack": attackSpeed(); break;
-                case "Score": score(); break;
-                case "Sheild": shield(); break;
-                case "Penetrate": plasmaPenetrate(); break;
-                case "Mystery": mysteryBox(); break;
-                case "Burst": burst(); break;
-                case "Movement": movementSpeed(); break;
-                case "Life": extraLife(); break;
+                case "Attack": attackSpeed(world); break;
+                case "Score": score(world); break;
+                case "Sheild": shield(world); break;
+                case "Penetrate": plasmaPenetrate(world); break;
+                case "Mystery": mysteryBox(world); break;
+                case "Burst": burst(world); break;
+                case "Movement": movementSpeed(world); break;
+                case "Life": extraLife(world); break;
             }
         }
         else if(getY() == 799)
@@ -49,42 +48,42 @@ public class Powerups extends Actor
         }
     }    
     
-    public void attackSpeed()
+    public void attackSpeed(SpaceWorld world)
     {
         
     }
     
-    public void score()
+    public void score(SpaceWorld world)
     {
         
     }
     
-    public void shield()
+    public void shield(SpaceWorld world)
     {
         
     }
     
-    public void plasmaPenetrate()
+    public void plasmaPenetrate(SpaceWorld world)
     {
         
     }
     
-    public void mysteryBox()
+    public void mysteryBox(SpaceWorld world)
     {
         
     }
     
-    public void extraLife()
+    public void extraLife(SpaceWorld world)
     {
         world.addLives(1);
     }
     
-    public void burst()
+    public void burst(SpaceWorld world)
     {
         
     }
     
-    public void movementSpeed()
+    public void movementSpeed(SpaceWorld world)
     {
         
     }
