@@ -70,7 +70,7 @@ public class Player2Ship extends GoodShip
 
     public void hit(Projectile hitee)
     {
-        if(hitee instanceof Plasma || hitee instanceof EnemyRocket)
+        if(hitee.owner instanceof EnemyShip)
         {
             if(!DevConsole.invulnerable && spawnProtection == 0)
             {
