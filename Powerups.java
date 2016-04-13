@@ -26,7 +26,7 @@ public class Powerups extends Actor
     {
         move(-1);
         
-        GoodShip interceptor = getOneIntersectingObject(GoodShip.class);
+        GoodShip interceptor = (GoodShip) (getOneIntersectingObject(GoodShip.class));
         if(interceptor != null)
             {
             getWorld().removeObject(this);
@@ -50,7 +50,7 @@ public class Powerups extends Actor
     
     public void attackSpeed()
     {
-        
+         
     }
     
     public void score()
@@ -60,17 +60,17 @@ public class Powerups extends Actor
     
     public void shield()
     {
-        
+       
     }
     
     public void plasmaPenetrate()
     {
-        
+       
     }
     
     public void mysteryBox()
     {
-        
+       
     }
     
     public void extraLife(SpaceWorld world, GoodShip player)
