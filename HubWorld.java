@@ -11,6 +11,8 @@ import java.util.Random;
  */
 public class HubWorld extends World
 {
+    static boolean warned;
+    
     /**
      * Constructor for objects of class HubWorld.
      * 
@@ -19,9 +21,8 @@ public class HubWorld extends World
     {    
         // Needs a coolio background image
         super(1000, 800, 1);
-        Wave[] level = getLevel(Save.level);
-        addObject(new Button("world",new SpaceWorld(1,level),new GreenfootImage("\n\nFly solo",50,Color.WHITE,Color.BLACK)),200,200);
-        addObject(new Button("world",new SpaceWorld(2,level),new GreenfootImage("\n\nTeamwork makes the dreamwork",50,Color.WHITE,Color.BLACK)),434,376);
+        addObject(new Button("world",new SpaceWorld(1,getLevel(Save.level)),new GreenfootImage("\n\nFly solo",50,Color.WHITE,Color.BLACK)),200,200);
+        addObject(new Button("world",new SpaceWorld(2,getLevel(Save.level)),new GreenfootImage("\n\nTeamwork makes the dreamwork",50,Color.WHITE,Color.BLACK)),434,376);
     }
 
     public Wave[] getLevel(int level)
@@ -82,7 +83,11 @@ public class HubWorld extends World
         else
         {
             ArrayList<SpawnableEntity> wave1 = new ArrayList<SpawnableEntity>();
-            JOptionPane.showMessageDialog(null,"The next level will be a random level because you have requested a level that hasn't been coded yet.","Game over man, game over.",JOptionPane.WARNING_MESSAGE);
+            if(!warned)
+            {
+                warned = true;
+                JOptionPane.showMessageDialog(null,"The next level will be a random level because you have requested a level that hasn't been coded yet.","Game over man, game over.",JOptionPane.WARNING_MESSAGE);
+            }
             //String input = JOptionPane.showInputDialog(null,"Enter a seed for the random level or press cancel for a random seed");
             Random random;
             /**if(input != null)

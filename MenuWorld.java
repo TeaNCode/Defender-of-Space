@@ -19,6 +19,7 @@ public class MenuWorld extends World
         setBackground("gray.fw.png");
         DevConsole.initialize();
         Save.initialize();
+        HubWorld.warned = false;
 
         addObject(new Button("newgame"), getWidth() / 2, 450);
         addObject(new Button("continuegame"), getWidth() / 2, 550);
