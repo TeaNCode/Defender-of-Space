@@ -9,7 +9,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Powerups extends Actor
 {
     public String typeDecide;
-    SpaceWorld world;
     public Powerups(String typeDecide)
     {
         this.typeDecide = typeDecide;
@@ -27,19 +26,20 @@ public class Powerups extends Actor
     {
         move(-1);
         
-        if(getOneIntersectingObject(GoodShip.class) != null)
+        GoodShip interceptor = getOneIntersectingObject(GoodShip.class);
+        if(interceptor != null)
             {
             getWorld().removeObject(this);
             switch(typeDecide)
                 {
-                case "Attack": attackSpeed(world); break;
-                case "Score": score(world); break;
-                case "Sheild": shield(world); break;
-                case "Penetrate": plasmaPenetrate(world); break;
-                case "Mystery": mysteryBox(world); break;
-                case "Burst": burst(world); break;
-                case "Movement": movementSpeed(world); break;
-                case "Life": extraLife(world); break;
+                case "Attack": attackSpeed(); break;
+                case "Score": score(); break;
+                case "Sheild": shield(); break;
+                case "Penetrate": plasmaPenetrate(); break;
+                case "Mystery": mysteryBox(); break;
+                case "Burst": burst(); break;
+                case "Movement": movementSpeed(); break;
+                case "Life": extraLife((SpaceWorld)(interceptor.getWorld()),interceptor); break;
             }
         }
         else if(getY() == 799)
@@ -48,42 +48,45 @@ public class Powerups extends Actor
         }
     }    
     
-    public void attackSpeed(SpaceWorld world)
+    public void attackSpeed()
     {
         
     }
     
-    public void score(SpaceWorld world)
+    public void score()
     {
         
     }
     
-    public void shield(SpaceWorld world)
+    public void shield()
     {
         
     }
     
-    public void plasmaPenetrate(SpaceWorld world)
+    public void plasmaPenetrate()
     {
         
     }
     
-    public void mysteryBox(SpaceWorld world)
+    public void mysteryBox()
     {
         
     }
     
-    public void extraLife(SpaceWorld world)
+    public void extraLife(SpaceWorld world, GoodShip player)
     {
+        if(player instanceof PlayerShip)
         world.addLives(1);
+        else if(player instanceof Player2Ship)
+        world.addLives2(1);
     }
     
-    public void burst(SpaceWorld world)
+    public void burst()
     {
         
     }
     
-    public void movementSpeed(SpaceWorld world)
+    public void movementSpeed()
     {
         
     }
