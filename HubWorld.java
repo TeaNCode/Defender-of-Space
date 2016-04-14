@@ -21,8 +21,11 @@ public class HubWorld extends World
     {    
         // Needs a coolio background image
         super(1000, 800, 1);
+        if(load)
+        Save.loadSave("Save.sav");
         addObject(new Button("world",new SpaceWorld(1,getLevel(Save.level)),new GreenfootImage("\n\nFly solo",50,Color.WHITE,Color.BLACK)),200,200);
         addObject(new Button("world",new SpaceWorld(2,getLevel(Save.level)),new GreenfootImage("\n\nTeamwork makes the dreamwork",50,Color.WHITE,Color.BLACK)),434,376);
+        addObject(new Button("save"), 600,400);
     }
 
     public Wave[] getLevel(int level)
