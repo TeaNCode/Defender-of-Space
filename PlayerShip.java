@@ -74,16 +74,18 @@ public class PlayerShip extends GoodShip
         {
             if(!DevConsole.invulnerable && spawnProtection == 0)
             {
-                int lives = world.lives.toArray().length;
-                getWorld().removeObject(world.lives.get(lives - 1));
-                world.lives.remove(lives - 1);
-                if(lives > 1)
-                {
-                    setLocation(500,750);
-                    spawnProtection = 50;
+                if(!shielded){
+                    int lives = world.lives.toArray().length;
+                    getWorld().removeObject(world.lives.get(lives - 1));
+                    world.lives.remove(lives - 1);
+                    if(lives > 1)
+                    {
+                        setLocation(500,750);
+                        spawnProtection = 50;
+                    }
+                    else
+                        delete = true;
                 }
-                else
-                delete = true;
             }
         }
     }

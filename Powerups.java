@@ -33,8 +33,8 @@ public class Powerups extends Actor
             switch(typeDecide)
                 {
                 case "Attack": attackSpeed(); break;
-                case "Score": score(); break;
-                case "Sheild": shield(); break;
+                case "Score": score(interceptor); break;
+                case "Sheild": shield(interceptor); break;
                 case "Penetrate": plasmaPenetrate(); break;
                 case "Mystery": mysteryBox(); break;
                 case "Burst": burst(); break;
@@ -53,19 +53,20 @@ public class Powerups extends Actor
          
     }
     
-    public void score()
+    public void score(GoodShip player)
     {
-        
+         player.score+= 500;
     }
     
-    public void shield()
+    public void shield(GoodShip player)
     {
-       
+       player.shielded = true;
+       getWorld().addObject(new Display("shield.png"), player.getX(), player.getY());
     }
     
     public void plasmaPenetrate()
     {
-       
+       //maybe depending on if we do the plasma class
     }
     
     public void mysteryBox()
