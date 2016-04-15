@@ -13,4 +13,5 @@ public abstract class GoodShip extends Destroyable
     public int enemiesKilled;
     public int shots;
     public int misses;
+    public boolean shielded = false;
 }
