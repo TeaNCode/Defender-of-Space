@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
+import java.io.File;
 /**
  * Write a description of class MenuWorld here.
  * 
@@ -21,8 +22,10 @@ public class MenuWorld extends World
         Save.initialize();
         HubWorld.warned = false;
 
-        addObject(new Button("newgame"), getWidth() / 2, 450);
-        addObject(new Button("continuegame"), getWidth() / 2, 550);
+        addObject(new Button("newgame"), getWidth() / 2, 550);
+        File save = new File("Save.sav");
+        if(save.exists() && save.canRead())
+        addObject(new Button("continuegame"), getWidth() / 2, 450);
         addObject(new Display(new GreenfootImage("TeaNCode.png")), 301, 127);
         addObject(new Button("help",this), getWidth() / 2, 650);
         addObject(new Display("Defender of Space",100,Color.LIGHT_GRAY),getWidth() / 2,300);
