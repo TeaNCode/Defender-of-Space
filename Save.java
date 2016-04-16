@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.File;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import java.io.FileNotFoundException;
 /**
  * Write a description of class Save here.
  * 
@@ -16,9 +17,9 @@ public abstract class Save
     {
         int response = JOptionPane.showConfirmDialog(null,"Warning: Saving will overwrite the current save. Continue?");
         if(response == JOptionPane.OK_OPTION)
-        writeSave(toWrite,path);
+            writeSave(toWrite,path);
     }
-    
+
     private static void writeSave(String toWrite, String path)
     {
         try
@@ -45,8 +46,19 @@ public abstract class Save
 
     static void loadSave(String path)
     {
-        Scanner save = new Scanner(path);
-        level = save.nextInt();
+        File saveFile = new File(path);
+        if(saveFile.exists())
+        {
+            try
+            {
+                Scanner save = new Scanner(saveFile);
+                level = save.nextInt();
+            }
+            catch(FileNotFoundException e)
+            {
+                initialize();
+            }
+        }
     }
 
     private static void writeToFile(String textLine, String path) throws IOException
@@ -68,7 +80,6 @@ public abstract class Save
         level = 1;
     }
 
-    
     static boolean loaded;
     static int level;
 }
