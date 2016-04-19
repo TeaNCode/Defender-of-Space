@@ -111,7 +111,6 @@ public class HubWorld extends World
                 random = new Random();
             //}
             
-            int times = random.nextInt(31) + 10;
             if(random.nextInt(1000000) == 0)
                 times = 100;
             for(int i = 0; i < times; i++)
