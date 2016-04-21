@@ -20,6 +20,7 @@ public class Powerups extends Actor
         String[] powers = {"Attack", "Score", "Shield", "Penetrate", "Mystery", "Burst", "Movement", "Life"};
         typeDecide = powers[Greenfoot.getRandomNumber(powers.length)];
         turn(270);
+        
     }
     
     public void act() 
@@ -35,7 +36,7 @@ public class Powerups extends Actor
                 case "Attack": attackSpeed(); break;
                 case "Score": score(interceptor); break;
                 case "Sheild": shield(interceptor); break;
-                case "Penetrate": plasmaPenetrate(); break;
+                case "Penetrate": penetrate(); break;
                 case "Mystery": mysteryBox(); break;
                 case "Burst": burst(); break;
                 case "Movement": movementSpeed(); break;
@@ -47,6 +48,11 @@ public class Powerups extends Actor
             getWorld().removeObject(this);
         }
     }    
+    
+    public void imageSet(String which)
+    {
+        setImage(typeDecide);
+    }
     
     public void attackSpeed()
     {
@@ -64,14 +70,25 @@ public class Powerups extends Actor
           getWorld().addObject(new Display("shield.png"), player.getX(), player.getY());
     }
     
-    public void plasmaPenetrate()
+    public void penetrate()
     {
        
     }
     
     public void mysteryBox()
     {
-       
+        GoodShip interceptor = (GoodShip) (getOneIntersectingObject(GoodShip.class));
+        switch(typeDecide)
+                {
+                case "Attack": attackSpeed(); break;
+                case "Score": score(interceptor); break;
+                case "Sheild": shield(interceptor); break;
+                case "Penetrate": penetrate(); break;
+                case "Mystery": mysteryBox(); break;
+                case "Burst": burst(); break;
+                case "Movement": movementSpeed(); break;
+                case "Life": extraLife((SpaceWorld)(interceptor.getWorld()),interceptor); break;
+            }
     }
     
     public void extraLife(SpaceWorld world, GoodShip player)
