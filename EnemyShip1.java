@@ -37,40 +37,7 @@ public class EnemyShip1 extends EnemyShip
         }
         else if(script.startsWith("down "))
         {
-            Scanner input = new Scanner(script);
-            input.next();
-            int i = input.nextInt();
-            setLocation(getX(),getY() + 5);
-            if(i == 1)
-            {
-                if(input.hasNext())
-                {
-                    script = input.next() + " " + input.next();
-                    if(direction == 1)
-                    {
-                        setLocation(getX() + 1, getY()); 
-                    }
-                    else
-                    {
-                        setLocation(getX() - 1, getY());
-                    }
-                }
-                else
-                {
-                    script = "normal";
-                    if(direction == 1)
-                    {
-                        setLocation(getX() + 1, getY()); 
-                    }
-                    else
-                    {
-                        setLocation(getX() - 1, getY());
-                    }
-                }
-            }
-
-            else
-                script = "down " + String.valueOf(i - 1);
+            downScript();
         }
         else if(script.startsWith("burst "))
         {

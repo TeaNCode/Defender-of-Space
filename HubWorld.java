@@ -84,6 +84,14 @@ public class HubWorld extends World
             waves.add(new Wave(wave1.toArray(blahSE)));
             waves.add(new Wave(wave2.toArray(blahSE)));
         }
+        else if(level == 3)
+        {
+            ArrayList<SpawnableEntity> wave1 = new ArrayList<SpawnableEntity>();
+            
+            wave1.add(new SpawnableEntity(new EnemyShip4(2),250,50));
+            
+            waves.add(new Wave(wave1.toArray(blahSE)));
+        }
         else
         {
             ArrayList<SpawnableEntity> wave1 = new ArrayList<SpawnableEntity>();
@@ -117,7 +125,7 @@ public class HubWorld extends World
                 times = 100;
             for(int i = 0; i < times; i++)
             {
-                int enemyType = random.nextInt(3);
+                int enemyType = random.nextInt(4);
                 if(enemyType == 0)
                 {
                     wave1.add(new SpawnableEntity(new EnemyShip1(random.nextInt(2) + 1),random.nextInt(701) + 140,random.nextInt(301) + 10));
@@ -126,9 +134,13 @@ public class HubWorld extends World
                 {
                     wave1.add(new SpawnableEntity(new EnemyShip2(random.nextInt(2) + 1),random.nextInt(701) + 140,random.nextInt(301) + 10));
                 }
-                else
+                else if(enemyType == 2)
                 {
                     wave1.add(new SpawnableEntity(new EnemyShip3(),random.nextInt(701) + 140,random.nextInt(301) + 10));
+                }
+                else if(enemyType == 3)
+                {
+                    wave1.add(new SpawnableEntity(new EnemyShip4(random.nextInt(2) + 1),random.nextInt(701) + 140,random.nextInt(301) + 10));
                 }
             }
             

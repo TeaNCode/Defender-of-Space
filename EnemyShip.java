@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.Scanner;
 /**
  * Write a description of class EnemyShip here.
  * 
@@ -58,12 +58,50 @@ public abstract class EnemyShip extends Destroyable
             }
         }
     }
-    
+
     public void addPowerup()
     {
         if(Greenfoot.getRandomNumber(19) + 1 <= 1 * DevConsole.powerupMultiplier)
         {
             getWorld().addObject(new Powerups(), getX(), getY());
         }
+    }
+
+    public void downScript()
+    {
+        Scanner input = new Scanner(script);
+        input.next();
+        int i = input.nextInt();
+        setLocation(getX(),getY() + 5);
+        if(i == 1)
+        {
+            if(input.hasNext())
+            {
+                script = input.next() + " " + input.next();
+                if(direction == 1)
+                {
+                    setLocation(getX() + 1, getY()); 
+                }
+                else
+                {
+                    setLocation(getX() - 1, getY());
+                }
+            }
+            else
+            {
+                script = "normal";
+                if(direction == 1)
+                {
+                    setLocation(getX() + 1, getY()); 
+                }
+                else
+                {
+                    setLocation(getX() - 1, getY());
+                }
+            }
+        }
+
+        else
+            script = "down " + String.valueOf(i - 1);
     }
 }
