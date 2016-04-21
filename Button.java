@@ -47,7 +47,7 @@ public class Button extends Actor
                 case "help": Greenfoot.setWorld(new HelpWorld(world)); break;
                 case "newgame": Greenfoot.setWorld(new HubWorld(false)); break;
                 case "continuegame": Greenfoot.setWorld(new HubWorld(true)); break;
-                case "save": Save.saveWarn(Save.prepareString(),"Save.sav"); break;
+                case "save": WebSave.saveWarn(); break;
             }
         }
     }    

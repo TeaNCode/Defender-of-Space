@@ -100,7 +100,7 @@ public class SpaceWorld extends World
         if(win)
         {
             addObject(new Display("Victory",60,Color.GREEN),getWidth() / 2, 100);
-            Save.level++;
+            WebSave.level++;
         }
         else
             addObject(new Display("Loss",60,Color.RED),getWidth() / 2,100);

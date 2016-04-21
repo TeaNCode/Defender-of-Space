@@ -147,9 +147,9 @@ public class DevConsole
     {
         if(input.hasNextInt())
         {
-            Save.level = input.nextInt();
+            WebSave.level = input.nextInt();
         }
         else
-            JOptionPane.showMessageDialog(null,"Current level is " + String.valueOf(Save.level) + ".");
+            JOptionPane.showMessageDialog(null,"Current level is " + String.valueOf(WebSave.level) + ".");
     }
 }
