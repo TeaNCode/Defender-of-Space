@@ -121,8 +121,6 @@ public class HubWorld extends World
             //}
             
             int times = random.nextInt(31) + (int)(Math.pow(level,2) / 2);
-            if(random.nextInt(1000000) == 0)
-                times = 100;
             for(int i = 0; i < times; i++)
             {
                 int enemyType = random.nextInt(4);

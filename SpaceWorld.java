@@ -43,7 +43,7 @@ public class SpaceWorld extends World
             addLives2(3);
         }
         addLives(3);
-        //Greenfoot.setSpeed(50);
+        Greenfoot.setSpeed(50);
     }
 
     public void levelUp()
