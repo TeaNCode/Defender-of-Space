@@ -12,37 +12,35 @@ public class Powerups extends Actor
     public Powerups(String typeDecide)
     {
         this.typeDecide = typeDecide;
-        turn(270);
     }
     
     public Powerups()
     {
         String[] powers = {"Attack", "Score", "Shield", "Penetrate", "Mystery", "Burst", "Movement", "Life"};
         typeDecide = powers[Greenfoot.getRandomNumber(powers.length)];
-        turn(270);
         setImage(typeDecide + ".png");
         
     }
     
     public void act() 
     {
-        move(-1);
-        
+        setLocation(getX(), getY() + 1);
+
         GoodShip interceptor = (GoodShip) (getOneIntersectingObject(GoodShip.class));
         if(interceptor != null)
             {
-            getWorld().removeObject(this);
             switch(typeDecide)
                 {
-                case "Attack": attackSpeed(); break;
+                case "Attack": attackSpeed(interceptor); break;
                 case "Score": score(interceptor); break;
-                case "Sheild": shield(interceptor); break;
+                case "Shield": shield(interceptor); break;
                 case "Penetrate": penetrate(); break;
                 case "Mystery": mysteryBox(); break;
-                case "Burst": burst(); break;
+                case "Burst": burst(interceptor); break;
                 case "Movement": movementSpeed(); break;
                 case "Life": extraLife((SpaceWorld)(interceptor.getWorld()),interceptor); break;
             }
+            getWorld().removeObject(this);
         }
         else if(getY() == 799)
             {
@@ -50,9 +48,14 @@ public class Powerups extends Actor
         }
     }    
     
-    public void attackSpeed()
+    public void attackSpeed(GoodShip player)
     {
-         
+         if (Greenfoot.isKeyDown("UP") || Greenfoot.isKeyDown("w") )
+            {
+               getWorld().addObject(new PlayerRocket(player),getX(),getY());
+               //GoodShip.reloadDelayCount = 30;
+               //shots++;
+            }
     }
     
     public void score(GoodShip player)
@@ -63,7 +66,7 @@ public class Powerups extends Actor
     public void shield(GoodShip player)
     {
           player.shielded = true;
-          getWorld().addObject(new Display("shield.png"), player.getX(), player.getY());
+          getWorld().addObject(new Shield(player, 1.0), player.getX(), player.getY());
     }
     
     public void penetrate()
@@ -76,11 +79,11 @@ public class Powerups extends Actor
         GoodShip interceptor = (GoodShip) (getOneIntersectingObject(GoodShip.class));
         switch(typeDecide)
                 {
-                case "Attack": attackSpeed(); break;
+                case "Attack": attackSpeed(interceptor); break;
                 case "Score": score(interceptor); break;
-                case "Sheild": shield(interceptor); break;
+                case "Shield": shield(interceptor); break;
                 case "Penetrate": penetrate(); break;
-                case "Burst": burst(); break;
+                case "Burst": burst(interceptor); break;
                 case "Movement": movementSpeed(); break;
                 case "Life": extraLife((SpaceWorld)(interceptor.getWorld()),interceptor); break;
             }
@@ -94,9 +97,12 @@ public class Powerups extends Actor
         world.addLives2(1);
     }
     
-    public void burst()
+    public void burst(GoodShip player)
     {
-        
+        if (Greenfoot.isKeyDown("UP") || Greenfoot.isKeyDown("w") )
+            {
+               getWorld().addObject(new PlayerRocket(player),getX(),getY());
+            }
     }
     
     public void movementSpeed()
