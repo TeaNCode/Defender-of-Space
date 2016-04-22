@@ -13,5 +13,10 @@ public abstract class GoodShip extends Destroyable
     public int enemiesKilled;
     public int shots;
     public int misses;
-    public boolean shielded = false;
+    public boolean shielded;
+    public Shield shield;
+    public int reloadDelayCount;
+    public SpaceWorld world;
+    public boolean delete;
+    public int spawnProtection;
 }

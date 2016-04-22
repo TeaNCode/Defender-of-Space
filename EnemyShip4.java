@@ -70,16 +70,10 @@ public class EnemyShip4 extends EnemyShip
     {
         if(hitee.owner instanceof GoodShip)
         {
-            if(!Projectile.penetrate)hitee.delete();
+            if(!hitee.penetrate)hitee.delete();
+            else hitee.penetrate = false;
             if(!shielded)
             {
-                GoodShip killer = (GoodShip) (hitee.owner);
-                addPowerup();
-                getWorld().removeObject(this);
-                killer.score = killer.score + 500;
-                killer.enemiesKilled++;
-            }
-            else if(Projectile.penetrate){
                 GoodShip killer = (GoodShip) (hitee.owner);
                 addPowerup();
                 getWorld().removeObject(this);

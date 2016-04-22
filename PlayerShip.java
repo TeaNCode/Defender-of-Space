@@ -8,10 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerShip extends GoodShip
 {
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
-    private SpaceWorld world;
-    private boolean delete;
-    private int spawnProtection;
+    //For variables see GoodShip
     public PlayerShip(SpaceWorld world)
     {
         setImage("playerShip.png");
@@ -85,6 +82,11 @@ public class PlayerShip extends GoodShip
                     }
                     else
                         delete = true;
+                }
+                else
+                {
+                    shielded = false;
+                    getWorld().removeObject(shield);
                 }
             }
         }
