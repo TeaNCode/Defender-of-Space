@@ -27,6 +27,7 @@ public class PlayerRocket extends Projectile
             delete = true;
             GoodShip goodOwner = (GoodShip)(owner);
             goodOwner.misses++;
+            //penetrate = false;
         }
         deleteCheck();
     }    
@@ -38,7 +39,7 @@ public class PlayerRocket extends Projectile
             if((hitee.owner instanceof EnemyShip && owner instanceof GoodShip) ||
             (hitee.owner instanceof GoodShip && owner instanceof EnemyShip))
             {
-                delete();
+                    delete();
             }
         }
     }

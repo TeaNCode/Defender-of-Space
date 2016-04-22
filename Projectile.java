@@ -10,6 +10,7 @@ public abstract class Projectile extends Actor
 {
     public boolean delete;
     public Destroyable owner;
+    public static boolean penetrate;
     /**
      * Act - do whatever the Projectile wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -32,18 +33,19 @@ public abstract class Projectile extends Actor
         setRotation(rotation);
         this.owner = owner;
         delete = false;
+        penetrate = false;
     }
 
     public abstract void collision(Projectile hitee);
 
     public void delete()
     {
-        delete = true;
+        if(!penetrate)delete = true;
     }
     
     public void deleteCheck()
     {
-        if(delete)
+        if(delete && !penetrate)
         {
             getWorld().removeObject(this);
         }

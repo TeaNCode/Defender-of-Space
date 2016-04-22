@@ -54,7 +54,7 @@ public class EnemyShip2 extends EnemyShip
     {
         if(hitee.owner instanceof GoodShip)
         {
-            hitee.delete();
+            if(!Projectile.penetrate)hitee.delete();
             GoodShip killer = (GoodShip) (hitee.owner);
             addPowerup();
             getWorld().removeObject(this);

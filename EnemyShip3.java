@@ -86,7 +86,7 @@ public class EnemyShip3 extends EnemyShip
     {
         if(hitee.owner instanceof GoodShip)
         {
-            hitee.delete();
+            if(!Projectile.penetrate)hitee.delete();
             if(!damaged)
             {
                 setImage("enemyShip3-2.png");
@@ -94,6 +94,13 @@ public class EnemyShip3 extends EnemyShip
             }
             else if(damaged)
             {
+                GoodShip killer = (GoodShip) (hitee.owner);
+                addPowerup();
+                getWorld().removeObject(this);
+                killer.score = killer.score + 500;
+                killer.enemiesKilled++;
+            }
+            else if(Projectile.penetrate){
                 GoodShip killer = (GoodShip) (hitee.owner);
                 addPowerup();
                 getWorld().removeObject(this);

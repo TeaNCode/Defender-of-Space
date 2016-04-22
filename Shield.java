@@ -16,7 +16,7 @@ public class Shield extends Actor
      */
     public Shield(Actor owner, double scale)
     {
-        GreenfootImage temp = new GreenfootImage("shield.png");
+        GreenfootImage temp = new GreenfootImage("shieldTravel.png");
         temp.scale((int)(temp.getWidth() * scale),(int)(temp.getHeight() * scale));
         setImage(temp);
         this.owner = owner;
