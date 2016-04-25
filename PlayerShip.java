@@ -38,7 +38,7 @@ public class PlayerShip extends GoodShip
                 if(getX() - 5 <= 160 && !DevConsole.hiding)
                     setLocation(160,getY());
                 else
-                    move(-5);
+                    move(-speed);
             }
             else if (Greenfoot.isKeyDown("d"))
             {
@@ -46,7 +46,7 @@ public class PlayerShip extends GoodShip
                 if(getX() + 5 >= 870 && !DevConsole.hiding)
                     setLocation(870,getY());
                 else
-                    move(5);
+                    move(speed);
             }
             if (Greenfoot.isKeyDown("w"))
             {
@@ -85,7 +85,7 @@ public class PlayerShip extends GoodShip
                 }
                 else
                 {
-                    shielded = false;
+                    //shielded = false;
                     getWorld().removeObject(shield);
                 }
             }

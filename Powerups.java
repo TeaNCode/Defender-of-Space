@@ -37,7 +37,7 @@ public class Powerups extends Actor
                 case "Penetrate": penetrate(); break;
                 case "Mystery": mysteryBox(); break;
                 case "Burst": burst(interceptor); break;
-                case "Movement": movementSpeed(); break;
+                case "Movement": movementSpeed(interceptor); break;
                 case "Life": extraLife((SpaceWorld)(interceptor.getWorld()),interceptor); break;
             }
             getWorld().removeObject(this);
@@ -50,11 +50,10 @@ public class Powerups extends Actor
     
     public void attackSpeed(GoodShip player)
     {
-         if (Greenfoot.isKeyDown("UP") || Greenfoot.isKeyDown("w") )
-            {
-               getWorld().addObject(new PlayerRocket(player),getX(),getY());
-               //GoodShip.reloadDelayCount = 30;
-               //shots++;
+          player.gunReloadTime = 35;
+          int time = 100;
+          if(time != 0){
+              time--;
             }
     }
     
@@ -71,7 +70,7 @@ public class Powerups extends Actor
     
     public void penetrate()
     {
-       
+        Projectile.penetrate = true;
     }
     
     public void mysteryBox()
@@ -84,7 +83,7 @@ public class Powerups extends Actor
                 case "Shield": shield(interceptor); break;
                 case "Penetrate": penetrate(); break;
                 case "Burst": burst(interceptor); break;
-                case "Movement": movementSpeed(); break;
+                case "Movement": movementSpeed(interceptor); break;
                 case "Life": extraLife((SpaceWorld)(interceptor.getWorld()),interceptor); break;
             }
     }
@@ -105,9 +104,9 @@ public class Powerups extends Actor
             }
     }
     
-    public void movementSpeed()
+    public void movementSpeed(GoodShip player)
     {
-        
+        player.speed = 7;
     }
     
 }

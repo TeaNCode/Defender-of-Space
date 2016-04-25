@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public abstract class GoodShip extends Destroyable
 {
-    public final int gunReloadTime = 65;
+    public int gunReloadTime = 65;
     public int score;
     public int enemiesKilled;
     public int shots;
@@ -19,4 +19,5 @@ public abstract class GoodShip extends Destroyable
     public SpaceWorld world;
     public boolean delete;
     public int spawnProtection;
+    public int speed = 5;
 }
