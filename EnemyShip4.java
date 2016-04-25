@@ -64,6 +64,13 @@ public class EnemyShip4 extends EnemyShip
         }
         else if(script.startsWith("down "))
             downScript();
+
+        if(end)
+        {
+            SpaceWorld temp = (SpaceWorld)(getWorld());
+            temp.showSummary(false);
+            temp.showingSummary = true;
+        }
     }    
 
     public void hit(Projectile hitee)
