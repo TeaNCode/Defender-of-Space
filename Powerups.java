@@ -16,7 +16,7 @@ public class Powerups extends Actor
     
     public Powerups()
     {
-        String[] powers = {"Attack", "Score", "Shield", "Penetrate", "Mystery", "Burst", "Movement", "Life"};
+        String[] powers = {"Attack", "Score", "shield", "Penetrate", "Mystery", "Burst", "Movement", "Life"};
         typeDecide = powers[Greenfoot.getRandomNumber(powers.length)];
         setImage(typeDecide + ".png");
         
@@ -33,7 +33,7 @@ public class Powerups extends Actor
                 {
                 case "Attack": attackSpeed(interceptor); break;
                 case "Score": score(interceptor); break;
-                case "Shield": shield(interceptor); break;
+                case "shield": shield(interceptor); break;
                 case "Penetrate": penetrate(); break;
                 case "Mystery": mysteryBox(); break;
                 case "Burst": burst(interceptor); break;
@@ -60,7 +60,8 @@ public class Powerups extends Actor
     
     public void score(GoodShip player)
     {
-          player.score+= 500;
+          player.score += 500;
+          Save.money += 50;
     }
     
     public void shield(GoodShip player)
@@ -81,7 +82,7 @@ public class Powerups extends Actor
                 {
                 case "Attack": attackSpeed(interceptor); break;
                 case "Score": score(interceptor); break;
-                case "Shield": shield(interceptor); break;
+                case "shield": shield(interceptor); break;
                 case "Penetrate": penetrate(); break;
                 case "Burst": burst(interceptor); break;
                 case "Movement": movementSpeed(); break;
