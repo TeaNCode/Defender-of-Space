@@ -50,10 +50,13 @@ public class Powerups extends Actor
     
     public void attackSpeed(GoodShip player)
     {
-          player.gunReloadTime = 35;
           int time = 100;
           if(time != 0){
               time--;
+              player.gunReloadTime = 35;
+            }
+          else if(time == 0){
+              player.gunReloadTime = 65;
             }
     }
     
@@ -98,10 +101,7 @@ public class Powerups extends Actor
     
     public void burst(GoodShip player)
     {
-        if (Greenfoot.isKeyDown("UP") || Greenfoot.isKeyDown("w") )
-            {
-               getWorld().addObject(new PlayerRocket(player),getX(),getY());
-            }
+        getWorld().addObject(new PlayerRocket(player),getX(),getY());
     }
     
     public void movementSpeed(GoodShip player)

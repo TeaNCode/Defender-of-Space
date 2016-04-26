@@ -59,7 +59,10 @@ public class EnemyBoss1 extends EnemyShip
                     killer.score = killer.score + 1500;
                     killer.enemiesKilled++;
             }
-            else hits++;
+        }
+        else {
+            hits++;
+            //hitee.delete();
         }
     }
 }
