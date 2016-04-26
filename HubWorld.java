@@ -92,6 +92,13 @@ public class HubWorld extends World
             
             waves.add(new Wave(wave1.toArray(blahSE)));
         }
+        else if(level == 5){
+            ArrayList<SpawnableEntity> wave1 = new ArrayList<SpawnableEntity>();
+            
+            wave1.add(new SpawnableEntity(new EnemyBoss1(),500,50));
+            
+            waves.add(new Wave(wave1.toArray(blahSE)));
+        }
         else
         {
             ArrayList<SpawnableEntity> wave1 = new ArrayList<SpawnableEntity>();

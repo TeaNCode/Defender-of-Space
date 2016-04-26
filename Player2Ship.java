@@ -16,6 +16,8 @@ public class Player2Ship extends GoodShip
         reloadDelayCount = gunReloadTime;
         delete = false;
         spawnProtection = 50;
+        gunReloadTime = 65;
+        speed = 5;
     }
 
     /**
@@ -62,6 +64,18 @@ public class Player2Ship extends GoodShip
         else
         {
             getWorld().removeObject(this);
+        }
+        
+        if(attackSpeed){
+            attackBoostedTime = 100;
+            gunReloadTime = 35;
+            if(attackBoostedTime != 0){
+                attackBoostedTime--;
+                gunReloadTime = 35;
+            }
+            else if(attackBoostedTime == 0){
+                gunReloadTime = 65;
+            }
         }
     }    
 

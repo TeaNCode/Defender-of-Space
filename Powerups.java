@@ -34,7 +34,7 @@ public class Powerups extends Actor
                 case "Attack": attackSpeed(interceptor); break;
                 case "Score": score(interceptor); break;
                 case "Shield": shield(interceptor); break;
-                case "Penetrate": penetrate(); break;
+                case "Penetrate": penetrate(interceptor); break;
                 case "Mystery": mysteryBox(); break;
                 case "Burst": burst(interceptor); break;
                 case "Movement": movementSpeed(interceptor); break;
@@ -50,14 +50,15 @@ public class Powerups extends Actor
     
     public void attackSpeed(GoodShip player)
     {
-          int time = 100;
-          if(time != 0){
-              time--;
-              player.gunReloadTime = 35;
-            }
-          else if(time == 0){
-              player.gunReloadTime = 65;
-            }
+          //int time = 100;
+          //if(time != 0){
+          //    time--;
+          //    player.gunReloadTime = 35;
+         //   }
+         // else if(time == 0){
+         //     player.gunReloadTime = 65;
+         //  }
+         player.attackSpeed = true;
     }
     
     public void score(GoodShip player)
@@ -71,9 +72,9 @@ public class Powerups extends Actor
           getWorld().addObject(new Shield(player, 1.0), player.getX(), player.getY());
     }
     
-    public void penetrate()
+    public void penetrate(GoodShip player)
     {
-        Projectile.penetrate = true;
+        //player.
     }
     
     public void mysteryBox()
@@ -84,7 +85,7 @@ public class Powerups extends Actor
                 case "Attack": attackSpeed(interceptor); break;
                 case "Score": score(interceptor); break;
                 case "Shield": shield(interceptor); break;
-                case "Penetrate": penetrate(); break;
+                case "Penetrate": penetrate(interceptor); break;
                 case "Burst": burst(interceptor); break;
                 case "Movement": movementSpeed(interceptor); break;
                 case "Life": extraLife((SpaceWorld)(interceptor.getWorld()),interceptor); break;

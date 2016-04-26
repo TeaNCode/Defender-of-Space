@@ -9,10 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class EnemyBoss1 extends EnemyShip
 {
     public int hits = 0;
-    public EnemyBoss1(int direction)
+    int movement = 4;
+    public EnemyBoss1()
     {
         setImage("Boss.png");
-        this.direction = direction;
         script = "normal";
     }
 
@@ -22,25 +22,25 @@ public class EnemyBoss1 extends EnemyShip
      */
     public void act() 
     {
-        move();
-        if(getX() == 870)
+        setLocation(getX() + (movement), getY());
+        if(getX() >= 850)
         {
-            direction = 2;
+            movement = -2;
         }
-        else if(getX() == 160)
+        else if(getX() <= 180)
         {
-            direction = 1;
+            movement = +4;
         }
 
         if(script.equals("normal"))
         {
             move();
-            if(Greenfoot.getRandomNumber(250) + 1 <= 1 * DevConsole.attackMultiplier)
+            if(Greenfoot.getRandomNumber(500) + 1 <= 1 * DevConsole.specialMultiplier)
             {
                 getWorld().addObject(new HighVelocityRocket(90,this), getX(), getY());
-                getWorld().addObject(new EnemyShip4(1), getX(), getY() - 40);
-                getWorld().addObject(new EnemyShip1(1), getX() + 20, getY()- 20);
-                getWorld().addObject(new EnemyShip1(1), getX() - 20, getY()- 20);
+                getWorld().addObject(new EnemyShip4(1), getX(), getY() + 140);
+                getWorld().addObject(new EnemyShip1(1), getX() + 20, getY()+ 120);
+                getWorld().addObject(new EnemyShip1(1), getX() - 20, getY()+ 120);
             }
         }
         else if(script.startsWith("down "))
@@ -49,20 +49,20 @@ public class EnemyBoss1 extends EnemyShip
 
     public void hit(Projectile hitee)
     {
-        if(hits == 10){
             if(hitee.owner instanceof GoodShip)
             {
+                if(hits == 10){
                     if(!hitee.penetrate)hitee.delete();
                     else hitee.penetrate = false;
                     GoodShip killer = (GoodShip) (hitee.owner);
                     getWorld().removeObject(this);
                     killer.score = killer.score + 1500;
                     killer.enemiesKilled++;
+                }
+                else {
+                    hits++;
+                    hitee.delete();
+                }
             }
         }
-        else {
-            hits++;
-            //hitee.delete();
         }
-    }
-}
