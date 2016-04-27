@@ -50,6 +50,8 @@ public class DevConsole
                     case "special": specialMultiplier(input); break;
                     case "specialMultiplier": specialMultiplier(input); break;
                     case "level": level(input); break;
+                    case "money": money(input); break;
+                    case "cash": money(input); break;
                 }
             }
         }
@@ -151,5 +153,15 @@ public class DevConsole
         }
         else
             JOptionPane.showMessageDialog(null,"Current level is " + String.valueOf(Save.level) + ".");
+    }
+    
+    static void money(Scanner input)
+    {
+        if(input.hasNextInt())
+        {
+            Save.money = input.nextInt();
+        }
+        else
+            JOptionPane.showMessageDialog(null,"Player has $" + String.valueOf(Save.money) + ".");
     }
 }

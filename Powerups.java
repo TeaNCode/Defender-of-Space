@@ -9,9 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Powerups extends Actor
 {
     public String typeDecide;
+    
     public Powerups(String typeDecide)
     {
         this.typeDecide = typeDecide;
+        setImage(typeDecide + ".png");
     }
     
     public Powerups()
@@ -19,7 +21,6 @@ public class Powerups extends Actor
         String[] powers = {"Attack", "Score", "shield", "Penetrate", "Mystery", "Burst", "Movement", "Life"};
         typeDecide = powers[Greenfoot.getRandomNumber(powers.length)];
         setImage(typeDecide + ".png");
-        
     }
     
     public void act() 
@@ -67,7 +68,8 @@ public class Powerups extends Actor
     public void shield(GoodShip player)
     {
           player.shielded = true;
-          getWorld().addObject(new Shield(player, 1.0), player.getX(), player.getY());
+          player.shield = new Shield(player, 1.0);
+          getWorld().addObject(player.shield, player.getX(), player.getY());
     }
     
     public void penetrate()

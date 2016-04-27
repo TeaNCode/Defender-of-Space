@@ -74,6 +74,7 @@ public class Button extends Actor
         {
             HubWorld tempWorld = (HubWorld)(world);
             tempWorld.refreshMoney();
+            world = tempWorld;
         }
         Greenfoot.setWorld(world);
     }
