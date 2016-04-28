@@ -111,7 +111,8 @@ public class PlayerShip extends GoodShip
         {
             if(!DevConsole.invulnerable && spawnProtection == 0)
             {
-                if(!shielded){
+                if(!shielded)
+                {
                     int lives = world.lives.toArray().length;
                     getWorld().removeObject(world.lives.get(lives - 1));
                     world.lives.remove(lives - 1);
@@ -135,6 +136,7 @@ public class PlayerShip extends GoodShip
                     getWorld().removeObject(shield);
                 }
             }
+            hitee.delete();
         }
     }
 }

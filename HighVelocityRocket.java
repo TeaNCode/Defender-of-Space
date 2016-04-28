@@ -29,7 +29,7 @@ public class HighVelocityRocket extends Projectile
     public void act() 
     {
         super.act();
-        move(8);
+        move(13);
         
         if(getY() == 799)
         {

@@ -64,6 +64,13 @@ public class EnemyShip4 extends EnemyShip
         }
         else if(script.startsWith("down "))
             downScript();
+
+        if(end)
+        {
+            SpaceWorld temp = (SpaceWorld)(getWorld());
+            temp.showSummary(false);
+            temp.showingSummary = true;
+        }
     }    
 
     public void hit(Projectile hitee)
@@ -77,7 +84,8 @@ public class EnemyShip4 extends EnemyShip
                 GoodShip killer = (GoodShip) (hitee.owner);
                 addPowerup();
                 getWorld().removeObject(this);
-                killer.score = killer.score + 500;
+                killer.score += 500;
+                Save.money += 50;
                 killer.enemiesKilled++;
             }
         }

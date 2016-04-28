@@ -59,7 +59,8 @@ public class EnemyShip2 extends EnemyShip
             GoodShip killer = (GoodShip) (hitee.owner);
             addPowerup();
             getWorld().removeObject(this);
-            killer.score = killer.score + 200;
+            killer.score += 200;
+            Save.money += 20;
             killer.enemiesKilled++;
         }
     }
