@@ -16,6 +16,10 @@ public class PlayerShip extends GoodShip
         reloadDelayCount = gunReloadTime;
         delete = false;
         spawnProtection = 50;
+        gunReloadTime = 65;
+        speed = 5;
+        penetrate = false;
+        burst = false;
     }
 
     /**
@@ -38,7 +42,7 @@ public class PlayerShip extends GoodShip
                 if(getX() - 5 <= 160 && !DevConsole.hiding)
                     setLocation(160,getY());
                 else
-                    move(-5);
+                    move(-speed);
             }
             else if (Greenfoot.isKeyDown("d"))
             {
@@ -46,15 +50,38 @@ public class PlayerShip extends GoodShip
                 if(getX() + 5 >= 870 && !DevConsole.hiding)
                     setLocation(870,getY());
                 else
-                    move(5);
+                    move(speed);
             }
             if (Greenfoot.isKeyDown("w"))
             {
                 if(reloadDelayCount >= gunReloadTime || DevConsole.minigun) 
                 {
-                    getWorld().addObject(new PlayerRocket(this),getX(),getY());
-                    reloadDelayCount = 0;
-                    shots++;
+                    if(penetrate){
+                        getWorld().addObject(new PlayerRocket(-90, this, true),getX(),getY());
+                        reloadDelayCount = 0;
+                        shots++;
+                        penShots++;
+                        if(penShots== 2)
+                        {
+                            penetrate = false;
+                        }
+                    }
+                    else if(burst){
+                        getWorld().addObject(new PlayerRocket(-80, this),getX(),getY());
+                        getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
+                        getWorld().addObject(new PlayerRocket(-100, this),getX(),getY());
+                        reloadDelayCount = 0;
+                        shots+= 3;
+                        burstShots++;
+                        if(burstShots==5){
+                            burst = false;
+                        }
+                    }
+                    else{
+                        getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
+                        reloadDelayCount = 0;
+                        shots++;
+                    }
                     //shoots
                 } 
             }
@@ -63,6 +90,19 @@ public class PlayerShip extends GoodShip
         {
             getWorld().removeObject(this);
         }
+
+        if(attackSpeed){
+            attackBoostedTime = 50;
+            gunReloadTime = 35;
+            if(attackBoostedTime != 0){
+                attackBoostedTime--;
+                gunReloadTime = 35;
+            }
+            else if(attackBoostedTime == 0){
+                gunReloadTime = 65;
+            }
+        }
+
     }    
 
     public void hit(Projectile hitee)
@@ -79,13 +119,19 @@ public class PlayerShip extends GoodShip
                     {
                         setLocation(500,750);
                         spawnProtection = 50;
+                        gunReloadTime = 65;
+                        reloadDelayCount = 65;
+                        attackSpeed = false;
+                        speed = 5;
+                        penetrate = false;
+                        burst = false;
                     }
                     else
                         delete = true;
                 }
                 else
                 {
-                    shielded = false;
+                    //shielded = false;
                     getWorld().removeObject(shield);
                 }
             }

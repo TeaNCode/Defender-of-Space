@@ -11,6 +11,14 @@ public class HighVelocityRocket extends Projectile
     public HighVelocityRocket(int rotation, Destroyable owner)
     {
         super(rotation, owner);
+        this.penetrate = false;
+        setImage("highVelocityRocket.fw.png");
+    }
+    
+    public HighVelocityRocket(int rotation, Destroyable owner, boolean penetrate)
+    {
+        super(rotation,owner,penetrate);
+        this.penetrate = penetrate;
         setImage("highVelocityRocket.fw.png");
     }
 
