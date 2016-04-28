@@ -53,10 +53,12 @@ public abstract class Save
             {
                 Scanner save = new Scanner(saveFile);
                 level = save.nextInt();
+                if(save.hasNextInt())
+                money = save.nextInt();
             }
             catch(FileNotFoundException e)
             {
-                initialize();
+                
             }
         }
     }
@@ -71,15 +73,17 @@ public abstract class Save
 
     static String prepareString()
     {
-        String toReturn = String.valueOf(level);
+        String toReturn = String.valueOf(level) + " " + String.valueOf(money);
         return toReturn;
     }
 
     static void initialize()
     {
         level = 1;
+        money = 0;
     }
 
     static boolean loaded;
     static int level;
+    static int money;
 }

@@ -30,7 +30,7 @@ public class EnemyRocket extends Projectile
     {
         super.act();
         move(9);
-        if(getY() == 799 && !delete)
+        if(getY() == 799)
         {
             delete = true;
         }

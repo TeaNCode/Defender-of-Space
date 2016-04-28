@@ -25,8 +25,10 @@ public class HubWorld extends World
         Save.loadSave("Save.sav");
         addObject(new Button("world",new SpaceWorld(1,getLevel(Save.level)),new GreenfootImage("\n\nFly solo",50,Color.WHITE,Color.BLACK)),200,200);
         addObject(new Button("world",new SpaceWorld(2,getLevel(Save.level)),new GreenfootImage("\n\nTeamwork makes the dreamwork",50,Color.WHITE,Color.BLACK)),434,376);
+        addObject(new Button("world",new ShopWorld(this),new GreenfootImage("\n\nShop",50,Color.WHITE,Color.BLACK)),634,200);
         addObject(new Button("save"), 206,574);
         addObject(new Display("Current level: " + String.valueOf(Save.level),40,Color.BLACK,new Color(0,0,0,0)),233,626);
+        addObject(new MoneyCounter(),229, 663);
     }
 
     public Wave[] getLevel(int level)
@@ -52,11 +54,10 @@ public class HubWorld extends World
                     wave1.add(new SpawnableEntity(new EnemyShip2(2),250 + (X * 50),50 + (Y * 50)));
                 }
             }
+            wave1.add(new SpawnableEntity(new EnemyShip3(),450,50));
             wave1.add(new SpawnableEntity(new EnemyShip3(),500,50));
             wave1.add(new SpawnableEntity(new EnemyShip3(),550,50));
             wave1.add(new SpawnableEntity(new EnemyShip3(),600,50));
-            wave1.add(new SpawnableEntity(new EnemyShip3(),450,50));
-            
             
             waves.add(new Wave(wave1.toArray(blahSE)));
         }
@@ -87,8 +88,80 @@ public class HubWorld extends World
         else if(level == 3)
         {
             ArrayList<SpawnableEntity> wave1 = new ArrayList<SpawnableEntity>();
+            ArrayList<SpawnableEntity> wave2 = new ArrayList<SpawnableEntity>();
             
             wave1.add(new SpawnableEntity(new EnemyShip4(2),500,50));
+            
+            for(int x = 1; x < 11; x++)
+            {
+                wave2.add(new SpawnableEntity(new EnemyShip4(2),250 + (x * 50),150));
+            }
+            for(int x = 1; x < 11; x+=2)
+            {
+                wave2.add(new SpawnableEntity(new EnemyShip1(2),250 + (x * 50),100));
+            }
+            for(int x = 2; x < 11; x+=2)
+            {
+                wave2.add(new SpawnableEntity(new EnemyShip2(2),250 + (x * 50),100));
+            }
+            
+            waves.add(new Wave(wave1.toArray(blahSE)));
+            waves.add(new Wave(wave2.toArray(blahSE)));
+        }
+        else if(level == 4)
+        {
+            ArrayList<SpawnableEntity> wave1 = new ArrayList<SpawnableEntity>();
+            
+            wave1.add(new SpawnableEntity(new EnemyShip3(),400,50));
+            wave1.add(new SpawnableEntity(new EnemyShip3(),450,50));
+            wave1.add(new SpawnableEntity(new EnemyShip3(),500,50));
+            wave1.add(new SpawnableEntity(new EnemyShip3(),550,50));
+            wave1.add(new SpawnableEntity(new EnemyShip3(),600,50));
+            wave1.add(new SpawnableEntity(new EnemyShip3(),650,50));
+            
+            for(int x = 1; x < 11; x+=3)
+            {
+                wave1.add(new SpawnableEntity(new EnemyShip4(2),250 + (x * 50),100));
+            }
+            for(int x = 2; x < 11; x+=3)
+            {
+                wave1.add(new SpawnableEntity(new EnemyShip1(2),250 + (x * 50),100));
+            }
+            for(int x = 3; x < 11; x+=3)
+            {
+                wave1.add(new SpawnableEntity(new EnemyShip2(2),250 + (x * 50),100));
+            }
+            
+            for(int x = 1; x < 11; x+=2)
+            {
+                wave1.add(new SpawnableEntity(new EnemyShip1(2),250 + (x * 50),150));
+            }
+            for(int x = 2; x < 11; x+=2)
+            {
+                wave1.add(new SpawnableEntity(new EnemyShip2(2),250 + (x * 50),150));
+            }
+            
+            for(int x = 1; x < 11; x+=3)
+            {
+                wave1.add(new SpawnableEntity(new EnemyShip4(1),250 + (x * 50),200));
+            }
+            for(int x = 2; x < 11; x+=3)
+            {
+                wave1.add(new SpawnableEntity(new EnemyShip1(1),250 + (x * 50),200));
+            }
+            for(int x = 3; x < 11; x+=3)
+            {
+                wave1.add(new SpawnableEntity(new EnemyShip2(1),250 + (x * 50),200));
+            }
+            
+            for(int x = 1; x < 11; x+=2)
+            {
+                wave1.add(new SpawnableEntity(new EnemyShip1(1),250 + (x * 50),250));
+            }
+            for(int x = 2; x < 11; x+=2)
+            {
+                wave1.add(new SpawnableEntity(new EnemyShip2(1),250 + (x * 50),250));
+            }
             
             waves.add(new Wave(wave1.toArray(blahSE)));
         }

@@ -16,13 +16,13 @@ public class Button extends Actor
         this.type = type;
         setPicture();
     }
-    
+
     public Button(String type, World world)
     {
         this(type);
         this.world = world;
     }
-    
+
     public Button(String type, World world, GreenfootImage image)
     {
         this.type = type;
