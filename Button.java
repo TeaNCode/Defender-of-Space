@@ -42,7 +42,7 @@ public class Button extends Actor
             {
                 case "teacup": type = "teancodetext"; setPicture(); break;
                 case "teancodetext": type = "teacup"; setPicture(); break;
-                case "world": world(); break;
+                case "world": Greenfoot.setWorld(world); break;
                 case "back": Greenfoot.setWorld(world); break;
                 case "help": Greenfoot.setWorld(new HelpWorld(world)); break;
                 case "newgame": Greenfoot.setWorld(new HubWorld(false)); break;
@@ -66,16 +66,5 @@ public class Button extends Actor
             case "continuegame": setImage(new GreenfootImage("Continue Game",40,Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
             case "save": setImage(new GreenfootImage("Save Game",40,Color.BLACK, new Color(0,0,0,0))); break;
         }
-    }
-
-    private void world()
-    {
-        if(world instanceof HubWorld)
-        {
-            HubWorld tempWorld = (HubWorld)(world);
-            tempWorld.refreshMoney();
-            world = tempWorld;
-        }
-        Greenfoot.setWorld(world);
     }
 }

@@ -12,7 +12,6 @@ import java.util.Random;
 public class HubWorld extends World
 {
     static boolean warned;
-    private Display moneyDisplay;
     
     /**
      * Constructor for objects of class HubWorld.
@@ -29,8 +28,7 @@ public class HubWorld extends World
         addObject(new Button("world",new ShopWorld(this),new GreenfootImage("\n\nShop",50,Color.WHITE,Color.BLACK)),634,200);
         addObject(new Button("save"), 206,574);
         addObject(new Display("Current level: " + String.valueOf(Save.level),40,Color.BLACK,new Color(0,0,0,0)),233,626);
-        moneyDisplay = new Display("Cash money: " + String.valueOf(Save.money),40,new Color(218,165,32),new Color(0,0,0,0));
-        addObject(moneyDisplay,229, 663);
+        addObject(new MoneyCounter(),229, 663);
     }
 
     public Wave[] getLevel(int level)
@@ -229,12 +227,5 @@ public class HubWorld extends World
         {
             DevConsole.showConsole();
         }
-    }
-    
-    public void refreshMoney()
-    {
-        removeObject(moneyDisplay);
-        moneyDisplay = new Display("Cash money: " + String.valueOf(Save.money),40,new Color(218,165,32),new Color(0,0,0,0));
-        addObject(moneyDisplay,229, 663);
     }
 }
