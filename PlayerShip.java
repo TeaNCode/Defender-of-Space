@@ -16,6 +16,7 @@ public class PlayerShip extends GoodShip
         reloadDelayCount = gunReloadTime;
         delete = false;
         spawnProtection = 50;
+        reloadDelayCount = 65;
         gunReloadTime = 65;
         speed = 5;
         penetrate = false;

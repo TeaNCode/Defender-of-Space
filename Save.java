@@ -29,7 +29,7 @@ public abstract class Save
             if(save.isFile()) 
             {
                 if(save.canRead() && save.canWrite()) save.renameTo(saveBackup);
-                else JOptionPane.showMessageDialog(null,"Fatal error: Save.txt exists but cannot be read/writen."
+                else JOptionPane.showMessageDialog(null,"Fatal error: Save.sav exists but cannot be read/writen."
                         +"\nPlease try running this project at a different file location");
             }
             writeToFile(toWrite, path);

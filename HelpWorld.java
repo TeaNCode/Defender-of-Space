@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 /**
- * Write a description of class HelpWorld here.
+ * Displays useful information for new players
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tea N' Code
  */
 public class HelpWorld extends World
 {
@@ -16,6 +15,7 @@ public class HelpWorld extends World
     {    
         super(1000, 800, 1);
         setBackground("gray.fw.png");
+        //Allows the user to return to the Hub
         addObject(new Button("back", backTo),29,789);
         addObject(new Display("Help",60,Color.LIGHT_GRAY),getWidth() / 2, 25);
         addObject(new Display("Here you are:",40,Color.LIGHT_GRAY),105,95);
@@ -32,6 +32,9 @@ public class HelpWorld extends World
         addObject(new Display("Do not fail us.",40,Color.LIGHT_GRAY),115,325);
     }
     
+    /**
+     * Opens the command console when '~' is pressed
+     */
     public void act()
     {
         if(Greenfoot.isKeyDown("`"))

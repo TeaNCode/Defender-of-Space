@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Destroyable here.
+ * A Framework for actors that can be destroyed by Projectiles
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tea N' Code
  */
 public abstract class Destroyable extends ScriptedActor
 {   

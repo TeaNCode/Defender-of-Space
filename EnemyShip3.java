@@ -1,20 +1,21 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.Scanner;
 /**
- * Write a description of class enemyShip3 here.
+ * Yet another enemy that you will face. Doesn't move down towards you like others.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tea N' Code
  */
 public class EnemyShip3 extends EnemyShip
 {
     private boolean damaged;
     private int bias;
+    //Constructs the ship
     public EnemyShip3()
     {
         setImage("enemyShip3.png");
         damaged = false;
         script = "normal";
+        
         bias = 7 - Greenfoot.getRandomNumber(5);
     }
 

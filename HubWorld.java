@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.util.Random;
 /**
- * Write a description of class HubWorld here.
+ * The Hub of activities. Allows the user to begin the level with our without a partner. Also allows them to save or go to the shop
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tea N' Code
  */
 public class HubWorld extends World
 {
@@ -21,6 +20,7 @@ public class HubWorld extends World
     {    
         // Needs a coolio background image
         super(1000, 800, 1);
+        //Whether or not to load from a save
         if(load)
         Save.loadSave("Save.sav");
         addObject(new Button("world",new SpaceWorld(1,getLevel(Save.level)),new GreenfootImage("\n\nFly solo",50,Color.WHITE,Color.BLACK)),200,200);
@@ -31,6 +31,9 @@ public class HubWorld extends World
         addObject(new MoneyCounter(),229, 663);
     }
 
+    /**
+     * Returns the wave that corresponds to the player's current level
+     */
     public Wave[] getLevel(int level)
     {
         ArrayList<Wave> waves = new ArrayList<Wave>();
@@ -228,6 +231,9 @@ public class HubWorld extends World
         return waves.toArray(blahW);
     }
     
+    /**
+     * Opens the command console if the player presses '~'
+     */
     public void act()
     {
         if(Greenfoot.isKeyDown("`"))
