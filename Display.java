@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 /**
- * Write a description of class Display here.
+ * class to display objects like in helpworld
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @TeaNCode
  */
 public class Display extends Actor
 {

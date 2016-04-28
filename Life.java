@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Life here.
+ * class to display your lives
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @TeaNCode
  */
 public class Life extends Actor
 {
     public Life(SpaceWorld world, int n)
     {
+        //sets image and adds lives
         setImage("heart.png");
         if(n == 1)
         world.lives.add(this);

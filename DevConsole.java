@@ -1,10 +1,9 @@
 import javax.swing.JOptionPane;
 import java.util.Scanner;
 /**
- * Write a description of class DevConsole here.
+ * class for hacks("Testing") and overall detection
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @TeaNCode
  */
 public class DevConsole  
 {
@@ -25,15 +24,18 @@ public class DevConsole
     static void showConsole()
     {
         String sInput = JOptionPane.showInputDialog("Enter a command: ");
+        //prompts command
         try
         {
             Scanner input = new Scanner(sInput);
+            //gets command
             if(input.hasNext())
             {
                 String next = input.next();
                 next = next.toLowerCase();
                 switch(next)
                 {
+                    //checks what command was to execute it
                     case "invulnerable": invulnerable(input); break;
                     case "god": invulnerable(input); break;
                     case "attackmultiplier": attackMultiplier(input); break;
@@ -63,6 +65,7 @@ public class DevConsole
 
     static void initialize()
     {
+        //sets initial values
         invulnerable = false;
         attackMultiplier = 1;
         realism = true;
@@ -77,6 +80,7 @@ public class DevConsole
      */
     static void invulnerable(Scanner input)
     {
+        //sets invulnerablity
         if(input.hasNextBoolean())
         {
             invulnerable = input.nextBoolean();
@@ -87,6 +91,7 @@ public class DevConsole
 
     static void attackMultiplier(Scanner input)
     {
+        //sets attack speed multiplier
         if(input.hasNextInt())
         {
             attackMultiplier = input.nextInt();
@@ -97,6 +102,7 @@ public class DevConsole
 
     static void realism(Scanner input)
     {
+        //sets realism
         if(input.hasNextBoolean())
         {
             realism = input.nextBoolean();
@@ -107,6 +113,7 @@ public class DevConsole
 
     static void hiding(Scanner input)
     {
+        //sets boundaries
         if(input.hasNextBoolean())
         {
             hiding = input.nextBoolean();
@@ -117,6 +124,7 @@ public class DevConsole
 
     static void minigun(Scanner input)
     {
+        //sets minigun(no reload time)
         if(input.hasNextBoolean())
         {
             minigun = input.nextBoolean();
@@ -127,6 +135,7 @@ public class DevConsole
     
     static void powerupMultiplier(Scanner input)
     {
+        //sets power up spawn rate
         if(input.hasNextInt())
         {
             powerupMultiplier = input.nextInt();
@@ -137,6 +146,7 @@ public class DevConsole
     
     static void specialMultiplier(Scanner input)
     {
+        //multiplies specila chances
         if(input.hasNextInt())
         {
             specialMultiplier = input.nextInt();
@@ -147,6 +157,7 @@ public class DevConsole
     
     static void level(Scanner input)
     {
+        //sets level you are on
         if(input.hasNextInt())
         {
             Save.level = input.nextInt();
@@ -157,6 +168,7 @@ public class DevConsole
     
     static void money(Scanner input)
     {
+        //sets amount of money you have
         if(input.hasNextInt())
         {
             Save.money = input.nextInt();
