@@ -13,6 +13,12 @@ public class EnemyRocket extends Projectile
         super(rotation, owner);
         setImage("enemyRocket.png");
     }
+    
+    public EnemyRocket(int rotation, EnemyShip owner, boolean penetrate)
+    {
+        super(rotation,owner,penetrate);
+        setImage("enemyRocket.png");
+    }
 
     /**
      * Act - do whatever the EnemyRocket wants to do. This method is called whenever

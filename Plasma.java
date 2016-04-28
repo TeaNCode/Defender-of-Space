@@ -14,6 +14,12 @@ public class Plasma extends Projectile
         setImage("PlasmaBall.png");
     }
     
+    public Plasma(int rotation, Destroyable owner, boolean penetrate)
+    {
+        super(rotation,owner,penetrate);
+        setImage("PlasmaBall.png");
+    }
+    
     /**
      * Act - do whatever the Plasma wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

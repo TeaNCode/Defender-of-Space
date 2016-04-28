@@ -18,6 +18,8 @@ public class Player2Ship extends GoodShip
         spawnProtection = 50;
         gunReloadTime = 65;
         speed = 5;
+        penetrate = false;
+        burst = false;
     }
 
     /**
@@ -55,19 +57,28 @@ public class Player2Ship extends GoodShip
                 if(reloadDelayCount >= gunReloadTime || DevConsole.minigun) 
                 {
                     if(penetrate){
-                        getWorld().addObject(new Plasma(90, this),getX(),getY());
+                        getWorld().addObject(new PlayerRocket(this),getX(),getY());
                         reloadDelayCount = 0;
                         shots++;
+                        penShots++;
+                        if(penShots== 2)
+                        {
+                            penetrate = false;
+                        }
                     }
                     else if(burst){
-                         getWorld().addObject(new PlayerRocket(this),getX(),getY());
-                         getWorld().addObject(new PlayerRocket(this),getX(),getY());
-                         getWorld().addObject(new PlayerRocket(this),getX(),getY());
+                        getWorld().addObject(new PlayerRocket(-80, this),getX(),getY());
+                        getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
+                        getWorld().addObject(new PlayerRocket(-100, this),getX(),getY());
                         reloadDelayCount = 0;
-                        shots++;
+                        shots+= 3;
+                        burstShots++;
+                        if(burstShots==5){
+                            burst = false;
+                        }
                     }
                     else{
-                        getWorld().addObject(new PlayerRocket(this),getX(),getY());
+                        getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
                         reloadDelayCount = 0;
                         shots++;
                     }
@@ -79,9 +90,9 @@ public class Player2Ship extends GoodShip
         {
             getWorld().removeObject(this);
         }
-        
+
         if(attackSpeed){
-            attackBoostedTime = 100;
+            attackBoostedTime = 50;
             gunReloadTime = 35;
             if(attackBoostedTime != 0){
                 attackBoostedTime--;
@@ -91,6 +102,7 @@ public class Player2Ship extends GoodShip
                 gunReloadTime = 65;
             }
         }
+
     }    
 
     public void hit(Projectile hitee)

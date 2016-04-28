@@ -7,11 +7,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerRocket extends Projectile
 {
+    public PlayerRocket(int rotation, GoodShip owner)
+    {
+        super(rotation,owner);
+        setImage("playerRocket.png");
+    }
+    
     public PlayerRocket(GoodShip owner)
     {
         super(-90,owner);
         setImage("playerRocket.png");
-        delete = false;
+    }
+    
+    public PlayerRocket(int rotation, GoodShip owner, boolean penetrate)
+    {
+        super(rotation,owner,penetrate);
+        setImage("playerRocket.png");
     }
 
     /**
@@ -27,7 +38,7 @@ public class PlayerRocket extends Projectile
             delete = true;
             GoodShip goodOwner = (GoodShip)(owner);
             goodOwner.misses++;
-            penetrate = false;
+            goodOwner.penetrate = false;
         }
         deleteCheck();
     }    

@@ -52,8 +52,6 @@ public class EnemyBoss1 extends EnemyShip
             if(hitee.owner instanceof GoodShip)
             {
                 if(hits == 10){
-                    if(!hitee.penetrate)hitee.delete();
-                    else hitee.penetrate = false;
                     GoodShip killer = (GoodShip) (hitee.owner);
                     getWorld().removeObject(this);
                     killer.score = killer.score + 1500;
