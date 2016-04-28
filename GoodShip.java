@@ -22,4 +22,6 @@ public abstract class GoodShip extends Destroyable
     public int speed;
     public int attackBoostedTime;
     public boolean attackSpeed;
+    public boolean penetrate;
+    public boolean burst;
 }

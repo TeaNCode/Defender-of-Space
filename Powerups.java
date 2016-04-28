@@ -74,7 +74,7 @@ public class Powerups extends Actor
     
     public void penetrate(GoodShip player)
     {
-        //player.
+        player.penetrate = true;
     }
     
     public void mysteryBox()
@@ -102,7 +102,7 @@ public class Powerups extends Actor
     
     public void burst(GoodShip player)
     {
-        getWorld().addObject(new PlayerRocket(player),getX(),getY());
+        player.burst = true;
     }
     
     public void movementSpeed(GoodShip player)
