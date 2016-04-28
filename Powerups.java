@@ -9,18 +9,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Powerups extends Actor
 {
     public String typeDecide;
-    
     public Powerups(String typeDecide)
     {
         this.typeDecide = typeDecide;
-        setImage(typeDecide + ".png");
     }
     
     public Powerups()
     {
-        String[] powers = {"Attack", "Score", "shield", "Penetrate", "Mystery", "Burst", "Movement", "Life"};
+        String[] powers = {"Attack", "Score", "Shield", "Penetrate", "Mystery", "Burst", "Movement", "Life"};
         typeDecide = powers[Greenfoot.getRandomNumber(powers.length)];
         setImage(typeDecide + ".png");
+        
     }
     
     public void act() 
@@ -34,11 +33,11 @@ public class Powerups extends Actor
                 {
                 case "Attack": attackSpeed(interceptor); break;
                 case "Score": score(interceptor); break;
-                case "shield": shield(interceptor); break;
-                case "Penetrate": penetrate(); break;
+                case "Shield": shield(interceptor); break;
+                case "Penetrate": penetrate(interceptor); break;
                 case "Mystery": mysteryBox(); break;
                 case "Burst": burst(interceptor); break;
-                case "Movement": movementSpeed(); break;
+                case "Movement": movementSpeed(interceptor); break;
                 case "Life": extraLife((SpaceWorld)(interceptor.getWorld()),interceptor); break;
             }
             getWorld().removeObject(this);
@@ -51,30 +50,32 @@ public class Powerups extends Actor
     
     public void attackSpeed(GoodShip player)
     {
-         if (Greenfoot.isKeyDown("UP") || Greenfoot.isKeyDown("w") )
-            {
-               getWorld().addObject(new PlayerRocket(player),getX(),getY());
-               //GoodShip.reloadDelayCount = 30;
-               //shots++;
-            }
+          //int time = 100;
+          //if(time != 0){
+          //    time--;
+          //    player.gunReloadTime = 35;
+         //   }
+         // else if(time == 0){
+         //     player.gunReloadTime = 65;
+         //  }
+         player.attackSpeed = true;
     }
     
     public void score(GoodShip player)
     {
-          player.score += 500;
-          Save.money += 50;
+          player.score+= 500;
     }
     
     public void shield(GoodShip player)
     {
           player.shielded = true;
-          player.shield = new Shield(player, 1.0);
-          getWorld().addObject(player.shield, player.getX(), player.getY());
+          getWorld().addObject(new Shield(player, 1.0), player.getX(), player.getY());
     }
     
-    public void penetrate()
+    public void penetrate(GoodShip player)
     {
-       
+        player.penetrate = true;
+        player.penShots = 0;
     }
     
     public void mysteryBox()
@@ -84,10 +85,10 @@ public class Powerups extends Actor
                 {
                 case "Attack": attackSpeed(interceptor); break;
                 case "Score": score(interceptor); break;
-                case "shield": shield(interceptor); break;
-                case "Penetrate": penetrate(); break;
+                case "Shield": shield(interceptor); break;
+                case "Penetrate": penetrate(interceptor); break;
                 case "Burst": burst(interceptor); break;
-                case "Movement": movementSpeed(); break;
+                case "Movement": movementSpeed(interceptor); break;
                 case "Life": extraLife((SpaceWorld)(interceptor.getWorld()),interceptor); break;
             }
     }
@@ -102,15 +103,13 @@ public class Powerups extends Actor
     
     public void burst(GoodShip player)
     {
-        if (Greenfoot.isKeyDown("UP") || Greenfoot.isKeyDown("w") )
-            {
-               getWorld().addObject(new PlayerRocket(player),getX(),getY());
-            }
+        player.burst = true;
+        player.burstShots = 0;
     }
     
-    public void movementSpeed()
+    public void movementSpeed(GoodShip player)
     {
-        
+        player.speed = 7;
     }
     
 }
