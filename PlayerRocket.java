@@ -10,18 +10,14 @@ public class PlayerRocket extends Projectile
     public PlayerRocket(int rotation, GoodShip owner)
     {
         super(rotation,owner);
-        setImage("playerRocket.png");
-    }
-    
-    public PlayerRocket(GoodShip owner)
-    {
-        super(-90,owner);
+        this.penetrate = false;
         setImage("playerRocket.png");
     }
     
     public PlayerRocket(int rotation, GoodShip owner, boolean penetrate)
     {
         super(rotation,owner,penetrate);
+        this.penetrate = penetrate;
         setImage("playerRocket.png");
     }
 

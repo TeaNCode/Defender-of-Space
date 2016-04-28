@@ -11,12 +11,14 @@ public class EnemyRocket extends Projectile
     public EnemyRocket(int rotation, EnemyShip owner)
     {
         super(rotation, owner);
+        this.penetrate = false;
         setImage("enemyRocket.png");
     }
     
     public EnemyRocket(int rotation, EnemyShip owner, boolean penetrate)
     {
         super(rotation,owner,penetrate);
+        this.penetrate = penetrate;
         setImage("enemyRocket.png");
     }
 

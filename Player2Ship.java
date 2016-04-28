@@ -57,7 +57,7 @@ public class Player2Ship extends GoodShip
                 if(reloadDelayCount >= gunReloadTime || DevConsole.minigun) 
                 {
                     if(penetrate){
-                        getWorld().addObject(new PlayerRocket(this),getX(),getY());
+                        getWorld().addObject(new PlayerRocket(-90, this, true),getX(),getY());
                         reloadDelayCount = 0;
                         shots++;
                         penShots++;
@@ -119,6 +119,13 @@ public class Player2Ship extends GoodShip
                     {
                         setLocation(500,750);
                         spawnProtection = 50;
+                        spawnProtection = 50;
+                        gunReloadTime = 65;
+                        reloadDelayCount = 65;
+                        attackSpeed = false;
+                        speed = 5;
+                        penetrate = false;
+                        burst = false;
                     }
                     else
                         delete = true;

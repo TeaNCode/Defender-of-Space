@@ -8,16 +8,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class HighVelocityRocket extends Projectile
 {
-    GoodShip goodOwner = (GoodShip)(owner);
     public HighVelocityRocket(int rotation, Destroyable owner)
     {
         super(rotation, owner);
+        this.penetrate = false;
         setImage("highVelocityRocket.fw.png");
     }
     
     public HighVelocityRocket(int rotation, Destroyable owner, boolean penetrate)
     {
         super(rotation,owner,penetrate);
+        this.penetrate = penetrate;
         setImage("highVelocityRocket.fw.png");
     }
 
