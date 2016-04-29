@@ -8,9 +8,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class EnemyRocket extends Projectile
 {
-    public EnemyRocket(EnemyShip owner)
+    public EnemyRocket(int rotation, EnemyShip owner)
     {
-        super(90, owner);
+        super(rotation, owner);
+        this.penetrate = false;
+        setImage("enemyRocket.png");
+    }
+    
+    public EnemyRocket(int rotation, EnemyShip owner, boolean penetrate)
+    {
+        super(rotation,owner,penetrate);
+        this.penetrate = penetrate;
+        setImage("enemyRocket.png");
     }
 
     /**
@@ -20,25 +29,22 @@ public class EnemyRocket extends Projectile
     public void act() 
     {
         super.act();
-        move(10);
-        if (getY() == 899)
+        move(9);
+        if(getY() == 799)
         {
             delete = true;
         }
-        
-        if(delete)
-        {
-            getWorld().removeObject(this);
-        }
+        deleteCheck();
     }    
 
     public void collision(Projectile hitee)
     {
         if(DevConsole.realism)
         {
-            if(hitee instanceof PlayerRocket || hitee instanceof Plasma)
+            if((hitee.owner instanceof EnemyShip && owner instanceof GoodShip) ||
+            (hitee.owner instanceof GoodShip && owner instanceof EnemyShip))
             {
-                getWorld().removeObject(this);
+                delete();
             }
         }
     }

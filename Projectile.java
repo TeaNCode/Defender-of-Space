@@ -10,16 +10,21 @@ public abstract class Projectile extends Actor
 {
     public boolean delete;
     public Destroyable owner;
+    public boolean penetrate;
+
     /**
      * Act - do whatever the Projectile wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-        Projectile projectile = getOneIntersectingObject(Projectile.class);
-        Destroyable ship = getOneIntersectingObject(Destroyable.class);
+        Projectile projectile = (Projectile)(this.getOneIntersectingObject(Projectile.class));
+        Destroyable ship = (Destroyable)(getOneIntersectingObject(Destroyable.class));
         if(projectile != null)
+        {
             projectile.collision(this);
+            collision(projectile);
+        }
         if(ship != null)
             ship.hit(this);
     }    
@@ -29,6 +34,13 @@ public abstract class Projectile extends Actor
         setRotation(rotation);
         this.owner = owner;
         delete = false;
+        penetrate = false;
+    }
+    
+    public Projectile(int rotation, Destroyable owner, boolean penetrate)
+    {
+        this(rotation,owner);
+        this.penetrate = penetrate;
     }
 
     public abstract void collision(Projectile hitee);
@@ -36,5 +48,14 @@ public abstract class Projectile extends Actor
     public void delete()
     {
         delete = true;
+    }
+    
+    public void deleteCheck()
+    {
+        
+        if(delete)
+        {
+            getWorld().removeObject(this);
+        }
     }
 }

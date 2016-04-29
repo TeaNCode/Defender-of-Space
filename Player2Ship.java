@@ -8,17 +8,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player2Ship extends GoodShip
 {
-    private final int gunReloadTime = 50;                  // The minimum delay between firing the gun.
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
-    private SpaceWorld world;
-    private boolean delete;
-    private int spawnProtection;
+    //For variables see GoodShip
     public Player2Ship(SpaceWorld world)
     {
+        setImage("player2Ship.png");
         this.world = world;
-        reloadDelayCount = 50;
+        reloadDelayCount = gunReloadTime;
         delete = false;
         spawnProtection = 50;
+        gunReloadTime = 65;
+        speed = 5;
+        penetrate = false;
+        burst = false;
     }
 
     /**
@@ -35,28 +36,52 @@ public class Player2Ship extends GoodShip
         if(!delete)
         {
             reloadDelayCount++;//keeps you from firing to often
-            if (Greenfoot.isKeyDown("a"))
+            if (Greenfoot.isKeyDown("LEFT"))
             {
                 //moves right
                 if(getX() - 5 <= 160 && !DevConsole.hiding)
                     setLocation(160,getY());
                 else
-                    move(-5);
+                    move(-speed);
             }
-            else if (Greenfoot.isKeyDown("d"))
+            else if (Greenfoot.isKeyDown("RIGHT"))
             {
                 //moves left
                 if(getX() + 5 >= 870 && !DevConsole.hiding)
                     setLocation(870,getY());
                 else
-                    move(5);
+                    move(speed);
             }
-            if (Greenfoot.isKeyDown("w"))
+            if (Greenfoot.isKeyDown("UP"))
             {
                 if(reloadDelayCount >= gunReloadTime || DevConsole.minigun) 
                 {
-                    getWorld().addObject(new PlayerRocket(this),getX(),getY());
-                    reloadDelayCount = 0;
+                    if(penetrate){
+                        getWorld().addObject(new PlayerRocket(-90, this, true),getX(),getY());
+                        reloadDelayCount = 0;
+                        shots++;
+                        penShots++;
+                        if(penShots== 2)
+                        {
+                            penetrate = false;
+                        }
+                    }
+                    else if(burst){
+                        getWorld().addObject(new PlayerRocket(-80, this),getX(),getY());
+                        getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
+                        getWorld().addObject(new PlayerRocket(-100, this),getX(),getY());
+                        reloadDelayCount = 0;
+                        shots+= 3;
+                        burstShots++;
+                        if(burstShots==5){
+                            burst = false;
+                        }
+                    }
+                    else{
+                        getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
+                        reloadDelayCount = 0;
+                        shots++;
+                    }
                     //shoots
                 } 
             }
@@ -65,24 +90,54 @@ public class Player2Ship extends GoodShip
         {
             getWorld().removeObject(this);
         }
+
+        if(attackSpeed){
+            attackBoostedTime = 50;
+            gunReloadTime = 35;
+            if(attackBoostedTime != 0){
+                attackBoostedTime--;
+                gunReloadTime = 35;
+            }
+            else if(attackBoostedTime == 0){
+                gunReloadTime = 65;
+            }
+        }
+
     }    
 
     public void hit(Projectile hitee)
     {
-        if(hitee instanceof Plasma || hitee instanceof EnemyRocket)
+        if(hitee.owner instanceof EnemyShip)
         {
             if(!DevConsole.invulnerable && spawnProtection == 0)
             {
-                int lives = world.lives2.toArray().length;
-                getWorld().removeObject(world.lives2.get(lives - 1));
-                world.lives2.remove(lives - 1);
-                if(lives > 1)
+                if(!shielded)
                 {
-                    setLocation(500,800);
+                    int lives = world.lives2.toArray().length;
+                    getWorld().removeObject(world.lives2.get(lives - 1));
+                    world.lives2.remove(lives - 1);
+                    if(lives > 1)
+                    {
+                        setLocation(500,750);
+                        spawnProtection = 50;
+                        spawnProtection = 50;
+                        gunReloadTime = 65;
+                        reloadDelayCount = 65;
+                        attackSpeed = false;
+                        speed = 5;
+                        penetrate = false;
+                        burst = false;
+                    }
+                    else
+                        delete = true;
                 }
                 else
-                delete = true;
+                {
+                    //shielded = false;
+                    getWorld().removeObject(shield);
+                }
             }
+            hitee.delete();
         }
     }  
 }

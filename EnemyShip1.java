@@ -8,10 +8,12 @@ import java.util.Scanner;
  */
 public class EnemyShip1 extends EnemyShip
 {
-    public EnemyShip1()
+    public EnemyShip1(int direction)
     {
-        direction = 1;
+        setImage("enemyShip1.png");
+        this.direction = direction;
         script = "normal";
+        end = false;
     }
 
     /**
@@ -24,44 +26,54 @@ public class EnemyShip1 extends EnemyShip
         if(script.equals("normal"))
         {
             move();
-            if(Greenfoot.getRandomNumber(1999) + 1 <= 1 * DevConsole.attackMultiplier)
+            if(Greenfoot.getRandomNumber(3999) + 1 <= 1  * DevConsole.specialMultiplier)
             {
-                //fires
-                getWorld().addObject(new EnemyRocket(this), getX(), getY());
+                script = "burst 0";
+            }
+            else if(Greenfoot.getRandomNumber(1999) + 1 <= 1 * DevConsole.attackMultiplier)
+            {
+                getWorld().addObject(new EnemyRocket(90,this), getX(), getY());
             }
         }
         else if(script.startsWith("down "))
         {
+            downScript();
+        }
+        else if(script.startsWith("burst "))
+        {
+            move();
             Scanner input = new Scanner(script);
             input.next();
             int i = input.nextInt();
-            setLocation(getX(),getY() + 5);
-            if(i == 1)
+            if(i % 3 == 1)
             {
-                script = "normal";
-                if(direction == 1)
-                {
-                    setLocation(getX() + 1, getY()); 
-                }
-                else
-                {
-                    setLocation(getX() - 1, getY());
-                }
+                getWorld().addObject(new EnemyRocket(90,this), getX(), getY());
             }
-
+            if(i == 7)
+                script = "normal";
             else
-                script = "down " + String.valueOf(i - 1);
+                script = "burst " + String.valueOf(i + 1);
+        }
+
+        if(end)
+        {
+            SpaceWorld temp = (SpaceWorld)(getWorld());
+            temp.showSummary(false);
+            temp.showingSummary = true;
         }
     }    
 
     public void hit(Projectile hitee)
     {
-        if(hitee instanceof Plasma || hitee instanceof PlayerRocket)
+        if(hitee.owner instanceof GoodShip)
         {
-            hitee.delete();
+            if(!hitee.penetrate)hitee.delete();
+            else hitee.penetrate = false;
             GoodShip killer = (GoodShip) (hitee.owner);
+            addPowerup();
             getWorld().removeObject(this);
-            killer.score = killer.score + 100;
+            killer.score += 100;
+            Save.money += 10;
             killer.enemiesKilled++;
         }
     }

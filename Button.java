@@ -1,7 +1,7 @@
 import greenfoot.*;
 import java.awt.Color;
 import java.awt.Font;
-import java.util.*;
+
 /**
  * Write a description of class button here.
  * 
@@ -11,11 +11,23 @@ import java.util.*;
 public class Button extends Actor
 {
     private String type;
-    private String i;
+    private World world;
     public Button(String type){
         this.type = type;
         setPicture();
-        i = "cup";
+    }
+
+    public Button(String type, World world)
+    {
+        this(type);
+        this.world = world;
+    }
+
+    public Button(String type, World world, GreenfootImage image)
+    {
+        this.type = type;
+        this.world = world;
+        setImage(image);
     }
 
     /**
@@ -28,10 +40,14 @@ public class Button extends Actor
         {
             switch(type)
             {
-                case "single": Greenfoot.setWorld(new SpaceWorld(1)); break;
-                case "multi": Greenfoot.setWorld(new SpaceWorld(2)); break;
-                case "title": getWorld().removeObject(this); break;
-                case "cup": change(); break;
+                case "teacup": type = "teancodetext"; setPicture(); break;
+                case "teancodetext": type = "teacup"; setPicture(); break;
+                case "world": Greenfoot.setWorld(world); break;
+                case "back": Greenfoot.setWorld(world); break;
+                case "help": Greenfoot.setWorld(new HelpWorld(world)); break;
+                case "newgame": Greenfoot.setWorld(new HubWorld(false)); break;
+                case "continuegame": Greenfoot.setWorld(new HubWorld(true)); break;
+                case "save": Save.saveWarn(Save.prepareString(),"Save.sav"); break;
             }
         }
     }    
@@ -40,25 +56,15 @@ public class Button extends Actor
     {
         switch(type)
         {
-            case "single": setImage(new GreenfootImage("Single Player",40,Color.LIGHT_GRAY,
-                    new Color(0,0,0,0))); break;
-            case "multi": ; setImage(new GreenfootImage("Multi-Player",40,Color.LIGHT_GRAY,
-                    new Color(0,0,0,0))); break;
-            case "title": setImage("TeaNCode.png"); break;
-            case "cup": setImage("tecup.png");
-        }
-    }
-
-    public void change(){
-        if(i.equals("cup")){
-            setLocation(75, 25);
-            setImage(new GreenfootImage("Made by TeaNCode, Copyright 2016", 12, Color.WHITE, new Color(0,0,0,0)));
-            i = "info";
-        }
-        else{
-            setLocation(30, 15);
-            setImage("tecup.png");
-            i = "cup";
+            case "teacup": setImage(new GreenfootImage("tecup.png")); setLocation(25, 15); break;
+            case "teancodetext": setImage(new GreenfootImage("Made by TeaNCode, Copyright 2016", 12, Color.WHITE, new Color(0,0,0,0))); 
+            setLocation(87, 25);break;
+            case "world": setImage(new GreenfootImage("Continue", 60, Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
+            case "back": setImage(new GreenfootImage("Back",30,Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
+            case "help": setImage(new GreenfootImage("Help",40,Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
+            case "newgame": setImage(new GreenfootImage("New Game",40,Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
+            case "continuegame": setImage(new GreenfootImage("Continue Game",40,Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
+            case "save": setImage(new GreenfootImage("Save Game",40,Color.BLACK, new Color(0,0,0,0))); break;
         }
     }
 }

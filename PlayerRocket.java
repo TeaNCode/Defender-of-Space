@@ -7,10 +7,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerRocket extends Projectile
 {
-    public PlayerRocket(GoodShip owner)
+    public PlayerRocket(int rotation, GoodShip owner)
     {
-        super(-90,owner);
-        delete = false;
+        super(rotation,owner);
+        this.penetrate = false;
+        setImage("playerRocket.png");
+    }
+    
+    public PlayerRocket(int rotation, GoodShip owner, boolean penetrate)
+    {
+        super(rotation,owner,penetrate);
+        this.penetrate = penetrate;
+        setImage("playerRocket.png");
     }
 
     /**
@@ -24,29 +32,19 @@ public class PlayerRocket extends Projectile
         if (getY() == 0)
         {
             delete = true;
+            GoodShip goodOwner = (GoodShip)(owner);
+            goodOwner.misses++;
+            goodOwner.penetrate = false;
         }
-        
-        if(DevConsole.realism && !delete)
-        {
-            EnemyRocket rocket = getOneIntersectingObject(EnemyRocket.class);
-            if(rocket != null)
-            {
-                rocket.delete();
-                delete();
-            }
-        }
-        
-        if(delete)
-        {
-            getWorld().removeObject(this);
-        }
+        deleteCheck();
     }    
-    
+
     public void collision(Projectile hitee)
     {
         if(DevConsole.realism)
         {
-            if(hitee instanceof EnemyRocket || hitee instanceof Plasma)
+            if((hitee.owner instanceof EnemyShip && owner instanceof GoodShip) ||
+            (hitee.owner instanceof GoodShip && owner instanceof EnemyShip))
             {
                 delete();
             }

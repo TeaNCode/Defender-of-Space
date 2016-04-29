@@ -11,6 +11,15 @@ public class Plasma extends Projectile
     public Plasma(int rotation, Destroyable owner)
     {
         super(rotation, owner);
+        this.penetrate = false;
+        setImage("PlasmaBall.png");
+    }
+    
+    public Plasma(int rotation, Destroyable owner, boolean penetrate)
+    {
+        super(rotation,owner,penetrate);
+        this.penetrate = penetrate;
+        setImage("PlasmaBall.png");
     }
     
     /**

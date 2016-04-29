@@ -18,50 +18,49 @@ public class EnemyShip2 extends EnemyShip
         if(script.equals("normal"))
         {
             move();
-            if(Greenfoot.getRandomNumber(999) + 1 <= 1 * DevConsole.attackMultiplier)
+            if(Greenfoot.getRandomNumber(2999) + 1 <= 1 * DevConsole.specialMultiplier)
             {
-                //fires
-                getWorld().addObject(new EnemyRocket(this), getX(), getY());
+                getWorld().addObject(new EnemyRocket(84,this), getX(), getY());
+                getWorld().addObject(new EnemyRocket(90,this), getX(), getY());
+                getWorld().addObject(new EnemyRocket(96,this), getX(), getY());
+            }
+            else if(Greenfoot.getRandomNumber(999) + 1 <= 1 * DevConsole.attackMultiplier)
+            {
+                getWorld().addObject(new EnemyRocket(90,this), getX(), getY());
             }
         }
         else if(script.startsWith("down "))
         {
-            Scanner input = new Scanner(script);
-            input.next();
-            int i = input.nextInt();
-            setLocation(getX(),getY() + 5);
-            if(i == 1)
-            {
-                script = "normal";
-                if(direction == 1)
-                {
-                    setLocation(getX() + 1, getY()); 
-                }
-                else
-                {
-                    setLocation(getX() - 1, getY());
-                }
-            }
+            downScript();
+        }
 
-            else
-                script = "down " + String.valueOf(i - 1);
+        if(end)
+        {
+            SpaceWorld temp = (SpaceWorld)(getWorld());
+            temp.showSummary(false);
+            temp.showingSummary = true;
         }
     }    
 
-    public EnemyShip2()
+    public EnemyShip2(int direction)
     {
-        direction = 2;
+        setImage("enemyShip2.png");
+        this.direction = direction;
         script = "normal";
+        end = false;
     }
 
     public void hit(Projectile hitee)
     {
-        if(hitee instanceof Plasma || hitee instanceof PlayerRocket)
+        if(hitee.owner instanceof GoodShip)
         {
-            hitee.delete();
+            if(!hitee.penetrate)hitee.delete();
+            else hitee.penetrate = false;
             GoodShip killer = (GoodShip) (hitee.owner);
+            addPowerup();
             getWorld().removeObject(this);
-            killer.score = killer.score + 200;
+            killer.score += 200;
+            Save.money += 20;
             killer.enemiesKilled++;
         }
     }

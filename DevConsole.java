@@ -18,32 +18,46 @@ public class DevConsole
     static boolean hiding;
     //Allows the player to fire without reloading
     static boolean minigun;
+    //Enemies more likely to drop powerups
+    static int powerupMultiplier;
+    //Makes enemies more likely to do their special
+    static int specialMultiplier;
     static void showConsole()
     {
         String sInput = JOptionPane.showInputDialog("Enter a command: ");
-        Scanner input = new Scanner(sInput);
-        if(input.hasNext())
+        try
         {
-            String next = input.next();
-            next = next.toLowerCase();
-            switch(next)
+            Scanner input = new Scanner(sInput);
+            if(input.hasNext())
             {
-                case "invulnerable": invulnerable(input); break;
-                case "god": invulnerable(input); break;
-                case "attackmultiplier": attackMultiplier(input); break;
-                case "attack": attackMultiplier(input); break;
-                case "realism": realism(input); break;
-                case "real": realism(input); break;
-                case "realistic": realism(input); break;
-                case "hiding": hiding(input); break;
-                case "hide": hiding(input); break;
-                case "hider": hiding(input); break;
-                case "minigun": minigun(input); break;
+                String next = input.next();
+                next = next.toLowerCase();
+                switch(next)
+                {
+                    case "invulnerable": invulnerable(input); break;
+                    case "god": invulnerable(input); break;
+                    case "attackmultiplier": attackMultiplier(input); break;
+                    case "attack": attackMultiplier(input); break;
+                    case "realism": realism(input); break;
+                    case "real": realism(input); break;
+                    case "realistic": realism(input); break;
+                    case "hiding": hiding(input); break;
+                    case "hide": hiding(input); break;
+                    case "hider": hiding(input); break;
+                    case "minigun": minigun(input); break;
+                    case "powerup": powerupMultiplier(input); break;
+                    case "powerupMultiplier": powerupMultiplier(input); break;
+                    case "special": specialMultiplier(input); break;
+                    case "specialMultiplier": specialMultiplier(input); break;
+                    case "level": level(input); break;
+                    case "money": money(input); break;
+                    case "cash": money(input); break;
+                }
             }
         }
-        else
+        catch(NullPointerException e)
         {
-            JOptionPane.showMessageDialog(null,"Error: Input expected.");
+
         }
     }
 
@@ -54,6 +68,8 @@ public class DevConsole
         realism = true;
         hiding = false;
         minigun = false;
+        powerupMultiplier = 1;
+        specialMultiplier = 1;
     }
 
     /**
@@ -66,7 +82,7 @@ public class DevConsole
             invulnerable = input.nextBoolean();
         }
         else
-            JOptionPane.showMessageDialog(null,"Invulnerable is " + String.valueOf(invulnerable));
+            JOptionPane.showMessageDialog(null,"Invulnerablility is " + String.valueOf(invulnerable) + ".");
     }
 
     static void attackMultiplier(Scanner input)
@@ -76,9 +92,9 @@ public class DevConsole
             attackMultiplier = input.nextInt();
         }
         else
-            JOptionPane.showMessageDialog(null,"Attack Multiplier is " + String.valueOf(attackMultiplier) + "x");
+            JOptionPane.showMessageDialog(null,"Enemies' attack multiplier is " + String.valueOf(attackMultiplier) + "x.");
     }
-    
+
     static void realism(Scanner input)
     {
         if(input.hasNextBoolean())
@@ -86,9 +102,9 @@ public class DevConsole
             realism = input.nextBoolean();
         }
         else
-            JOptionPane.showMessageDialog(null,"Realism is " + String.valueOf(realism));
+            JOptionPane.showMessageDialog(null,"Realism is " + String.valueOf(realism) + ".");
     }
-    
+
     static void hiding(Scanner input)
     {
         if(input.hasNextBoolean())
@@ -96,9 +112,9 @@ public class DevConsole
             hiding = input.nextBoolean();
         }
         else
-            JOptionPane.showMessageDialog(null,"Hiding is " + String.valueOf(hiding));
+            JOptionPane.showMessageDialog(null,"Hiding is " + String.valueOf(hiding) + ".");
     }
-    
+
     static void minigun(Scanner input)
     {
         if(input.hasNextBoolean())
@@ -106,6 +122,46 @@ public class DevConsole
             minigun = input.nextBoolean();
         }
         else
-            JOptionPane.showMessageDialog(null,"Minigun is " + String.valueOf(minigun));
+            JOptionPane.showMessageDialog(null,"Minigun is " + String.valueOf(minigun) + ".");
+    }
+    
+    static void powerupMultiplier(Scanner input)
+    {
+        if(input.hasNextInt())
+        {
+            powerupMultiplier = input.nextInt();
+        }
+        else
+            JOptionPane.showMessageDialog(null,"Powerup drop rate multiplier is " + String.valueOf(powerupMultiplier) + "x.");
+    }
+    
+    static void specialMultiplier(Scanner input)
+    {
+        if(input.hasNextInt())
+        {
+            specialMultiplier = input.nextInt();
+        }
+        else
+            JOptionPane.showMessageDialog(null,"Enemies' special action rate multiplier is " + String.valueOf(specialMultiplier) + "x.");
+    }
+    
+    static void level(Scanner input)
+    {
+        if(input.hasNextInt())
+        {
+            Save.level = input.nextInt();
+        }
+        else
+            JOptionPane.showMessageDialog(null,"Current level is " + String.valueOf(Save.level) + ".");
+    }
+    
+    static void money(Scanner input)
+    {
+        if(input.hasNextInt())
+        {
+            Save.money = input.nextInt();
+        }
+        else
+            JOptionPane.showMessageDialog(null,"Player has $" + String.valueOf(Save.money) + ".");
     }
 }
