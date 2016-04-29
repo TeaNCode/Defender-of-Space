@@ -9,7 +9,9 @@ public class EnemyShip3 extends EnemyShip
 {
     private boolean damaged;
     private int bias;
-    //Constructs the ship
+    /**
+     * Constructs the ship and sets it's bias
+     */
     public EnemyShip3()
     {
         setImage("enemyShip3.png");
@@ -20,13 +22,13 @@ public class EnemyShip3 extends EnemyShip
     }
 
     /**
-     * Act - do whatever the enemyShip3 wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * You know whats up by now
      */
     public void act() 
     {
         if(script.equals("normal"))
         {
+            //Do something
             if(Greenfoot.getRandomNumber(2999) + 1 <= DevConsole.specialMultiplier)
             {
                 getWorld().addObject(new HighVelocityRocket(90,this), getX(), getY());
@@ -47,6 +49,7 @@ public class EnemyShip3 extends EnemyShip
                 }
             }
         }
+        //Moves it to the right
         else if(script.startsWith("right "))
         {
             Scanner input = new Scanner(script);
@@ -58,12 +61,13 @@ public class EnemyShip3 extends EnemyShip
                 script = "normal";
             }
             else
-                move(-5);
+                setLocation(getX() + 5, getY());
             if(i == 0)
                 script = "normal";
             else
                 script = "right " + String.valueOf(i - 1);
         }
+        //Moves it to the left
         else if(script.startsWith("left "))
         {
             Scanner input = new Scanner(script);
@@ -75,7 +79,7 @@ public class EnemyShip3 extends EnemyShip
                 script = "normal";
             }
             else
-                move(5);
+                setLocation(getX() - 5, getY());
             if(i == 0)
                 script = "normal";
             else
@@ -83,12 +87,16 @@ public class EnemyShip3 extends EnemyShip
         }
     }    
 
+    /**
+     * What happens when the ship is hit
+     */
     public void hit(Projectile hitee)
     {
         if(hitee.owner instanceof GoodShip)
         {
             if(!hitee.penetrate)hitee.delete();
             else hitee.penetrate = false;
+            //If it has been hit before destroy it otherwise damage it
             if(!damaged)
             {
                 setImage("enemyShip3-2.png");
@@ -96,7 +104,7 @@ public class EnemyShip3 extends EnemyShip
             }
             else
             {
-                GoodShip killer = (GoodShip) (hitee.owner);
+                GoodShip killer = (GoodShip)(hitee.owner);
                 addPowerup();
                 getWorld().removeObject(this);
                 killer.score += 500;

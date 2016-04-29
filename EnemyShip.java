@@ -1,29 +1,35 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.Scanner;
 /**
- * Write a description of class EnemyShip here.
+ * A Framework for enemy ships
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Tea N' Code
  */
 public abstract class EnemyShip extends Destroyable
 {
     public int direction;
     public boolean end;
+    /**
+     * Moves the ship, depending on it's direction
+     */
     public void move()
     {
-        //moves the ships from side to side
         int X = getX();
         if(direction == 1)
         {
+            //Moves right
             setLocation(X + 1, getY()); 
         }
         else
         {
+            //Moves left
             setLocation(X - 1, getY());
         }
     }  
 
+    /**
+     * Checks if we should go down
+     */
     public void moveCheck()
     {
         if(script.equals("normal"))
@@ -59,6 +65,9 @@ public abstract class EnemyShip extends Destroyable
         }
     }
 
+    /**
+     * Spawns a powerup, according to a random change
+     */
     public void addPowerup()
     {
         if(Greenfoot.getRandomNumber(19) + 1 <= 1 * DevConsole.powerupMultiplier)
@@ -67,6 +76,9 @@ public abstract class EnemyShip extends Destroyable
         }
     }
 
+    /**
+     * Moves the ship down and then turns them
+     */
     public void downScript()
     {
         Scanner input = new Scanner(script);
@@ -75,32 +87,19 @@ public abstract class EnemyShip extends Destroyable
         setLocation(getX(),getY() + 5);
         if(i == 1)
         {
+            if(direction == 1)
+                {
+                    setLocation(getX() + 1, getY()); 
+                }
+                else
+                {
+                    setLocation(getX() - 1, getY());
+                }
             if(input.hasNext())
-            {
                 script = input.next() + " " + input.next();
-                if(direction == 1)
-                {
-                    setLocation(getX() + 1, getY()); 
-                }
-                else
-                {
-                    setLocation(getX() - 1, getY());
-                }
-            }
             else
-            {
                 script = "normal";
-                if(direction == 1)
-                {
-                    setLocation(getX() + 1, getY()); 
-                }
-                else
-                {
-                    setLocation(getX() - 1, getY());
-                }
-            }
         }
-
         else
             script = "down " + String.valueOf(i - 1);
     }

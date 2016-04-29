@@ -57,33 +57,29 @@ public class PlayerShip extends GoodShip
             {
                 if(reloadDelayCount >= gunReloadTime || DevConsole.minigun) 
                 {
-                    if(penetrate){
+                    reloadDelayCount = 0;
+                    shots++;
+                    if(penetrate)
+                    {
                         getWorld().addObject(new PlayerRocket(-90, this, true),getX(),getY());
-                        reloadDelayCount = 0;
-                        shots++;
                         penShots++;
-                        if(penShots== 2)
-                        {
+                        if(penShots == 2)
                             penetrate = false;
-                        }
                     }
-                    else if(burst){
+                    else if(burst)
+                    {
                         getWorld().addObject(new PlayerRocket(-80, this),getX(),getY());
                         getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
                         getWorld().addObject(new PlayerRocket(-100, this),getX(),getY());
-                        reloadDelayCount = 0;
-                        shots+= 3;
+                        shots+= 2;
                         burstShots++;
-                        if(burstShots==5){
+                        if(burstShots == 5)
                             burst = false;
-                        }
                     }
-                    else{
+                    else
+                    {
                         getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
-                        reloadDelayCount = 0;
-                        shots++;
                     }
-                    //shoots
                 } 
             }
         }
