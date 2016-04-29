@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Powerups extends Actor
 {
     public String typeDecide;
+    public boolean mysteried;
     public Powerups(String typeDecide)
     {
         //a construct for testing that lets you decide the powerup picked
@@ -18,6 +19,7 @@ public class Powerups extends Actor
     public Powerups()
     {
         //a constructor used by the enemies to generate a random powerup
+        mysteried = false;
         String[] powers = {"Attack", "Score", "Shield", "Penetrate", "Mystery", "Burst", "Movement", "Life"};
         typeDecide = powers[Greenfoot.getRandomNumber(powers.length)];
         setImage(typeDecide + ".png");
@@ -32,18 +34,37 @@ public class Powerups extends Actor
         GoodShip interceptor = (GoodShip) (getOneIntersectingObject(GoodShip.class));
         if(interceptor != null)
         {
-            switch(typeDecide)
+            if(mysteried)
             {
-                case "Attack": attackSpeed(interceptor); break;
-                case "Score": score(interceptor); break;
-                case "Shield": shield(interceptor); break;
-                case "Penetrate": penetrate(interceptor); break;
-                case "Mystery": mysteryBox(typeDecide); break;
-                case "Burst": burst(interceptor); break;
-                case "Movement": movementSpeed(interceptor); break;
-                case "Life": extraLife((SpaceWorld)(interceptor.getWorld()),interceptor); break;
+                //checked for mystery so you wont roll it again
+                switch(typeDecide)
+                {
+                    case "Attack": attackSpeed(interceptor); break;
+                    case "Score": score(interceptor); break;
+                    case "Shield": shield(interceptor); break;
+                    case "Penetrate": penetrate(interceptor); break;
+                    case "Burst": burst(interceptor); break;
+                    case "Movement": movementSpeed(interceptor); break;
+                    case "Life": extraLife((SpaceWorld)(interceptor.getWorld()),interceptor); break;
+                }
+                getWorld().removeObject(this);
+                mysteried = false;
             }
-            getWorld().removeObject(this);
+            else
+            {
+                switch(typeDecide)
+                {
+                    case "Attack": attackSpeed(interceptor); break;
+                    case "Score": score(interceptor); break;
+                    case "Shield": shield(interceptor); break;
+                    case "Penetrate": penetrate(interceptor); break;
+                    case "Mystery": mysteryBox(interceptor); break;
+                    case "Burst": burst(interceptor); break;
+                    case "Movement": movementSpeed(interceptor); break;
+                    case "Life": extraLife((SpaceWorld)(interceptor.getWorld()),interceptor); break;
+                }
+                getWorld().removeObject(this);
+            }
         }
         else if(getY() == 799)
         {
@@ -78,20 +99,11 @@ public class Powerups extends Actor
         player.penShots = 0;
     }
 
-    public void mysteryBox(String type)
+    public void mysteryBox(GoodShip player)
     {
         //runs mystery choosing a random powerup to give the player
-        GoodShip interceptor = (GoodShip) (getOneIntersectingObject(GoodShip.class));
-        switch(type)
-        {
-            case "Attack": attackSpeed(interceptor); break;
-            case "Score": score(interceptor); break;
-            case "Shield": shield(interceptor); break;
-            case "Penetrate": penetrate(interceptor); break;
-            case "Burst": burst(interceptor); break;
-            case "Movement": movementSpeed(interceptor); break;
-            case "Life": extraLife((SpaceWorld)(interceptor.getWorld()),interceptor); break;
-        }
+        getWorld().addObject(new Powerups(), player.getX(), player.getY() - 75);
+        mysteried = true;
     }
 
     public void extraLife(SpaceWorld world, GoodShip player)

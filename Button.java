@@ -3,22 +3,23 @@ import java.awt.Color;
 import java.awt.Font;
 
 /**
- * Write a description of class button here.
+ * buttons for clicking on and navigating the worlds(The Bifrost)
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author TeaNCode
  */
 public class Button extends Actor
 {
     private String type;
     private World world;
     public Button(String type){
+        //normal constructor for button(no world declaration)
         this.type = type;
         setPicture();
     }
 
     public Button(String type, World world)
     {
+        //button constructor that lets you choose which world its in
         this(type);
         this.world = world;
     }
@@ -38,6 +39,7 @@ public class Button extends Actor
     {
         if(Greenfoot.mouseClicked(this))
         {
+            //checks for if the mouse clicks a button and which
             switch(type)
             {
                 case "teacup": type = "teancodetext"; setPicture(); break;
@@ -54,6 +56,7 @@ public class Button extends Actor
 
     public void setPicture()
     {
+        //sets pictures of buttons
         switch(type)
         {
             case "teacup": setImage(new GreenfootImage("tecup.png")); setLocation(25, 15); break;

@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class HighVelocityRocket here.
+ * faster version of the enemy rocket
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author TeaNCode
  */
 public class HighVelocityRocket extends Projectile
 {
     public HighVelocityRocket(int rotation, Destroyable owner)
     {
+        //constructor for normal rocket
         super(rotation, owner);
         this.penetrate = false;
         setImage("highVelocityRocket.fw.png");
@@ -17,6 +17,7 @@ public class HighVelocityRocket extends Projectile
     
     public HighVelocityRocket(int rotation, Destroyable owner, boolean penetrate)
     {
+        //constructor for penetrate rocket
         super(rotation,owner,penetrate);
         this.penetrate = penetrate;
         setImage("highVelocityRocket.fw.png");
@@ -29,10 +30,11 @@ public class HighVelocityRocket extends Projectile
     public void act() 
     {
         super.act();
-        move(13);
+        move(13);//flys(faster than others)
         
         if(getY() == 799)
         {
+            //checks for at world edge
             delete();
         }
         deleteCheck();
@@ -40,6 +42,7 @@ public class HighVelocityRocket extends Projectile
 
     public void collision(Projectile hitee)
     {
+        //delets if hits something
         if(DevConsole.realism)
         {
             if((hitee.owner instanceof EnemyShip && owner instanceof GoodShip) ||

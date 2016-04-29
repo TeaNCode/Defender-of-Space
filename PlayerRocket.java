@@ -1,13 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
- * Write a description of class PlayerRocket here.
+ * class for the rockete the player shoots
  * 
- * @T
+ * @author TeaNCode
  */
 public class PlayerRocket extends Projectile
 {
     public PlayerRocket(int rotation, GoodShip owner)
     {
+        //constructor for normal player rocket
         super(rotation,owner);
         this.penetrate = false;
         setImage("playerRocket.png");
@@ -15,6 +16,7 @@ public class PlayerRocket extends Projectile
     
     public PlayerRocket(int rotation, GoodShip owner, boolean penetrate)
     {
+        //constructor for the penetrate rockets
         super(rotation,owner,penetrate);
         this.penetrate = penetrate;
         setImage("playerRocket.png");
@@ -30,6 +32,7 @@ public class PlayerRocket extends Projectile
         move(6);//flys
         if (getY() == 0)
         {
+            //checks for at world edge
             delete = true;
             GoodShip goodOwner = (GoodShip)(owner);
             goodOwner.misses++;
@@ -40,6 +43,7 @@ public class PlayerRocket extends Projectile
 
     public void collision(Projectile hitee)
     {
+        //delets if hits something
         if(DevConsole.realism)
         {
             if((hitee.owner instanceof EnemyShip && owner instanceof GoodShip) ||

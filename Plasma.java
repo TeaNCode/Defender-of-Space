@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Plasma here.
+ * future rocket class for the palyer and enemy. <NOT DONE>
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author TeaNCOde
  */
 public class Plasma extends Projectile
 {
     public Plasma(int rotation, Destroyable owner)
     {
+        //normal plasma shot constructor
         super(rotation, owner);
         this.penetrate = false;
         setImage("PlasmaBall.png");
@@ -17,6 +17,7 @@ public class Plasma extends Projectile
     
     public Plasma(int rotation, Destroyable owner, boolean penetrate)
     {
+        //penetration plasma shot constructor
         super(rotation,owner,penetrate);
         this.penetrate = penetrate;
         setImage("PlasmaBall.png");
