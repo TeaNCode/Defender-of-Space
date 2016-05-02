@@ -3,8 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class ship here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Tea N' Code
  */
 public class PlayerShip extends GoodShip
 {
@@ -12,12 +11,12 @@ public class PlayerShip extends GoodShip
     public PlayerShip(SpaceWorld world)
     {
         setImage("playerShip.png");
-        this.world = world;
-        reloadDelayCount = gunReloadTime;
         delete = false;
+        //Protects player from being hit
         spawnProtection = 50;
-        reloadDelayCount = 65;
         gunReloadTime = 65;
+        //Player can fire instantly
+        reloadDelayCount = gunReloadTime;
         speed = 5;
         penetrate = false;
         burst = false;
@@ -29,6 +28,7 @@ public class PlayerShip extends GoodShip
      */
     public void act() 
     {
+        //Decrease spawn protection
         if(spawnProtection > 0)
         {
             spawnProtection--;
@@ -55,10 +55,12 @@ public class PlayerShip extends GoodShip
             }
             if (Greenfoot.isKeyDown("w"))
             {
+                //shoots
                 if(reloadDelayCount >= gunReloadTime || DevConsole.minigun) 
                 {
                     reloadDelayCount = 0;
                     shots++;
+                    //Shoot penetrative bullets
                     if(penetrate)
                     {
                         getWorld().addObject(new PlayerRocket(-90, this, true),getX(),getY());
@@ -83,38 +85,41 @@ public class PlayerShip extends GoodShip
                 } 
             }
         }
+        //Delete the player because delete
         else
         {
             getWorld().removeObject(this);
         }
 
         if(attackSpeed){
-            attackBoostedTime = 50;
-            gunReloadTime = 35;
-            if(attackBoostedTime != 0){
+            if(attackBoostedTime != 0)
+            {
                 attackBoostedTime--;
-                gunReloadTime = 35;
             }
-            else if(attackBoostedTime == 0){
+            else
+            {
                 gunReloadTime = 65;
+                attackSpeed = false;
             }
         }
-
     }    
 
     public void hit(Projectile hitee)
     {
         if(hitee.owner instanceof EnemyShip)
         {
+            hitee.delete();
             if(!DevConsole.invulnerable && spawnProtection == 0)
             {
                 if(!shielded)
                 {
+                    SpaceWorld world = (SpaceWorld)(getWorld());
                     int lives = world.lives.toArray().length;
                     getWorld().removeObject(world.lives.get(lives - 1));
                     world.lives.remove(lives - 1);
                     if(lives > 1)
                     {
+                        //Reset stats
                         setLocation(500,750);
                         spawnProtection = 50;
                         gunReloadTime = 65;
@@ -124,6 +129,7 @@ public class PlayerShip extends GoodShip
                         penetrate = false;
                         burst = false;
                     }
+                    //No more players
                     else
                         delete = true;
                 }
@@ -133,7 +139,6 @@ public class PlayerShip extends GoodShip
                     getWorld().removeObject(shield);
                 }
             }
-            hitee.delete();
         }
     }
 }

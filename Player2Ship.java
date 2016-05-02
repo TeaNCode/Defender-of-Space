@@ -12,7 +12,6 @@ public class Player2Ship extends GoodShip
     public Player2Ship(SpaceWorld world)
     {
         setImage("player2Ship.png");
-        this.world = world;
         reloadDelayCount = gunReloadTime;
         delete = false;
         spawnProtection = 50;
@@ -93,27 +92,29 @@ public class Player2Ship extends GoodShip
         }
 
         if(attackSpeed){
-            attackBoostedTime = 50;
-            gunReloadTime = 35;
-            if(attackBoostedTime != 0){
+            if(attackBoostedTime != 0)
+            {
                 attackBoostedTime--;
-                gunReloadTime = 35;
             }
-            else if(attackBoostedTime == 0){
+            else
+            {
+                //Attack speed boost is over
                 gunReloadTime = 65;
+                attackSpeed = false;
             }
         }
-
     }    
 
     public void hit(Projectile hitee)
     {
         if(hitee.owner instanceof EnemyShip)
         {
+            hitee.delete();
             if(!DevConsole.invulnerable && spawnProtection == 0)
             {
                 if(!shielded)
                 {
+                    SpaceWorld world = (SpaceWorld)(getWorld());
                     int lives = world.lives2.toArray().length;
                     getWorld().removeObject(world.lives2.get(lives - 1));
                     world.lives2.remove(lives - 1);
@@ -138,7 +139,6 @@ public class Player2Ship extends GoodShip
                     getWorld().removeObject(shield);
                 }
             }
-            hitee.delete();
         }
     }  
 }

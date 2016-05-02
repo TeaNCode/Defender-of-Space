@@ -19,7 +19,6 @@ public class Powerups extends Actor
         String[] powers = {"Attack", "Score", "Shield", "Penetrate", "Mystery", "Burst", "Movement", "Life"};
         typeDecide = powers[Greenfoot.getRandomNumber(powers.length)];
         setImage(typeDecide + ".png");
-        
     }
     
     public void act() 
@@ -59,6 +58,8 @@ public class Powerups extends Actor
          //     player.gunReloadTime = 65;
          //  }
          player.attackSpeed = true;
+         player.attackBoostedTime = 350;
+         player.gunReloadTime = 35;
     }
     
     public void score(GoodShip player)

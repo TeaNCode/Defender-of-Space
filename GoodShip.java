@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class GoodShip here.
  * 
- * @author Tea 
+ * @author Tea N' Code
  */
 public abstract class GoodShip extends Destroyable
 {
@@ -23,8 +23,6 @@ public abstract class GoodShip extends Destroyable
     public Shield shield;
     //How far we are to being done reloading
     public int reloadDelayCount;
-    //The world we're in
-    public SpaceWorld world;
     //If we should delete ourselves
     public boolean delete;
     //How much longer we have spawn protection
