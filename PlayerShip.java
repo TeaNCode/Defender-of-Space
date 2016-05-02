@@ -113,7 +113,6 @@ public class PlayerShip extends GoodShip
                 gunReloadTime = 65;
             }
         }
-
     }    
 
     public void hit(Projectile hitee)
