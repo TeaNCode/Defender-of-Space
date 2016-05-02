@@ -135,8 +135,8 @@ public class PlayerShip extends GoodShip
                 }
                 else
                 {
-                    //shielded = false;
-                    getWorld().removeObject(shield);
+                    shielded = false;
+                    shield.delete();
                 }
             }
         }

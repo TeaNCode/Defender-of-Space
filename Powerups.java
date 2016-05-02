@@ -70,7 +70,8 @@ public class Powerups extends Actor
     public void shield(GoodShip player)
     {
           player.shielded = true;
-          getWorld().addObject(new Shield(player, 1.0), player.getX(), player.getY());
+          player.shield = new Shield(player, 1.0);
+          getWorld().addObject(player.shield, player.getX(), player.getY());
     }
     
     public void penetrate(GoodShip player)
