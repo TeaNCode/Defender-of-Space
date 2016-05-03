@@ -30,6 +30,7 @@ public class MenuWorld extends World
         addObject(new Button("help",this), getWidth() / 2, 650);
         addObject(new Display("Defender of Space",100,Color.LIGHT_GRAY),getWidth() / 2,300);
         Greenfoot.start();
+        addObject(new imageTest(), 100,100);
     }
     
     public void act()
