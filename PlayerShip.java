@@ -61,15 +61,26 @@ public class PlayerShip extends GoodShip
                         reloadDelayCount = 0;
                         shots++;
                         penShots++;
-                        if(penShots== 2)
+                        if(penShots== 3)
                         {
                             penetrate = false;
                         }
                     }
                     else if(burst){
-                        getWorld().addObject(new PlayerRocket(-80, this),getX(),getY());
-                        getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
-                        getWorld().addObject(new PlayerRocket(-100, this),getX(),getY());
+                        if(penetrate && penShots == 0)
+                        {
+                            penetrate = false;
+                            getWorld().addObject(new PlayerRocket(-80, this,true),getX(),getY());
+                            getWorld().addObject(new PlayerRocket(-90, this,true),getX(),getY());
+                            getWorld().addObject(new PlayerRocket(-100, this,true),getX(),getY());
+                            penShots = 3;
+                        }
+                        else
+                        {
+                            getWorld().addObject(new PlayerRocket(-80, this),getX(),getY());
+                            getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
+                            getWorld().addObject(new PlayerRocket(-100, this),getX(),getY());
+                        }
                         reloadDelayCount = 0;
                         shots+= 3;
                         burstShots++;
@@ -102,7 +113,6 @@ public class PlayerShip extends GoodShip
                 gunReloadTime = 65;
             }
         }
-
     }    
 
     public void hit(Projectile hitee)

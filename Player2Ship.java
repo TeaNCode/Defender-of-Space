@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Player2Ship here.
+ * second players ship
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author TeaNCode
  */
 public class Player2Ship extends GoodShip
 {
@@ -54,8 +53,10 @@ public class Player2Ship extends GoodShip
             }
             if (Greenfoot.isKeyDown("UP"))
             {
+                //shoots
                 if(reloadDelayCount >= gunReloadTime || DevConsole.minigun) 
                 {
+                    //checks for diffrent kinds of shots
                     if(penetrate){
                         getWorld().addObject(new PlayerRocket(-90, this, true),getX(),getY());
                         reloadDelayCount = 0;
@@ -67,9 +68,20 @@ public class Player2Ship extends GoodShip
                         }
                     }
                     else if(burst){
-                        getWorld().addObject(new PlayerRocket(-80, this),getX(),getY());
-                        getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
-                        getWorld().addObject(new PlayerRocket(-100, this),getX(),getY());
+                        if(penetrate && penShots == 0)
+                        {
+                            penetrate = false;
+                            getWorld().addObject(new PlayerRocket(-80, this,true),getX(),getY());
+                            getWorld().addObject(new PlayerRocket(-90, this,true),getX(),getY());
+                            getWorld().addObject(new PlayerRocket(-100, this,true),getX(),getY());
+                            penShots = 3;
+                        }
+                        else
+                        {
+                            getWorld().addObject(new PlayerRocket(-80, this),getX(),getY());
+                            getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
+                            getWorld().addObject(new PlayerRocket(-100, this),getX(),getY());
+                        }
                         reloadDelayCount = 0;
                         shots+= 3;
                         burstShots++;
@@ -82,16 +94,17 @@ public class Player2Ship extends GoodShip
                         reloadDelayCount = 0;
                         shots++;
                     }
-                    //shoots
                 } 
             }
         }
         else
         {
+            //removes if delete
             getWorld().removeObject(this);
         }
 
         if(attackSpeed){
+            //timer for attack speed boost
             attackBoostedTime = 50;
             gunReloadTime = 35;
             if(attackBoostedTime != 0){
@@ -107,10 +120,13 @@ public class Player2Ship extends GoodShip
 
     public void hit(Projectile hitee)
     {
+        //checks if hit by projectile
         if(hitee.owner instanceof EnemyShip)
         {
+            //checks if invulnerable
             if(!DevConsole.invulnerable && spawnProtection == 0)
             {
+                //checks if shielded
                 if(!shielded)
                 {
                     int lives = world.lives2.toArray().length;
@@ -118,6 +134,7 @@ public class Player2Ship extends GoodShip
                     world.lives2.remove(lives - 1);
                     if(lives > 1)
                     {
+                        //checks if final death
                         setLocation(500,750);
                         spawnProtection = 50;
                         spawnProtection = 50;

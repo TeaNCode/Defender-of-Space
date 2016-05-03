@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 /**
- * Write a description of class MoneyCounter here.
+ * counter for the amount of money you have
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author TeaNCode
  */
 public class MoneyCounter extends Actor
 {
@@ -12,6 +11,7 @@ public class MoneyCounter extends Actor
     
     public MoneyCounter()
     {
+        //constructor that draws initila image
         draw();
     }
     
@@ -21,6 +21,7 @@ public class MoneyCounter extends Actor
      */
     public void act() 
     {
+        //saves and updates money
         if(Save.money != money)
         {
             money = Save.money;
@@ -30,6 +31,7 @@ public class MoneyCounter extends Actor
     
     public void draw()
     {
+        //draws money counter
         setImage(new GreenfootImage("Cash money: " + String.valueOf(money),40,new Color(218,165,32),new Color(0,0,0,0)));
     }
 }

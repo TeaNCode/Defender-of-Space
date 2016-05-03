@@ -1,9 +1,8 @@
 import greenfoot.World;
 /**
- * Write a description of class Wave here.
+ * spawns the waves in to the world
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @TeaNCode
  */
 public class Wave  
 {
@@ -13,11 +12,13 @@ public class Wave
      */
     public Wave(SpawnableEntity[] contents)
     {
+        //gets content wanted in wolrd
         this.contents = contents;
     }
     
     public void spawnWave(World world)
     {
+        //spawns content
         for(SpawnableEntity entity : contents)
         {
             entity.spawn(world);
