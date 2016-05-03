@@ -27,7 +27,7 @@ public class Powerups extends Actor
         }
         else{
             //picks diffrent type if not mm
-            typeDecide = powers2[Greenfoot.getRandomNumber(powers.length)];
+            typeDecide = powers2[Greenfoot.getRandomNumber(powers2.length)];
         }
         setImage(typeDecide + ".png");
     }
@@ -130,7 +130,7 @@ public class Powerups extends Actor
     public void movementSpeed(GoodShip player)
     {
         //increases player movement speed
-        player.speed = 7;
+        player.speed+= 2;
     }
 
 }

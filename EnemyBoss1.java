@@ -23,11 +23,11 @@ public class EnemyBoss1 extends EnemyShip
     public void act() 
     {
         setLocation(getX() + (movement), getY());
-        if(getX() >= 850)
+        if(getX() >= 800)
         {
             movement = -2;
         }
-        else if(getX() <= 180)
+        else if(getX() <= 230)
         {
             movement = +4;
         }
@@ -41,6 +41,13 @@ public class EnemyBoss1 extends EnemyShip
                 getWorld().addObject(new EnemyShip4(1), getX(), getY() + 140);
                 getWorld().addObject(new EnemyShip1(1), getX() + 20, getY()+ 120);
                 getWorld().addObject(new EnemyShip1(1), getX() - 20, getY()+ 120);
+            }
+            else if(Greenfoot.getRandomNumber(300) + 1 <= 1 * DevConsole.specialMultiplier)
+            {
+                getWorld().addObject(new HighVelocityRocket(80,this), getX(), getY());
+                getWorld().addObject(new HighVelocityRocket(85,this), getX(), getY() + 10);
+                getWorld().addObject(new HighVelocityRocket(95,this), getX(), getY() + 10);
+                getWorld().addObject(new HighVelocityRocket(100,this), getX(), getY());
             }
         }
         else if(script.startsWith("down "))
