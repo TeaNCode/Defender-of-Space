@@ -54,36 +54,34 @@ public class Player2Ship extends GoodShip
             }
             if (Greenfoot.isKeyDown("UP"))
             {
+                //shoots
                 if(reloadDelayCount >= gunReloadTime || DevConsole.minigun) 
                 {
-                    if(penetrate){
+                    reloadDelayCount = 0;
+                    shots++;
+                    //Shoot penetrative bullets
+                    if(penetrate)
+                    {
                         getWorld().addObject(new PlayerRocket(-90, this, true),getX(),getY());
-                        reloadDelayCount = 0;
-                        shots++;
-                        penShots++;
-                        if(penShots== 2)
-                        {
+                        penShots--;
+                        if(penShots <= 0)
                             penetrate = false;
-                        }
                     }
-                    else if(burst){
+                    else if(burst)
+                    {
                         getWorld().addObject(new PlayerRocket(-80, this),getX(),getY());
                         getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
                         getWorld().addObject(new PlayerRocket(-100, this),getX(),getY());
-                        reloadDelayCount = 0;
-                        shots+= 3;
-                        burstShots++;
-                        if(burstShots==5){
+                        shots += 2;
+                        burstShots--;
+                        if(burstShots <= 0)
                             burst = false;
-                        }
                     }
-                    else{
+                    else
+                    {
                         getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
-                        reloadDelayCount = 0;
-                        shots++;
                     }
-                    //shoots
-                } 
+                }
             }
         }
         else

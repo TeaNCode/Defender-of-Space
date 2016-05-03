@@ -40,7 +40,7 @@ public class PlayerShip extends GoodShip
             if (Greenfoot.isKeyDown("a"))
             {
                 //moves right
-                if(getX() - 5 <= 160 && !DevConsole.hiding)
+                if(getX() - speed <= 160 && !DevConsole.hiding)
                     setLocation(160,getY());
                 else
                     move(-speed);
@@ -48,7 +48,7 @@ public class PlayerShip extends GoodShip
             else if (Greenfoot.isKeyDown("d"))
             {
                 //moves left
-                if(getX() + 5 >= 870 && !DevConsole.hiding)
+                if(getX() + speed >= 870 && !DevConsole.hiding)
                     setLocation(870,getY());
                 else
                     move(speed);
@@ -64,8 +64,8 @@ public class PlayerShip extends GoodShip
                     if(penetrate)
                     {
                         getWorld().addObject(new PlayerRocket(-90, this, true),getX(),getY());
-                        penShots++;
-                        if(penShots == 2)
+                        penShots--;
+                        if(penShots <= 0)
                             penetrate = false;
                     }
                     else if(burst)
@@ -73,9 +73,9 @@ public class PlayerShip extends GoodShip
                         getWorld().addObject(new PlayerRocket(-80, this),getX(),getY());
                         getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
                         getWorld().addObject(new PlayerRocket(-100, this),getX(),getY());
-                        shots+= 2;
-                        burstShots++;
-                        if(burstShots == 5)
+                        shots+= 3;
+                        burstShots--;
+                        if(burstShots <= 0)
                             burst = false;
                     }
                     else

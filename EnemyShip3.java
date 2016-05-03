@@ -55,9 +55,9 @@ public class EnemyShip3 extends EnemyShip
             Scanner input = new Scanner(script);
             input.next();
             int i = input.nextInt();
-            if(getX() - 5 <= 160)
+            if(getX() + 5 >= 870)
             {
-                setLocation(160,getY());
+                setLocation(870,getY());
                 script = "normal";
             }
             else
@@ -73,9 +73,9 @@ public class EnemyShip3 extends EnemyShip
             Scanner input = new Scanner(script);
             input.next();
             int i = input.nextInt();
-            if(getX() + 5 >= 870)
+            if(getX() - 5 <= 160)
             {
-                setLocation(870,getY());
+                setLocation(160,getY());
                 script = "normal";
             }
             else

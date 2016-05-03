@@ -18,12 +18,12 @@ public class EnemyBoss1 extends EnemyShip
         if(direction == 1)
         {
             //Moves right
-            setLocation(getX() + 4, getY());
+            setLocation(getX() + 3, getY());
         }
         else
         {
             //Moves left
-            setLocation(getX() - 4, getY());
+            setLocation(getX() - 3, getY());
         }
         
         //Check if we need to change direction
