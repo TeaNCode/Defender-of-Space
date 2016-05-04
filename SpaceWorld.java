@@ -3,18 +3,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.Color;
 /**
- * Write a description of class spaceWorld here.
+ * The World that the main game takes place in
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tea N' Code
  */
 public class SpaceWorld extends World
 {
+    //Stores the player's lives
     public ArrayList<Life> lives = new ArrayList<Life>();
     public ArrayList<Life> lives2 = new ArrayList<Life>();
+    //Stores the waves for the level
     private Wave[] waves;
+    //Which wave we're on
     private int waveNumber;
+    //Whether or not the summary is being shown
     public boolean showingSummary;
+    //Holds the players
     private PlayerShip player1;
     private Player2Ship player2;
     public SpaceWorld(int players, Wave[] waves)
@@ -35,6 +39,7 @@ public class SpaceWorld extends World
         }
         else
         {
+            //Adds info for player 2 and stuff
             addObject(player1,400,750);
             player2 = new Player2Ship(this);
             addObject(new Score(player2), 886, 60);
@@ -46,6 +51,9 @@ public class SpaceWorld extends World
         Greenfoot.setSpeed(50);
     }
 
+    /**
+     * Checks if we should load the next level/end the game
+     */
     public void levelUp()
     {
         if(getObjects(EnemyShip.class).isEmpty())
@@ -71,6 +79,10 @@ public class SpaceWorld extends World
         }
     }
 
+    /**
+     * Opens the command console when the player presses '~'
+     * Runs the above method
+     */
     public void act()
     {
         levelUp();
@@ -80,18 +92,27 @@ public class SpaceWorld extends World
         }
     }
 
+    /**
+     * Gives player 1 additional lives
+     */
     public void addLives(int n)
     {
         for(int i = 0; i < n; i++)
             addObject(new Life(this,1),50,800 - 50 * lives.toArray().length);
     }
 
+    /**
+     * Gives player 2 additional lives
+     */
     public void addLives2(int n)
     {
         for(int i = 0; i < n; i++)
             addObject(new Life(this,2),950,800 - 50 * lives2.toArray().length);
     }
 
+    /**
+     * Shows a summary of the player(s)' preformance during the level
+     */
     public void showSummary(boolean win)
     {
         removeObjects(getObjects(null));

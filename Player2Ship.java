@@ -11,10 +11,10 @@ public class Player2Ship extends GoodShip
     public Player2Ship(SpaceWorld world)
     {
         setImage("player2Ship.png");
-        this.world = world;
         reloadDelayCount = gunReloadTime;
         delete = false;
         spawnProtection = 50;
+        reloadDelayCount = 65;
         gunReloadTime = 65;
         speed = 5;
         penetrate = false;
@@ -27,26 +27,38 @@ public class Player2Ship extends GoodShip
      */
     public void act() 
     {
-        if(spawnProtection > 0)
-        {
-            spawnProtection--;
-        }
-
         if(!delete)
         {
+            if(spawnProtection > 0)
+            {
+                spawnProtection--;
+            }
+            
+            if(attackSpeed){
+                if(attackBoostedTime != 0)
+                {
+                    attackBoostedTime--;
+                }
+                else
+                {
+                    gunReloadTime = 65;
+                    attackSpeed = false;
+                }
+            }
+
             reloadDelayCount++;//keeps you from firing to often
             if (Greenfoot.isKeyDown("LEFT"))
             {
                 //moves right
-                if(getX() - 5 <= 160 && !DevConsole.hiding)
+                if(getX() - speed <= 160 && !DevConsole.hiding)
                     setLocation(160,getY());
                 else
                     move(-speed);
             }
-            else if (Greenfoot.isKeyDown("RIGHT"))
+            if (Greenfoot.isKeyDown("RIGHT"))
             {
                 //moves left
-                if(getX() + 5 >= 870 && !DevConsole.hiding)
+                if(getX() + speed >= 870 && !DevConsole.hiding)
                     setLocation(870,getY());
                 else
                     move(speed);
@@ -56,45 +68,49 @@ public class Player2Ship extends GoodShip
                 //shoots
                 if(reloadDelayCount >= gunReloadTime || DevConsole.minigun) 
                 {
-                    //checks for diffrent kinds of shots
-                    if(penetrate){
-                        getWorld().addObject(new PlayerRocket(-90, this, true),getX(),getY());
-                        reloadDelayCount = 0;
-                        shots++;
-                        penShots++;
-                        if(penShots== 2)
-                        {
-                            penetrate = false;
-                        }
-                    }
-                    else if(burst){
-                        if(penetrate && penShots == 0)
+                    reloadDelayCount = 0;
+                    shots++;
+                    //Shoot penetrative bullets
+                    if(penetrate)
+                    {
+                        penShots--;  
+                        if(burst)
                         {
                             penetrate = false;
                             getWorld().addObject(new PlayerRocket(-80, this,true),getX(),getY());
                             getWorld().addObject(new PlayerRocket(-90, this,true),getX(),getY());
                             getWorld().addObject(new PlayerRocket(-100, this,true),getX(),getY());
-                            penShots = 3;
+                            shots += 2;
+                            penShots -= 2;
                         }
                         else
                         {
-                            getWorld().addObject(new PlayerRocket(-80, this),getX(),getY());
-                            getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
-                            getWorld().addObject(new PlayerRocket(-100, this),getX(),getY());
+                            getWorld().addObject(new PlayerRocket(-90, this, true),getX(),getY());
                         }
-                        reloadDelayCount = 0;
-                        shots+= 3;
-                        burstShots++;
-                        if(burstShots==5){
-                            burst = false;
-                        }
+
+                        //Check if we should end penetrating
+                        if(penShots <= 0)
+                            penetrate = false;
                     }
-                    else{
+                    //Shoot a burst
+                    else if(burst)
+                    {
+                        getWorld().addObject(new PlayerRocket(-80, this),getX(),getY());
                         getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
-                        reloadDelayCount = 0;
-                        shots++;
+                        getWorld().addObject(new PlayerRocket(-100, this),getX(),getY());
+                        shots += 2;
+                        burstShots--;
+
+                        //Checks if we should stop bursting
+                        if(burstShots <= 0)
+                            burst = false;
                     }
-                } 
+                    //Fire a standard shot
+                    else
+                    {
+                        getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
+                    }
+                }
             }
         }
         else
@@ -102,33 +118,21 @@ public class Player2Ship extends GoodShip
             //removes if delete
             getWorld().removeObject(this);
         }
-
-        if(attackSpeed){
-            //timer for attack speed boost
-            attackBoostedTime = 50;
-            gunReloadTime = 35;
-            if(attackBoostedTime != 0){
-                attackBoostedTime--;
-                gunReloadTime = 35;
-            }
-            else if(attackBoostedTime == 0){
-                gunReloadTime = 65;
-            }
-        }
-
-    }    
+    } 
 
     public void hit(Projectile hitee)
     {
         //checks if hit by projectile
         if(hitee.owner instanceof EnemyShip)
         {
+            hitee.delete();
             //checks if invulnerable
             if(!DevConsole.invulnerable && spawnProtection == 0)
             {
                 //checks if shielded
                 if(!shielded)
                 {
+                    SpaceWorld world = (SpaceWorld)(getWorld());
                     int lives = world.lives2.toArray().length;
                     getWorld().removeObject(world.lives2.get(lives - 1));
                     world.lives2.remove(lives - 1);
@@ -150,11 +154,10 @@ public class Player2Ship extends GoodShip
                 }
                 else
                 {
-                    //shielded = false;
-                    getWorld().removeObject(shield);
+                    shielded = false;
+                    shield.delete();
                 }
             }
-            hitee.delete();
         }
     }  
 }

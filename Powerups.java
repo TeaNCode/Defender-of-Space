@@ -13,28 +13,26 @@ public class Powerups extends Actor
     {
         //a construct for testing that lets you decide the powerup picked
         this.typeDecide = typeDecide;
+        setImage(typeDecide + ".png");
     }
 
     public Powerups()
     {
         //a constructor used by the enemies to generate a random powerup
-        String[] powers = {"Attack", "Score", "Shield", "Penetrate", "Mystery", "MegaMystery", "Burst", "Movement", "Life"};
-        String[] powers2 = {"Attack", "Score", "Shield", "Penetrate", "Mystery", "Burst", "Movement", "Life"};
+        String[] powers = {"Attack", "Score", "Shield", "Penetrate", "Mystery","Burst", "Movement", "Life"};
         typeDecide = powers[Greenfoot.getRandomNumber(powers.length)];
-        if(typeDecide.equals("MegaMystery") && Greenfoot.getRandomNumber(10000) + 1 == 1){
-            //makes it harder to get a mega mystery
+        
+        //Gives the possibility of a rare, powerful powerup
+        if(Greenfoot.getRandomNumber(9999) + 1 == 1){
             typeDecide = "MegaMystery";
         }
-        else{
-            //picks diffrent type if not mm
-            typeDecide = powers2[Greenfoot.getRandomNumber(powers2.length)];
-        }
+        
         setImage(typeDecide + ".png");
     }
 
     public Powerups(boolean mystery)
     {
-        //a constructor used by the enemies to generate a random powerup
+        //a constructor used by the enemies to generate a random powerup that cannot be a mystery box
         String[] powers = {"Attack", "Score", "Shield", "Penetrate", "Burst", "Movement", "Life"};
         typeDecide = powers[Greenfoot.getRandomNumber(powers.length)];
         setImage(typeDecide + ".png");
@@ -44,7 +42,7 @@ public class Powerups extends Actor
     {
         //move down screen
         setLocation(getX(), getY() + 1);
-        //if caught reads the picak and runs the code
+        //if caught reads the pick and runs the code
         GoodShip interceptor = (GoodShip) (getOneIntersectingObject(GoodShip.class));
         if(interceptor != null)
         {
@@ -73,6 +71,8 @@ public class Powerups extends Actor
     {
         //gives attack speed
         player.attackSpeed = true;
+        player.attackBoostedTime += 350;
+        player.gunReloadTime = 35;
     }
 
     public void score(GoodShip player)
@@ -84,15 +84,19 @@ public class Powerups extends Actor
     public void shield(GoodShip player)
     {
         //shields player
-        player.shielded = true;
-        getWorld().addObject(new Shield(player, 1.0), player.getX(), player.getY());
+        if(!player.shielded)
+        {
+            player.shielded = true;
+            player.shield = new Shield(player, 1.38);
+            getWorld().addObject(player.shield, player.getX(), player.getY());
+        }
     }
 
     public void penetrate(GoodShip player)
     {
         //makes bullets penetrate
         player.penetrate = true;
-        player.penShots = 0;
+        player.penShots += 2;
     }
 
     public void mysteryBox(GoodShip player)
@@ -111,6 +115,21 @@ public class Powerups extends Actor
         getWorld().addObject(new Powerups(true), player.getX(), player.getY() - 475);
     }
 
+    public void mysteryBox()
+    {
+        GoodShip interceptor = (GoodShip) (getOneIntersectingObject(GoodShip.class));
+        switch(typeDecide)
+        {
+            case "Attack": attackSpeed(interceptor); break;
+            case "Score": score(interceptor); break;
+            case "Shield": shield(interceptor); break;
+            case "Penetrate": penetrate(interceptor); break;
+            case "Burst": burst(interceptor); break;
+            case "Movement": movementSpeed(interceptor); break;
+            case "Life": extraLife((SpaceWorld)(interceptor.getWorld()),interceptor); break;
+        }
+    }
+
     public void extraLife(SpaceWorld world, GoodShip player)
     {
         //gives player extra life
@@ -124,13 +143,13 @@ public class Powerups extends Actor
     {
         //makes next 5 shots be burst shots
         player.burst = true;
-        player.burstShots = 0;
+        player.burstShots += 3;
     }
 
     public void movementSpeed(GoodShip player)
     {
         //increases player movement speed
-        player.speed+= 2;
+        player.speed += 2;
     }
 
 }

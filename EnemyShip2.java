@@ -1,16 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.Scanner;
 /**
- * Write a description of class enemyShip2 here.
+ * Another enemy that you will face
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Tea N' Code
  */
 public class EnemyShip2 extends EnemyShip
 {
     /**
-     * Act - do whatever the enemyShip2 wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Go inside for comments
      */
     public void act() 
     {
@@ -18,6 +16,7 @@ public class EnemyShip2 extends EnemyShip
         if(script.equals("normal"))
         {
             move();
+            //Shoot
             if(Greenfoot.getRandomNumber(2999) + 1 <= 1 * DevConsole.specialMultiplier)
             {
                 getWorld().addObject(new EnemyRocket(84,this), getX(), getY());
@@ -29,11 +28,13 @@ public class EnemyShip2 extends EnemyShip
                 getWorld().addObject(new EnemyRocket(90,this), getX(), getY());
             }
         }
+        //Move down
         else if(script.startsWith("down "))
         {
             downScript();
         }
 
+        //End the game safely
         if(end)
         {
             SpaceWorld temp = (SpaceWorld)(getWorld());
@@ -42,6 +43,9 @@ public class EnemyShip2 extends EnemyShip
         }
     }    
 
+    /**
+     * Constructs the ship and sets it's direction
+     */
     public EnemyShip2(int direction)
     {
         setImage("enemyShip2.png");
@@ -50,13 +54,16 @@ public class EnemyShip2 extends EnemyShip
         end = false;
     }
 
+    /**
+     * What happens when the ship gets hit
+     */
     public void hit(Projectile hitee)
     {
         if(hitee.owner instanceof GoodShip)
         {
             if(!hitee.penetrate)hitee.delete();
             else hitee.penetrate = false;
-            GoodShip killer = (GoodShip) (hitee.owner);
+            GoodShip killer = (GoodShip)(hitee.owner);
             addPowerup();
             getWorld().removeObject(this);
             killer.score += 200;
