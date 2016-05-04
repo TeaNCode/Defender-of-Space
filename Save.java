@@ -6,15 +6,15 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 import java.io.FileNotFoundException;
 /**
- * Write a description of class Save here.
+ * class for saving the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @TeaNCode
  */
 public abstract class Save  
 {
     static void saveWarn(String toWrite, String path)
     {
+        //confirms save
         int response = JOptionPane.showConfirmDialog(null,"Warning: Saving will overwrite the current save. Continue?");
         if(response == JOptionPane.OK_OPTION)
             writeSave(toWrite,path);
@@ -24,6 +24,7 @@ public abstract class Save
     {
         try
         {
+            //checks for saving error
             File save = new File(path);
             File saveBackup = new File(path + ".backup");
             if(save.isFile()) 
@@ -37,6 +38,7 @@ public abstract class Save
         }
         catch (IOException e)
         {
+            //replaces backup
             System.out.println(e + "\nSave file will be replaced from backup");
             File saveBackup = new File(path + ".backup");
             File save = new File(path);
@@ -46,6 +48,7 @@ public abstract class Save
     
     static void loadSave(String path)
     {
+        //saves into file
         File saveFile = new File(path);
         if(saveFile.exists())
         {
@@ -65,6 +68,7 @@ public abstract class Save
     
     private static void writeToFile(String textLine, String path) throws IOException
     {
+        //writes info to file
         FileWriter write = new FileWriter(path);
         PrintWriter print_line = new PrintWriter(write);
         print_line.printf("%s" + "%n",textLine);
@@ -73,12 +77,14 @@ public abstract class Save
 
     static String prepareString()
     {
+        //returns save
         String toReturn = String.valueOf(level) + " " + String.valueOf(money);
         return toReturn;
     }
 
     static void initialize()
     {
+        //sets starting amounts
         level = 1;
         money = 0;
     }

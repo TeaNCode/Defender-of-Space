@@ -34,12 +34,12 @@ public abstract class EnemyShip extends Destroyable
     {
         if(script.equals("normal"))
         {
-            if(getX() == 870)
+            if(getX() >= 870)
             {
                 script = "down 20";
                 direction = 2;
             }
-            else if(getX() == 160)
+            else if(getX() <= 160)
             {
                 script = "down 20";
                 direction = 1;
@@ -52,12 +52,12 @@ public abstract class EnemyShip extends Destroyable
         }
         else if(script.startsWith("burst"))
         {
-            if(getX() == 870)
+            if(getX() >= 870)
             {
                 script = "down 20 " + script;
                 direction = 2;
             }
-            else if(getX() == 160)
+            else if(getX() <= 160)
             {
                 script = "down 20 " + script;
                 direction = 1;

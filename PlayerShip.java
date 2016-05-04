@@ -28,15 +28,28 @@ public class PlayerShip extends GoodShip
      */
     public void act() 
     {
-        //Decrease spawn protection
-        if(spawnProtection > 0)
-        {
-            spawnProtection--;
-        }
-
         if(!delete)
         {
+            //Decrease spawn protection
+            if(spawnProtection > 0)
+            {
+                spawnProtection--;
+            }
+
+            if(attackSpeed){
+                if(attackBoostedTime != 0)
+                {
+                    attackBoostedTime--;
+                }
+                else
+                {
+                    gunReloadTime = 65;
+                    attackSpeed = false;
+                }
+            }
+            
             reloadDelayCount++;//keeps you from firing to often
+            
             if (Greenfoot.isKeyDown("a"))
             {
                 //moves right
@@ -45,7 +58,7 @@ public class PlayerShip extends GoodShip
                 else
                     move(-speed);
             }
-            else if (Greenfoot.isKeyDown("d"))
+            if (Greenfoot.isKeyDown("d"))
             {
                 //moves left
                 if(getX() + speed >= 870 && !DevConsole.hiding)
@@ -63,44 +76,50 @@ public class PlayerShip extends GoodShip
                     //Shoot penetrative bullets
                     if(penetrate)
                     {
-                        getWorld().addObject(new PlayerRocket(-90, this, true),getX(),getY());
-                        penShots--;
+                        penShots--;  
+                        if(burst)
+                        {
+                            penetrate = false;
+                            getWorld().addObject(new PlayerRocket(-80, this,true),getX(),getY());
+                            getWorld().addObject(new PlayerRocket(-90, this,true),getX(),getY());
+                            getWorld().addObject(new PlayerRocket(-100, this,true),getX(),getY());
+                            shots += 2;
+                            penShots -= 2;
+                        }
+                        else
+                        {
+                            getWorld().addObject(new PlayerRocket(-90, this, true),getX(),getY());
+                        }
+
+                        //Check if we should end penetrating
                         if(penShots <= 0)
                             penetrate = false;
                     }
+                    //Shoot a burst
                     else if(burst)
                     {
                         getWorld().addObject(new PlayerRocket(-80, this),getX(),getY());
                         getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
                         getWorld().addObject(new PlayerRocket(-100, this),getX(),getY());
-                        shots+= 3;
+                        shots += 2;
                         burstShots--;
+
+                        //Checks if we should stop bursting
                         if(burstShots <= 0)
                             burst = false;
                     }
+                    //Fire a standard shot
                     else
                     {
                         getWorld().addObject(new PlayerRocket(-90, this),getX(),getY());
                     }
-                } 
+                }
             }
         }
         //Delete the player because delete
         else
         {
             getWorld().removeObject(this);
-        }
-
-        if(attackSpeed){
-            if(attackBoostedTime != 0)
-            {
-                attackBoostedTime--;
-            }
-            else
-            {
-                gunReloadTime = 65;
-                attackSpeed = false;
-            }
         }
     }    
 

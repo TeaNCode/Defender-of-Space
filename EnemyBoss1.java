@@ -18,20 +18,26 @@ public class EnemyBoss1 extends EnemyShip
         if(direction == 1)
         {
             //Moves right
+            if(getX() + 3 >= 849)
+            setLocation(849,getY());
+            else
             setLocation(getX() + 3, getY());
         }
         else
         {
             //Moves left
+            if(getX() - 3 >= 229)
+            setLocation(229,getY());
+            else
             setLocation(getX() - 3, getY());
         }
-        
+
         //Check if we need to change direction
         if(getX() >= 850)
         {
             direction = 2;
         }
-        else if(getX() <= 180)
+        else if(getX() <= 230)
         {
             direction = 1;
         }
@@ -43,6 +49,13 @@ public class EnemyBoss1 extends EnemyShip
             getWorld().addObject(new EnemyShip4(1), getX(), getY() + 140);
             getWorld().addObject(new EnemyShip1(1), getX() + 20, getY()+ 120);
             getWorld().addObject(new EnemyShip1(1), getX() - 20, getY()+ 120);
+        }
+        else if(Greenfoot.getRandomNumber(300) + 1 <= 1 * DevConsole.specialMultiplier)
+        {
+            getWorld().addObject(new HighVelocityRocket(80,this), getX(), getY());
+            getWorld().addObject(new HighVelocityRocket(85,this), getX(), getY() + 10);
+            getWorld().addObject(new HighVelocityRocket(95,this), getX(), getY() + 10);
+            getWorld().addObject(new HighVelocityRocket(100,this), getX(), getY());
         }
     }    
 
