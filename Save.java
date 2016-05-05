@@ -45,7 +45,7 @@ public abstract class Save
             saveBackup.renameTo(save);
         }
     }
-    
+
     static void loadSave(String path)
     {
         //saves into file
@@ -57,15 +57,17 @@ public abstract class Save
                 Scanner save = new Scanner(saveFile);
                 level = save.nextInt();
                 if(save.hasNextInt())
-                money = save.nextInt();
+                    money = save.nextInt();
+                if(save.hasNextInt())
+                    endlessHighScore = save.nextInt();
             }
             catch(FileNotFoundException e)
             {
-                
+
             }
         }
     }
-    
+
     private static void writeToFile(String textLine, String path) throws IOException
     {
         //writes info to file
@@ -78,7 +80,7 @@ public abstract class Save
     static String prepareString()
     {
         //returns save
-        String toReturn = String.valueOf(level) + " " + String.valueOf(money);
+        String toReturn = String.valueOf(level) + " " + String.valueOf(money) + " " + String.valueOf(endlessHighScore);
         return toReturn;
     }
 
@@ -87,9 +89,11 @@ public abstract class Save
         //sets starting amounts
         level = 1;
         money = 0;
+        endlessHighScore = 0;
     }
 
     static boolean loaded;
     static int level;
     static int money;
+    static int endlessHighScore;
 }
