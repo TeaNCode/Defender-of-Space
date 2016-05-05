@@ -21,12 +21,44 @@ public class SpaceWorld extends World
     //Holds the players
     private PlayerShip player1;
     private Player2Ship player2;
+    //If the player is doing an endless run
+    public boolean endless;
     public SpaceWorld(int players, Wave[] waves)
     {
         super(1000, 800, 1);
         setBackground("space1.jpg");
         this.waves = waves;
         waves[0].spawnWave(this);
+        waveNumber = 1;
+        showingSummary = false;
+        this.endless = false;
+        addObject(new Button("teacup"), 25, 15);
+        player1 = new PlayerShip(this);
+        addObject(new Score(player1), 126, 60);
+        addObject(new Display("Player 1",20,Color.WHITE,new Color(0,0,0,0)),64,43);
+        if(players == 1)
+        {
+            addObject(player1,500,750);
+        }
+        else
+        {
+            //Adds info for player 2 and stuff
+            addObject(player1,400,750);
+            player2 = new Player2Ship(this);
+            addObject(new Score(player2), 886, 60);
+            addObject(new Display("Player 2",20,Color.WHITE,new Color(0,0,0,0)),823,43);
+            addObject(player2,600,750);
+            addLives2(3);
+        }
+        addLives(3);
+        Greenfoot.setSpeed(50);
+    }
+
+    public SpaceWorld(int players, boolean endless)
+    {
+        super(1000, 800, 1);
+        setBackground("space1.jpg");
+        this.endless = true;
         waveNumber = 1;
         showingSummary = false;
         addObject(new Button("teacup"), 25, 15);
@@ -56,27 +88,36 @@ public class SpaceWorld extends World
      */
     public void levelUp()
     {
-        if(getObjects(EnemyShip.class).isEmpty())
-        {
-            if(waveNumber <= waves.length - 1)
+        if(!showingSummary)
+            if(getObjects(EnemyShip.class).isEmpty())
             {
-                waves[waveNumber].spawnWave(this);
-                waveNumber++;
-            }
-            else
-            {
-                if(!showingSummary)
+                if(endless)
                 {
-                    showSummary(true);
-                    showingSummary = true;
+                    HubWorld.getLevel(waveNumber)[0].spawnWave(this);
+                    waveNumber++;
+                }
+                else
+                {
+                    if(waveNumber <= waves.length - 1)
+                    {
+                        waves[waveNumber].spawnWave(this);
+                        waveNumber++;
+                    }
+                    else
+                    {
+                        if(!showingSummary)
+                        {
+                            showSummary(true);
+                            showingSummary = true;
+                        }
+                    }
                 }
             }
-        }
-        else if(getObjects(GoodShip.class).isEmpty())
-        {
-            showSummary(false);
-            showingSummary = true;
-        }
+            else if(getObjects(GoodShip.class).isEmpty())
+            {
+                showSummary(false);
+                showingSummary = true;
+            }
     }
 
     /**
@@ -118,6 +159,7 @@ public class SpaceWorld extends World
         removeObjects(getObjects(null));
         setBackground("black.png");
 
+        //show win or loss
         if(win)
         {
             addObject(new Display("Victory",60,Color.GREEN),getWidth() / 2, 100);
@@ -125,6 +167,11 @@ public class SpaceWorld extends World
         }
         else
             addObject(new Display("Loss",60,Color.RED),getWidth() / 2,100);
+        
+        if(endless && player1.enemiesKilled > Save.endlessHighScore)
+            Save.endlessHighScore = player1.enemiesKilled;
+        
+        //add info
         if(player2 == null)
         {
             addObject(new Display("Player 1",50,Color.LIGHT_GRAY), getWidth() / 2, 200);

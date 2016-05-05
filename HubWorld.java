@@ -26,6 +26,8 @@ public class HubWorld extends World
         addObject(new Button("world",new SpaceWorld(1,getLevel(Save.level)),new GreenfootImage("\n\nFly solo",50,Color.WHITE,Color.BLACK)),200,200);
         addObject(new Button("world",new SpaceWorld(2,getLevel(Save.level)),new GreenfootImage("\n\nTeamwork makes the dreamwork",50,Color.WHITE,Color.BLACK)),434,376);
         addObject(new Button("world",new ShopWorld(this),new GreenfootImage("\n\nShop",50,Color.WHITE,Color.BLACK)),634,200);
+        addObject(new Button("world",new SpaceWorld(1,true),new GreenfootImage("\n\nTrek through heck",50,Color.WHITE,Color.BLACK)),574,549);
+        addObject(new Display("High Score (kills): " + String.valueOf(Save.endlessHighScore),40,Color.BLACK,new Color(0,0,0,0)),545,654);
         addObject(new Button("save"), 206,574);
         addObject(new Display("Current level: " + String.valueOf(Save.level),40,Color.BLACK,new Color(0,0,0,0)),233,626);
         addObject(new MoneyCounter(),229, 663);
@@ -34,7 +36,7 @@ public class HubWorld extends World
     /**
      * Returns the wave that corresponds to the player's current level
      */
-    public Wave[] getLevel(int level)
+    public static Wave[] getLevel(int level)
     {
         ArrayList<Wave> waves = new ArrayList<Wave>();
         SpawnableEntity[] blahSE = {new SpawnableEntity(new EnemyShip3(),450,50)};

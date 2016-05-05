@@ -8,7 +8,6 @@ import java.io.File;
  */
 public class MenuWorld extends World
 {
-
     /**
      * Constructor for objects of class MenuWorld.
      * 
