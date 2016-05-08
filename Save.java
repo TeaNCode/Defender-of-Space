@@ -90,10 +90,12 @@ public abstract class Save
         level = 1;
         money = 0;
         endlessHighScore = 0;
+        winner = false;
     }
 
     static boolean loaded;
     static int level;
     static int money;
     static int endlessHighScore;
+    static boolean winner;
 }

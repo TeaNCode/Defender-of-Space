@@ -93,7 +93,7 @@ public class SpaceWorld extends World
             {
                 if(endless)
                 {
-                    HubWorld.getLevel(waveNumber)[0].spawnWave(this);
+                    HubWorld.getRandomLevel(waveNumber,true)[0].spawnWave(this);
                     waveNumber++;
                 }
                 else
