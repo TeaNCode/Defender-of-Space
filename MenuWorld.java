@@ -2,14 +2,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 import java.io.File;
 /**
- * Write a description of class MenuWorld here.
+ * The opening menu. Allows the user to start a new game or load a previous game.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tea N' Code
  */
 public class MenuWorld extends World
 {
-
     /**
      * Constructor for objects of class MenuWorld.
      * 
@@ -18,6 +16,7 @@ public class MenuWorld extends World
     {    
         super(1000, 800, 1); 
         setBackground("gray.fw.png");
+        //Initialize variables so no nulls are reached
         DevConsole.initialize();
         Save.initialize();
         HubWorld.warned = false;
@@ -32,6 +31,9 @@ public class MenuWorld extends World
         Greenfoot.start();
     }
     
+    /**
+     * Opens the command console when the user presses '~'
+     */
     public void act()
     {
         if(Greenfoot.isKeyDown("`"))

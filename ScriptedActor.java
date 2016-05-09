@@ -1,12 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ScriptedActor here.
+ * A Framework for scripted actors
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tea N' Code
  */
 public class ScriptedActor extends Actor
 {
+    //The Actor's currently running script
     public String script;  
 }
