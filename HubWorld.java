@@ -201,23 +201,30 @@ public class HubWorld extends World
 
         if(random == null)
         {
-            String input = JOptionPane.showInputDialog(null,"Enter a seed for the random level or press cancel for a random seed");
-            if(input != null)
+            if(!Save.winner)
             {
-                long seed;
-                try
-                {
-                    seed = Long.valueOf(input);
-                }
-                catch(Exception e)
-                {
-                    seed = input.hashCode();
-                }
-                random = new Random(seed);
+                random = new Random();
             }
             else
             {
-                random = new Random();
+                String input = JOptionPane.showInputDialog(null,"Enter a seed for the random level or press cancel for a random seed");
+                if(input != null)
+                {
+                    long seed;
+                    try
+                    {
+                        seed = Long.valueOf(input);
+                    }
+                    catch(Exception e)
+                    {
+                        seed = input.hashCode();
+                    }
+                    random = new Random(seed);
+                }
+                else
+                {
+                    random = new Random();
+                }
             }
         }
 
