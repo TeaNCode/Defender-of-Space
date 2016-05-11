@@ -63,7 +63,7 @@ public class Player2Ship extends GoodShip
                 else
                     move(speed);
             }
-            if (Greenfoot.isKeyDown("w"))
+            if (Greenfoot.isKeyDown("UP"))
             {
                 //shoots
                 if(reloadDelayCount >= gunReloadTime || DevConsole.minigun) 
