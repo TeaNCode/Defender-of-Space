@@ -33,7 +33,7 @@ public class Player2Ship extends GoodShip
             {
                 spawnProtection--;
             }
-            
+
             if(attackSpeed){
                 if(attackBoostedTime != 0)
                 {
@@ -41,7 +41,7 @@ public class Player2Ship extends GoodShip
                 }
                 else
                 {
-                    gunReloadTime = 65;
+                    gunReloadTime += 30;
                     attackSpeed = false;
                 }
             }
@@ -63,7 +63,7 @@ public class Player2Ship extends GoodShip
                 else
                     move(speed);
             }
-            if (Greenfoot.isKeyDown("UP"))
+            if (Greenfoot.isKeyDown("w"))
             {
                 //shoots
                 if(reloadDelayCount >= gunReloadTime || DevConsole.minigun) 
@@ -82,6 +82,11 @@ public class Player2Ship extends GoodShip
                             getWorld().addObject(new PlayerRocket(-100, this,true),getX(),getY());
                             shots += 2;
                             penShots -= 2;
+                            burstShots--;
+
+                            //Checks if we should stop bursting
+                            if(burstShots <= 0)
+                                burst = false;
                         }
                         else
                         {
@@ -148,6 +153,9 @@ public class Player2Ship extends GoodShip
                         speed = 5;
                         penetrate = false;
                         burst = false;
+                        penShots = 0;
+                        burstShots = 0;
+                        attackBoostedTime = 0;
                     }
                     else
                         delete = true;

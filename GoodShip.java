@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class GoodShip here.
+ * Helps organize and holds a bunch of variables
  * 
  * @author Tea N' Code
  */
@@ -29,14 +29,14 @@ public abstract class GoodShip extends Destroyable
     public int spawnProtection;
     //How fast we are
     public int speed;
-    //How long we get to shoot faster
-    public int attackBoostedTime;
     //If we shoot faster
     public boolean attackSpeed;
     //If our bullets go through enemies
     public boolean penetrate;
     //If we shoot bursts
     public boolean burst;
+    //How long we get to shoot faster
+    public int attackBoostedTime;
     //How many penetrating shots we've shot
     public int penShots;
     //How many bursts we've shot

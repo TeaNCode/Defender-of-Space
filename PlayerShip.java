@@ -43,13 +43,13 @@ public class PlayerShip extends GoodShip
                 }
                 else
                 {
-                    gunReloadTime = 65;
+                    gunReloadTime += 30;
                     attackSpeed = false;
                 }
             }
-            
+
             reloadDelayCount++;//keeps you from firing to often
-            
+
             if (Greenfoot.isKeyDown("a"))
             {
                 //moves right
@@ -85,6 +85,11 @@ public class PlayerShip extends GoodShip
                             getWorld().addObject(new PlayerRocket(-100, this,true),getX(),getY());
                             shots += 2;
                             penShots -= 2;
+                            burstShots--;
+
+                            //Checks if we should stop bursting
+                            if(burstShots <= 0)
+                                burst = false;
                         }
                         else
                         {
@@ -147,6 +152,9 @@ public class PlayerShip extends GoodShip
                         speed = 5;
                         penetrate = false;
                         burst = false;
+                        penShots = 0;
+                        burstShots = 0;
+                        attackBoostedTime = 0;
                     }
                     //No more players
                     else

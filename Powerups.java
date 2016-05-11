@@ -72,7 +72,7 @@ public class Powerups extends Actor
         //gives attack speed
         player.attackSpeed = true;
         player.attackBoostedTime += 350;
-        player.gunReloadTime = 35;
+        player.gunReloadTime -= 30;
     }
 
     public void score(GoodShip player)
