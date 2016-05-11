@@ -31,7 +31,7 @@ public class SpaceWorld extends World
         waves[0].spawnWave(this);
         waveNumber = 1;
         showingSummary = false;
-        this.endless = false;
+        endless = false;
         addObject(new Button("teacup"), 25, 15);
         player1 = new PlayerShip(this);
         addObject(new Score(player1), 126, 60);
@@ -93,7 +93,7 @@ public class SpaceWorld extends World
             {
                 if(endless)
                 {
-                    HubWorld.getLevel(waveNumber)[0].spawnWave(this);
+                    HubWorld.getRandomLevel(waveNumber,true)[0].spawnWave(this);
                     waveNumber++;
                 }
                 else
@@ -163,14 +163,16 @@ public class SpaceWorld extends World
         if(win)
         {
             addObject(new Display("Victory",60,Color.GREEN),getWidth() / 2, 100);
+            if(Save.level == 5)
+                Save.winner = true;
             Save.level++;
         }
         else
             addObject(new Display("Loss",60,Color.RED),getWidth() / 2,100);
-        
+
         if(endless && player1.enemiesKilled > Save.endlessHighScore)
             Save.endlessHighScore = player1.enemiesKilled;
-        
+
         //add info
         if(player2 == null)
         {

@@ -60,6 +60,8 @@ public abstract class Save
                     money = save.nextInt();
                 if(save.hasNextInt())
                     endlessHighScore = save.nextInt();
+                if(save.hasNextBoolean())
+                    winner = save.nextBoolean();
             }
             catch(FileNotFoundException e)
             {
@@ -80,7 +82,7 @@ public abstract class Save
     static String prepareString()
     {
         //returns save
-        String toReturn = String.valueOf(level) + " " + String.valueOf(money) + " " + String.valueOf(endlessHighScore);
+        String toReturn = String.valueOf(level) + " " + String.valueOf(money) + " " + String.valueOf(endlessHighScore) + " " + String.valueOf(winner);
         return toReturn;
     }
 
@@ -90,10 +92,12 @@ public abstract class Save
         level = 1;
         money = 0;
         endlessHighScore = 0;
+        winner = false;
     }
 
     static boolean loaded;
     static int level;
     static int money;
     static int endlessHighScore;
+    static boolean winner;
 }
