@@ -1,10 +1,9 @@
 import greenfoot.Actor;
 import greenfoot.World;
 /**
- * Write a description of class SpawnableEntity here.
+ * sets location and spanws the entities called in 'Wave'
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @TeaNCode
  */
 public class SpawnableEntity  
 {
@@ -16,6 +15,7 @@ public class SpawnableEntity
      */
     public SpawnableEntity(Actor object, int x, int y)
     {
+        //sets location
         this.object = object;
         this.x = x;
         this.y = y;
@@ -23,6 +23,7 @@ public class SpawnableEntity
     
     public void spawn(World world)
     {
+        //adds entity
         world.addObject(object,x,y);
     }
 }

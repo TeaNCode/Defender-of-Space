@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Projectile here.
+ * overlord class for rockets and other projectiles
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author TeaNCode
  */
 public abstract class Projectile extends Actor
 {
@@ -18,7 +17,7 @@ public abstract class Projectile extends Actor
      */
     public void act() 
     {
-        Projectile projectile = (Projectile)(this.getOneIntersectingObject(Projectile.class));
+        Projectile projectile = (Projectile)(getOneIntersectingObject(Projectile.class));
         Destroyable ship = (Destroyable)(getOneIntersectingObject(Destroyable.class));
         if(projectile != null)
         {
@@ -31,6 +30,7 @@ public abstract class Projectile extends Actor
 
     public Projectile(int rotation, Destroyable owner)
     {
+        //constructor for normal projectile class
         setRotation(rotation);
         this.owner = owner;
         delete = false;
@@ -39,11 +39,12 @@ public abstract class Projectile extends Actor
     
     public Projectile(int rotation, Destroyable owner, boolean penetrate)
     {
+        //constructor for penetrate projectile class
         this(rotation,owner);
         this.penetrate = penetrate;
     }
 
-    public abstract void collision(Projectile hitee);
+    public abstract void collision(Projectile hitee);//checks collison
 
     public void delete()
     {
@@ -52,7 +53,7 @@ public abstract class Projectile extends Actor
     
     public void deleteCheck()
     {
-        
+        //checks to delete
         if(delete)
         {
             getWorld().removeObject(this);

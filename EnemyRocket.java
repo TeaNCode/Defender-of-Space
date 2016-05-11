@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class EnemyRocket here.
+ * normal enemy rocket class
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author TeaNCode
  */
 public class EnemyRocket extends Projectile
 {
     public EnemyRocket(int rotation, EnemyShip owner)
     {
+        //normal constructor for enemy bullet
         super(rotation, owner);
         this.penetrate = false;
         setImage("enemyRocket.png");
@@ -17,6 +17,7 @@ public class EnemyRocket extends Projectile
     
     public EnemyRocket(int rotation, EnemyShip owner, boolean penetrate)
     {
+        //pemetration constructor for enemy bullet
         super(rotation,owner,penetrate);
         this.penetrate = penetrate;
         setImage("enemyRocket.png");
@@ -29,9 +30,10 @@ public class EnemyRocket extends Projectile
     public void act() 
     {
         super.act();
-        move(9);
+        move(9);//flys
         if(getY() == 799)
         {
+            //delets at edge
             delete = true;
         }
         deleteCheck();
@@ -39,6 +41,7 @@ public class EnemyRocket extends Projectile
 
     public void collision(Projectile hitee)
     {
+        //deletes if collides with something
         if(DevConsole.realism)
         {
             if((hitee.owner instanceof EnemyShip && owner instanceof GoodShip) ||

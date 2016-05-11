@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 /**
- * Write a description of class HelpWorld here.
+ * Displays useful information for new players
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tea N' Code
  */
 public class HelpWorld extends World
 {
@@ -16,6 +15,7 @@ public class HelpWorld extends World
     {    
         super(1000, 800, 1);
         setBackground("gray.fw.png");
+        //Allows the user to return to the Hub
         addObject(new Button("back", backTo),29,789);
         addObject(new Display("Help",60,Color.LIGHT_GRAY),getWidth() / 2, 25);
         addObject(new Display("Here you are:",40,Color.LIGHT_GRAY),105,95);
@@ -30,8 +30,28 @@ public class HelpWorld extends World
         addObject(new Display("Player 2 uses the up, left, and right arrow keys. Your goal is to",40,Color.LIGHT_GRAY),469,243);
         addObject(new Display("defeat the invading alien menace. The world is depending on you.",40,Color.LIGHT_GRAY),494,285);
         addObject(new Display("Do not fail us.",40,Color.LIGHT_GRAY),115,325);
+        addObject(new Display("Powerups:",40,Color.LIGHT_GRAY),93,382);
+        addObject(new Display(new GreenfootImage("Attack.png")),630,718);
+        addObject(new Display("Attack speed, decreases reload time.",20,Color.LIGHT_GRAY),820,718);
+        addObject(new Display(new GreenfootImage("Burst.png")),86,465);
+        addObject(new Display("Burst, allows you to shoot bursts for some time.",20,Color.LIGHT_GRAY),310,465);
+        addObject(new Display(new GreenfootImage("Life.png")),633,622);
+        addObject(new Display("Life, gives you another life.",20,Color.LIGHT_GRAY),820,622);
+        addObject(new Display(new GreenfootImage("Movement.png")),86,554);
+        addObject(new Display("Speed, Increases your movement speed.",20,Color.LIGHT_GRAY),310,554);
+        addObject(new Display(new GreenfootImage("Mystery.png")),86,640);
+        addObject(new Display("Mystery, Gives you a random power-up.",20,Color.LIGHT_GRAY),310,640);
+        addObject(new Display(new GreenfootImage("Penetrate.png")),86,727);
+        addObject(new Display("Penetrating shot, allows your bullet to kill multiple ships.",20,Color.LIGHT_GRAY),310,727);
+        addObject(new Display(new GreenfootImage("Score.png")),635,436);
+        addObject(new Display("Score, increases your score & money.",20,Color.LIGHT_GRAY),820,436);
+        addObject(new Display(new GreenfootImage("Shield.png")),633,533);
+        addObject(new Display("Shield, gives you a shield that will protect you.",20,Color.LIGHT_GRAY),835,533);
     }
     
+    /**
+     * Opens the command console when '~' is pressed
+     */
     public void act()
     {
         if(Greenfoot.isKeyDown("`"))

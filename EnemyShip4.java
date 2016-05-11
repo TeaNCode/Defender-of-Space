@@ -1,15 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class EnemyShip4 here.
+ * An enemy you face that shields itself
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Tea N' Code
  */
 public class EnemyShip4 extends EnemyShip
 {
+    //Shield's timer
     private int shieldInt;
+    //If we're shielded
     private boolean shielded;
+    //Stores the shield
     private Shield shield;
     public EnemyShip4(int direction)
     {
@@ -54,6 +56,7 @@ public class EnemyShip4 extends EnemyShip
                 shieldInt++;
         }
 
+        //Move and shoot and stuff
         if(script.equals("normal"))
         {
             move();
@@ -65,6 +68,7 @@ public class EnemyShip4 extends EnemyShip
         else if(script.startsWith("down "))
             downScript();
 
+        //Safely end the game
         if(end)
         {
             SpaceWorld temp = (SpaceWorld)(getWorld());
@@ -73,14 +77,17 @@ public class EnemyShip4 extends EnemyShip
         }
     }    
 
+    /**
+     * What happens when the ship gets hit
+     */
     public void hit(Projectile hitee)
     {
         if(hitee.owner instanceof GoodShip)
         {
+            if(!hitee.penetrate)hitee.delete();
+                else hitee.penetrate = false;
             if(!shielded)
             {
-                if(!hitee.penetrate)hitee.delete();
-                else hitee.penetrate = false;
                 GoodShip killer = (GoodShip) (hitee.owner);
                 addPowerup();
                 getWorld().removeObject(this);

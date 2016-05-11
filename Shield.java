@@ -3,16 +3,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Shield here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tea N' Code
  */
 public class Shield extends Actor
 {
+    //The owner of the shield
     private Actor owner;
     private boolean delete;
 
     /**
-     * owner is the object this will follow, scale is the scale of it's image where 1.0 is full size
+     * Owner is the object this will follow, scale is the scale of it's image where 1.0 is full size
      */
     public Shield(Actor owner, double scale)
     {
@@ -22,6 +22,9 @@ public class Shield extends Actor
         this.owner = owner;
     }
 
+    /**
+     * Follows the owner or safely deletes the Shield
+     */
     public void act() 
     {
         if(!delete)
@@ -34,6 +37,9 @@ public class Shield extends Actor
         }
     }    
 
+    /**
+     * Sets the shield to be safely deleted
+     */
     public void delete()
     {
         delete = true;
