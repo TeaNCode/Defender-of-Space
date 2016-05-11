@@ -13,7 +13,7 @@ public class CreditsWorld extends World
      * Constructor for objects of class CreditsWorld.
      * 
      */
-    public CreditsWorld()
+    public CreditsWorld(World backTo)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1); 
@@ -23,8 +23,14 @@ public class CreditsWorld extends World
         addObject(new Display("Nathan Faltermeier", 30, Color.LIGHT_GRAY), 500, 210);
         addObject(new Display("Images:", 30), 500, 260);
         addObject(new Display("Aaron Campbell", 30, Color.LIGHT_GRAY), 500, 295);
-        addObject(new Display("Nathan Faltermeier", 30, Color.LIGHT_GRAY), 500, 210);
-        addObject(new Display("Tyler Martinez", 30, Color.LIGHT_GRAY), 500, 185);
-        addObject(new Display("Nathan Faltermeier", 30, Color.LIGHT_GRAY), 500, 210);
+        addObject(new Display("Nathan Faltermeier", 30, Color.LIGHT_GRAY), 500, 320);
+        addObject(new Display("Tyler Martinez", 30, Color.LIGHT_GRAY), 500, 345);
+        addObject(new Display("Gameplay:", 30), 500, 385);
+        addObject(new Display("Aaron Campbell", 30, Color.LIGHT_GRAY), 500, 425);
+        addObject(new Display("Nathan Faltermeier", 30, Color.LIGHT_GRAY), 500, 450);
+        addObject(new Display("Special Thanks:", 30), 500, 495);
+        addObject(new Display("Maverick Edwards", 30, Color.LIGHT_GRAY), 500, 535);
+        addObject(new Display("Ethan Renner", 30, Color.LIGHT_GRAY), 500, 560);
+        addObject(new Button("back", backTo),29,789);
     }
 }
