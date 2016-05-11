@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 /**
  * class for saving the game
  * 
@@ -62,20 +63,15 @@ public abstract class Save
                     endlessHighScore = save.nextInt();
                 if(save.hasNextBoolean())
                     winner = save.nextBoolean();
-                if(save.hasNextBoolean())
-                    attackSpeed1 = save.nextBoolean();
-                if(save.hasNextBoolean())
-                    attackSpeed2 = save.nextBoolean();
-                if(save.hasNextBoolean())
-                    attackSpeed3 = save.nextBoolean();
-                if(save.hasNextBoolean())
-                    attackSpeed4 = save.nextBoolean();
-                if(save.hasNextBoolean())
-                    attackSpeed5 = save.nextBoolean();
+                if(save.hasNext())
+                {
+                    save.next();
+                    String next = save.next();
+                }
             }
             catch(FileNotFoundException e)
             {
-
+                
             }
         }
     }
@@ -93,8 +89,7 @@ public abstract class Save
     {
         //returns save
         String toReturn = String.valueOf(level) + " " + String.valueOf(money) + " " + String.valueOf(endlessHighScore) + " "
-            + String.valueOf(winner) + " " + String.valueOf(attackSpeed1) + " " + String.valueOf(attackSpeed2) + " " + String.valueOf(attackSpeed3)
-            + " " + String.valueOf(attackSpeed4) + " " + String.valueOf(attackSpeed5);
+            + String.valueOf(winner) +  " ( " + Utilities.arrayListToString(inventory) + " ) [ " + Utilities.arrayToString(activeItems) + " ] ";
         return toReturn;
     }
 
@@ -105,11 +100,12 @@ public abstract class Save
         money = 0;
         endlessHighScore = 0;
         winner = false;
-        attackSpeed1 = false;
-        attackSpeed2 = false;
-        attackSpeed3 = false;
-        attackSpeed4 = false;
-        attackSpeed5 = false;
+        inventory = new ArrayList<String>();
+        activeItems = new String[6];
+        for(int i = 0; i < activeItems.length; i++)
+        {
+            activeItems[i] = null;
+        }
     }
 
     static boolean loaded;
@@ -117,9 +113,6 @@ public abstract class Save
     static int money;
     static int endlessHighScore;
     static boolean winner;
-    static boolean attackSpeed1;
-    static boolean attackSpeed2;
-    static boolean attackSpeed3;
-    static boolean attackSpeed4;
-    static boolean attackSpeed5;
+    static ArrayList<String> inventory;
+    static String[] activeItems;
 }
