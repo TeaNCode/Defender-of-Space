@@ -9,7 +9,7 @@ public class EnemyBoss1 extends EnemyBoss
 {
     public int hits = 0;
     public int rand1 = 500;
-    public int rand2 = 300;
+    public int rand2 = 500;
     public EnemyBoss1()
     {
         setImage("Boss.png");
@@ -49,8 +49,8 @@ public class EnemyBoss1 extends EnemyBoss
         {
             getWorld().addObject(new HighVelocityRocket(90,this), getX(), getY());
             getWorld().addObject(new EnemyShip4(1), getX(), getY() + 140);
-            getWorld().addObject(new EnemyShip1(1), getX() + 20, getY()+ 120);
-            getWorld().addObject(new EnemyShip1(1), getX() - 20, getY()+ 120);
+            //getWorld().addObject(new EnemyShip1(1), getX() + 20, getY()+ 120);
+            //getWorld().addObject(new EnemyShip1(1), getX() - 20, getY()+ 120);
             rand1 = 500;
         }
         else rand1--;

@@ -27,6 +27,7 @@ public class MenuWorld extends World
         addObject(new Button("continuegame"), getWidth() / 2, 450);
         addObject(new Display(new GreenfootImage("TeaNCode.png")), 301, 127);
         addObject(new Button("help",this), getWidth() / 2, 650);
+        addObject(new Button("credits",this), getWidth() / 2, 750);
         addObject(new Display("Defender of Space",100,Color.LIGHT_GRAY),getWidth() / 2,300);
         Greenfoot.start();
     }

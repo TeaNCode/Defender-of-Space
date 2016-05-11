@@ -6,7 +6,7 @@ import java.awt.Color;
  * @TeaNCode
  */
 public class Display extends Actor
-{
+{    
     /**
      * A constructor that displays 'text' with a size of 40 in Black with a Transparent background
      */
