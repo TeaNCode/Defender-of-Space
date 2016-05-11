@@ -50,6 +50,7 @@ public class Button extends Actor
                 case "newgame": Greenfoot.setWorld(new HubWorld(false)); break;
                 case "continuegame": Greenfoot.setWorld(new HubWorld(true)); break;
                 case "save": Save.saveWarn(Save.prepareString(),"Save.sav"); break;
+                case "credits": Greenfoot.setWorld(new CreditsWorld(world)); break;
             }
         }
     }    
@@ -68,6 +69,7 @@ public class Button extends Actor
             case "newgame": setImage(new GreenfootImage("New Game",40,Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
             case "continuegame": setImage(new GreenfootImage("Continue Game",40,Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
             case "save": setImage(new GreenfootImage("Save Game",40,Color.BLACK, new Color(0,0,0,0))); break;
+            case "credits": setImage(new GreenfootImage("Credits",40,Color.LIGHT_GRAY, new Color(0,0,0,0))); break;
         }
     }
 }
