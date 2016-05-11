@@ -12,6 +12,8 @@ public class HubWorld extends World
 {
     static boolean warned;
     static Random random;
+    public ArrayList<String> inventory;
+    public String[] activeItems;
 
     /**
      * Constructor for objects of class HubWorld.
@@ -32,6 +34,8 @@ public class HubWorld extends World
         addObject(new Button("save"), 206,574);
         addObject(new Display("Current level: " + String.valueOf(Save.level),40,Color.BLACK,new Color(0,0,0,0)),233,626);
         addObject(new MoneyCounter(),229, 663);
+        inventory = Save.inventory;
+        activeItems = Save.activeItems;
     }
 
     /**

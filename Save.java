@@ -67,11 +67,26 @@ public abstract class Save
                 {
                     save.next();
                     String next = save.next();
+                    while(!next.equals(")"))
+                    {
+                        inventory.add(next);
+                    }
+                }
+                if(save.hasNext())
+                {
+                    save.next();
+                    String next = save.next();
+                    int i = 0;
+                    while(!next.equals(")"))
+                    {
+                        activeItems[i] = next;
+                        i++;
+                    }
                 }
             }
             catch(FileNotFoundException e)
             {
-                
+
             }
         }
     }
