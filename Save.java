@@ -62,6 +62,16 @@ public abstract class Save
                     endlessHighScore = save.nextInt();
                 if(save.hasNextBoolean())
                     winner = save.nextBoolean();
+                if(save.hasNextBoolean())
+                    attackSpeed1 = save.nextBoolean();
+                if(save.hasNextBoolean())
+                    attackSpeed2 = save.nextBoolean();
+                if(save.hasNextBoolean())
+                    attackSpeed3 = save.nextBoolean();
+                if(save.hasNextBoolean())
+                    attackSpeed4 = save.nextBoolean();
+                if(save.hasNextBoolean())
+                    attackSpeed5 = save.nextBoolean();
             }
             catch(FileNotFoundException e)
             {
@@ -82,7 +92,9 @@ public abstract class Save
     static String prepareString()
     {
         //returns save
-        String toReturn = String.valueOf(level) + " " + String.valueOf(money) + " " + String.valueOf(endlessHighScore) + " " + String.valueOf(winner);
+        String toReturn = String.valueOf(level) + " " + String.valueOf(money) + " " + String.valueOf(endlessHighScore) + " "
+            + String.valueOf(winner) + " " + String.valueOf(attackSpeed1) + " " + String.valueOf(attackSpeed2) + " " + String.valueOf(attackSpeed3)
+            + " " + String.valueOf(attackSpeed4) + " " + String.valueOf(attackSpeed5);
         return toReturn;
     }
 
@@ -93,6 +105,11 @@ public abstract class Save
         money = 0;
         endlessHighScore = 0;
         winner = false;
+        attackSpeed1 = false;
+        attackSpeed2 = false;
+        attackSpeed3 = false;
+        attackSpeed4 = false;
+        attackSpeed5 = false;
     }
 
     static boolean loaded;
@@ -100,4 +117,9 @@ public abstract class Save
     static int money;
     static int endlessHighScore;
     static boolean winner;
+    static boolean attackSpeed1;
+    static boolean attackSpeed2;
+    static boolean attackSpeed3;
+    static boolean attackSpeed4;
+    static boolean attackSpeed5;
 }
