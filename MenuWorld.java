@@ -20,6 +20,7 @@ public class MenuWorld extends World
         DevConsole.initialize();
         Save.initialize();
         HubWorld.warned = false;
+        HubWorld.random = null;
 
         addObject(new Button("newgame"), getWidth() / 2, 550);
         File save = new File("Save.sav");
