@@ -69,7 +69,8 @@ public abstract class Save
                     String next = save.next();
                     while(!next.equals(")"))
                     {
-                        inventory.add(next);
+                        HubWorld.inventory.add(next);
+                        next = save.next();
                     }
                 }
                 if(save.hasNext())
@@ -77,10 +78,11 @@ public abstract class Save
                     save.next();
                     String next = save.next();
                     int i = 0;
-                    while(!next.equals(")"))
+                    while(!next.equals("]"))
                     {
-                        activeItems[i] = next;
+                        HubWorld.activeItems[i] = next;
                         i++;
+                        next = save.next();
                     }
                 }
             }
@@ -104,7 +106,8 @@ public abstract class Save
     {
         //returns save
         String toReturn = String.valueOf(level) + " " + String.valueOf(money) + " " + String.valueOf(endlessHighScore) + " "
-            + String.valueOf(winner) +  " ( " + Utilities.arrayListToString(inventory) + " ) [ " + Utilities.arrayToString(activeItems) + " ] ";
+            + String.valueOf(winner) +  " ( " + Utilities.arrayListToString(HubWorld.inventory) + " ) [ " + Utilities.arrayToString(HubWorld.activeItems) + " ] ";
+        System.out.println("inventory: '" + Utilities.arrayListToString(HubWorld.inventory) + "'");
         return toReturn;
     }
 
@@ -115,11 +118,11 @@ public abstract class Save
         money = 0;
         endlessHighScore = 0;
         winner = false;
-        inventory = new ArrayList<String>();
-        activeItems = new String[6];
-        for(int i = 0; i < activeItems.length; i++)
+        HubWorld.inventory = new ArrayList<String>();
+        HubWorld.activeItems = new String[6];
+        for(int i = 0; i < HubWorld.activeItems.length; i++)
         {
-            activeItems[i] = null;
+            HubWorld.activeItems[i] = null;
         }
     }
 
@@ -128,6 +131,4 @@ public abstract class Save
     static int money;
     static int endlessHighScore;
     static boolean winner;
-    static ArrayList<String> inventory;
-    static String[] activeItems;
 }

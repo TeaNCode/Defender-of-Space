@@ -12,8 +12,8 @@ public class HubWorld extends World
 {
     static boolean warned;
     static Random random;
-    public ArrayList<String> inventory;
-    public String[] activeItems;
+    static ArrayList<String> inventory;
+    static String[] activeItems;
 
     /**
      * Constructor for objects of class HubWorld.
@@ -34,8 +34,6 @@ public class HubWorld extends World
         addObject(new Button("save"), 206,574);
         addObject(new Display("Current level: " + String.valueOf(Save.level),40,Color.BLACK,new Color(0,0,0,0)),233,626);
         addObject(new MoneyCounter(),229, 663);
-        inventory = Save.inventory;
-        activeItems = Save.activeItems;
     }
 
     /**
@@ -188,6 +186,18 @@ public class HubWorld extends World
         }
 
         return waves.toArray(blahW);
+    }
+    
+    public ArrayList<String> addToInventory(String toAdd)
+    {
+        inventory.add(toAdd);
+        return inventory;
+    }
+    
+    public String[] methodTest()
+    {
+        String[] test = {"b;ah"};
+        return inventory.toArray(test);
     }
 
     public static Wave[] getRandomLevel(int level,boolean endless)
