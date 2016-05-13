@@ -78,7 +78,7 @@ public abstract class Save
                     save.next();
                     String next = save.next();
                     int i = 0;
-                    while(!next.equals("]"))
+                    while(!next.equals("]") && i < 6)
                     {
                         HubWorld.activeItems[i] = next;
                         i++;
@@ -88,7 +88,7 @@ public abstract class Save
             }
             catch(FileNotFoundException e)
             {
-
+                
             }
         }
     }
@@ -107,7 +107,6 @@ public abstract class Save
         //returns save
         String toReturn = String.valueOf(level) + " " + String.valueOf(money) + " " + String.valueOf(endlessHighScore) + " "
             + String.valueOf(winner) +  " ( " + Utilities.arrayListToString(HubWorld.inventory) + " ) [ " + Utilities.arrayToString(HubWorld.activeItems) + " ] ";
-        System.out.println("inventory: '" + Utilities.arrayListToString(HubWorld.inventory) + "'");
         return toReturn;
     }
 

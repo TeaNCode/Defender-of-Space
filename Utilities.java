@@ -14,7 +14,7 @@ public abstract class Utilities
 			output = output + " " + temp;
 		}
 		
-		return output.substring(1, source.length);
+		return output.substring(1, output.length());
 	}
 	
 	static String arrayListToString(ArrayList<String> source)
