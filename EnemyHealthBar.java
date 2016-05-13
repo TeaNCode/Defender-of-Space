@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.*;
+import java.lang.*;
 /**
  * Write a description of class EnemyHealthBar here.
  * 
@@ -11,6 +12,7 @@ public class EnemyHealthBar extends Actor
     public int barWidth;
     public int barHeight;
     public int scale;
+    EnemyBoss boss;
     public EnemyHealthBar(int scale)
     {
         barWidth = 100 * scale;
@@ -23,11 +25,11 @@ public class EnemyHealthBar extends Actor
      */
     public void act() 
     {
-        // Add your action code here.
+        setLocation(boss.getX(), boss.getY() - 50);
     }    
 
     public void draw(EnemyBoss owner)
     {
-
+        //drawLine(boss.getX() - 50, boss.getY() - 10, boss.getX() + 50, boss.getY() - 15);
     }
 }
