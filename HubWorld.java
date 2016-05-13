@@ -245,20 +245,20 @@ public class HubWorld extends World
         int times = random.nextInt(30) + 1 + (int)(Math.pow(level,2) / 2);
         for(int i = 0; i < times; i++)
         {
-            int enemyType = random.nextInt(4);
-            if(enemyType == 0)
+            int enemyType = random.nextInt(6);
+            if(enemyType <= 1)
             {
                 wave1.add(new SpawnableEntity(new EnemyShip1(random.nextInt(2) + 1),random.nextInt(701) + 161,random.nextInt(301) + 10));
             }
-            else if(enemyType == 1)
+            else if(enemyType <= 3)
             {
                 wave1.add(new SpawnableEntity(new EnemyShip2(random.nextInt(2) + 1),random.nextInt(701) + 161,random.nextInt(301) + 10));
             }
-            else if(enemyType == 2)
+            else if(enemyType == 4)
             {
                 wave1.add(new SpawnableEntity(new EnemyShip3(),random.nextInt(701) + 161,random.nextInt(301) + 10));
             }
-            else if(enemyType == 3)
+            else if(enemyType == 5)
             {
                 wave1.add(new SpawnableEntity(new EnemyShip4(random.nextInt(2) + 1),random.nextInt(701) + 161,random.nextInt(301) + 10));
             }
