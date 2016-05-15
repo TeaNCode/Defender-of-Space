@@ -11,7 +11,8 @@ public class MoneyCounter extends Actor
     
     public MoneyCounter()
     {
-        //constructor that draws initila image
+        //constructor that draws initial image
+        money = Save.money;
         draw();
     }
     

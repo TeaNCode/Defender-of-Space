@@ -21,6 +21,9 @@ public class PlayerShip extends GoodShip
         bossBonus = 0;
         penetrate = false;
         burst = false;
+        
+        //Apply the active items the user has
+        applyItems();
     }
 
     /**
@@ -166,6 +169,22 @@ public class PlayerShip extends GoodShip
                     shielded = false;
                     shield.delete();
                 }
+            }
+        }
+    }
+
+    public void applyItems()
+    {
+        for(String active : Save.activeItems)
+        {
+            if(active != null)
+            {
+                if(active.startsWith("AttackSpeed"))
+                    gunReloadTime -= 3;
+                else if(active.startsWith("Movement"))
+                    speed += 1;
+                else if(active.startsWith("BossBonus"))
+                    bossBonus += 2;
             }
         }
     }
