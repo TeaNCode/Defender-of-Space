@@ -18,6 +18,7 @@ public class PlayerShip extends GoodShip
         //Player can fire instantly
         reloadDelayCount = gunReloadTime;
         speed = 5;
+        bossBonus = 0;
         penetrate = false;
         burst = false;
     }

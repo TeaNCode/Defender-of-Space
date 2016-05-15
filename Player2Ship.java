@@ -11,12 +11,14 @@ public class Player2Ship extends GoodShip
     public Player2Ship(SpaceWorld world)
     {
         setImage("player2Ship.png");
-        reloadDelayCount = gunReloadTime;
         delete = false;
+        //Protects player from being hit
         spawnProtection = 50;
-        reloadDelayCount = 65;
         gunReloadTime = 65;
+        //Player can fire instantly
+        reloadDelayCount = gunReloadTime;
         speed = 5;
+        bossBonus = 0;
         penetrate = false;
         burst = false;
     }

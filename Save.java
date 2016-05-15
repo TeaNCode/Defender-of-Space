@@ -69,7 +69,7 @@ public abstract class Save
                     String next = save.next();
                     while(!next.equals(")"))
                     {
-                        HubWorld.inventory.add(next);
+                        inventory.add(next);
                         next = save.next();
                     }
                 }
@@ -80,7 +80,7 @@ public abstract class Save
                     int i = 0;
                     while(!next.equals("]") && i < 6)
                     {
-                        HubWorld.activeItems[i] = next;
+                        activeItems[i] = next;
                         i++;
                         next = save.next();
                     }
@@ -106,7 +106,7 @@ public abstract class Save
     {
         //returns save
         String toReturn = String.valueOf(level) + " " + String.valueOf(money) + " " + String.valueOf(endlessHighScore) + " "
-            + String.valueOf(winner) +  " ( " + Utilities.arrayListToString(HubWorld.inventory) + " ) [ " + Utilities.arrayToString(HubWorld.activeItems) + " ] ";
+            + String.valueOf(winner) +  " ( " + Utilities.arrayListToString(inventory) + " ) [ " + Utilities.arrayToString(activeItems) + " ] ";
         return toReturn;
     }
 
@@ -117,11 +117,11 @@ public abstract class Save
         money = 0;
         endlessHighScore = 0;
         winner = false;
-        HubWorld.inventory = new ArrayList<String>();
-        HubWorld.activeItems = new String[6];
-        for(int i = 0; i < HubWorld.activeItems.length; i++)
+        inventory = new ArrayList<String>();
+        activeItems = new String[6];
+        for(int i = 0; i < activeItems.length; i++)
         {
-            HubWorld.activeItems[i] = null;
+            activeItems[i] = null;
         }
     }
 
@@ -130,4 +130,6 @@ public abstract class Save
     static int money;
     static int endlessHighScore;
     static boolean winner;
+    static ArrayList<String> inventory;
+    static String[] activeItems;
 }

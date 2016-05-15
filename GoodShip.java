@@ -41,4 +41,6 @@ public abstract class GoodShip extends Destroyable
     public int penShots;
     //How many bursts we've shot
     public int burstShots;
+    //Chance to do extra damage to bosses
+    public int bossBonus;
 }

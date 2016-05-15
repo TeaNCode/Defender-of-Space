@@ -15,8 +15,8 @@ public class ShopWorld extends World
         super(1000, 800, 1);
         //Allows the player to return to the Hub
         addObject(new Button("back", backTo),29,789);
-        //Tells them what is going on
-        addObject(new Display("Nothing yet",50,Color.BLACK,new Color(0,0,0,0)),500,400);
+        for(int i = 1; i < 6; i++)
+        addObject(new ShopButton("AttackSpeed" + String.valueOf(i),i * 700),i * 200 - 100,100);
     }
     
     /**
