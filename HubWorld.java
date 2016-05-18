@@ -175,6 +175,7 @@ public class HubWorld extends World
             ArrayList<SpawnableEntity> wave1 = new ArrayList<SpawnableEntity>();
 
             wave1.add(new SpawnableEntity(new EnemyBoss1(),500,50));
+            wave1.add(new SpawnableEntity(new EnemyHealthBar(1), 500, 100));
 
             waves.add(new Wave(wave1.toArray(blahSE)));
         }

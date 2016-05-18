@@ -12,7 +12,7 @@ public class EnemyHealthBar extends Actor
     public int barWidth;
     public int barHeight;
     public int scale;
-    EnemyBoss boss;
+    EnemyBoss1 boss;
     public EnemyHealthBar(int scale)
     {
         barWidth = 100 * scale;
@@ -25,11 +25,14 @@ public class EnemyHealthBar extends Actor
      */
     public void act() 
     {
-        setLocation(boss.getX(), boss.getY() - 50);
+        //setLocation(boss.getX(), boss.getY() - 50);
+        draw(boss, new GreenfootImage(100, 10));
     }    
 
-    public void draw(EnemyBoss owner)
+    public void draw(EnemyBoss owner, GreenfootImage image)
     {
-        //drawLine(boss.getX() - 50, boss.getY() - 10, boss.getX() + 50, boss.getY() - 15);
+        image.drawRect(500, 25, 100, 10);
+        image.setColor(Color.GREEN);
+        image.fillRect(500, 25, 100, 10);
     }
 }
