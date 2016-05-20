@@ -9,30 +9,34 @@ import java.lang.*;
  */
 public class EnemyHealthBar extends Actor
 {
-    public int barWidth;
-    public int barHeight;
-    public int scale;
-    EnemyBoss1 boss;
-    public EnemyHealthBar(int scale)
+    private int health = 100;
+    public EnemyHealthBar()
     {
-        barWidth = 100 * scale;
-        barHeight = 10;
     }
 
-    /**
-     * Act - do whatever the EnemyHealthBar wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
+    protected void addedToWorld(World w)
     {
-        //setLocation(boss.getX(), boss.getY() - 50);
-        draw(boss, new GreenfootImage(100, 10));
-    }    
-
-    public void draw(EnemyBoss owner, GreenfootImage image)
+        updateHealthBar(0);        
+    }
+    
+     public int updateHealthBar(int healthChange)
     {
-        image.drawRect(500, 25, 100, 10);
-        image.setColor(Color.GREEN);
-        image.fillRect(500, 25, 100, 10);
+        health = health - healthChange;  // Note: you can add health by passing in a negative change
+        if( health <= 0 )
+        {
+            return 0;  // Let's caller know we died
+        } else if( health > 100 )
+        {
+            health = 100;  // can't have more than the max health
+        }
+        
+        // Redraw health bar to match current health
+        GreenfootImage hb = new GreenfootImage(health, 20);
+        hb.setColor(Color.GREEN);
+        hb.fill();
+        setImage(hb);
+        setLocation(getImage().getWidth()/2 + 40, getY());
+        
+        return health;
     }
 }
