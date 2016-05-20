@@ -9,10 +9,12 @@ public class InventoryItem extends Actor
 {
     private String type;
     private boolean active;
-    public InventoryItem(String type, boolean active)
+    private int index;
+    public InventoryItem(String type, boolean active, int index)
     {
         this.type = type;
         this.active = active;
+        this.index = index;
         
         setPicture();
     }
@@ -23,7 +25,21 @@ public class InventoryItem extends Actor
      */
     public void act() 
     {
-        
+        if(Greenfoot.mouseClicked(this))
+        {
+            if(!active)
+            {
+                if(Utilities.arrayContains(Save.activeItems,null))
+                {
+                    Save.inventory.remove(index);
+                    int[] options = Utilities.arrayFind(Save.activeItems,null);
+                    Save.activeItems[options[0]] = type;
+                    World world = getWorld();
+                    InventoryWorld wurld = (InventoryWorld) world;
+                    wurld.update();
+                }
+            }
+        }
     }    
     
     public void setPicture()

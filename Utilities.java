@@ -125,8 +125,31 @@ public abstract class Utilities
                 if(test.equals(query))
                     return true;
             }
+            else if(query == null) return true;
         }
 
         return false;
+    }
+
+    static int[] arrayFind(String[] source, String query)
+    {
+        ArrayList<Integer> locations = new ArrayList<Integer>();
+        for(int i = 0; i < source.length; i++)
+        {
+            String test = source[i];
+            if(test != null)
+            {
+                if(test.equals(query)) locations.add(i);
+            }
+            else if(query == null) locations.add(i);
+        }
+        
+        locations.trimToSize();
+        int[] answer = new int[locations.size()];
+        for(int i = 0; i < answer.length; i++)
+        {
+            answer[i] = locations.get(i);
+        }
+        return answer;
     }
 }

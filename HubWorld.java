@@ -32,6 +32,7 @@ public class HubWorld extends World
         addObject(new Button("save"), 206,574);
         addObject(new Display("Current level: " + String.valueOf(Save.level),40,Color.BLACK,new Color(0,0,0,0)),233,626);
         addObject(new MoneyCounter(),229, 663);
+        addObject(new Button("world",new InventoryWorld(this), new GreenfootImage("\n\nInventory",50,Color.WHITE,Color.BLACK)),419,200);
     }
 
     /**
