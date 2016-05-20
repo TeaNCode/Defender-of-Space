@@ -10,9 +10,12 @@ public class EnemyBoss1 extends EnemyBoss
     public int hits = 0;
     public int rand1 = 500;
     public int rand2 = 500;
+    public int actCycle = 0;
+    public EnemyHealthBar health;
     public EnemyBoss1()
     {
         setImage("Boss.png");
+
     }
 
     public void act() 
@@ -63,6 +66,18 @@ public class EnemyBoss1 extends EnemyBoss
             rand2 = 300;
         }
         else rand2--;
+
+        if(actCycle!= 1)
+        {
+            actCycle += 1;
+        }
+        else if(actCycle == 1)
+        {
+            health = new EnemyHealthBar();
+            getWorld().addObject(health, 90, 90);
+            actCycle = 2;
+        }
+        
     }    
 
     /**
@@ -78,10 +93,12 @@ public class EnemyBoss1 extends EnemyBoss
                 killer.score = killer.score + 1500;
                 killer.enemiesKilled++;
                 addPowerup();
+                health.updateHealthBar(10);
             }
             else {
                 hits++;
                 hitee.delete();
+                health.updateHealthBar(10);
             }
         }
     }
