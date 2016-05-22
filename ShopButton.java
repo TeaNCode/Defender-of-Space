@@ -51,5 +51,11 @@ public class ShopButton extends Actor
             number = Utilities.intToRomanNumerals(Integer.valueOf(number));
             setImage(new GreenfootImage("BossBonus " + number + "\nCost: " + String.valueOf(cost),30,Color.BLACK,new Color(0,0,0,0)));
         }
+        else if(type.startsWith("HighCaliber"))
+        {
+            String number = type.substring(11,type.length());
+            number = Utilities.intToRomanNumerals(Integer.valueOf(number));
+            setImage(new GreenfootImage("HighCaliber " + number + "\nCost: " + String.valueOf(cost),30,Color.BLACK,new Color(0,0,0,0)));
+        }
     }
 }

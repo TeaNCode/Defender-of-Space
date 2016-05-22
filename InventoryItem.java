@@ -9,16 +9,14 @@ public class InventoryItem extends Actor
 {
     private String type;
     private boolean active;
-    private int index;
-    public InventoryItem(String type, boolean active, int index)
+    public InventoryItem(String type, boolean active)
     {
         this.type = type;
         this.active = active;
-        this.index = index;
-        
+
         setPicture();
     }
-    
+
     /**
      * Act - do whatever the InventoryItem wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -31,17 +29,27 @@ public class InventoryItem extends Actor
             {
                 if(Utilities.arrayContains(Save.activeItems,null))
                 {
-                    Save.inventory.remove(index);
+                    String[] inventory = {"nice b8 m8"};
+                    inventory = Save.inventory.toArray(inventory);
+                    int[] index = Utilities.arrayFind(inventory,type);
+                    Save.inventory.remove(index[0]);
                     int[] options = Utilities.arrayFind(Save.activeItems,null);
                     Save.activeItems[options[0]] = type;
-                    World world = getWorld();
-                    InventoryWorld wurld = (InventoryWorld) world;
-                    wurld.update();
+                    InventoryWorld world = (InventoryWorld) getWorld();
+                    world.update();
                 }
+            }
+            else
+            {
+                int[] index = Utilities.arrayFind(Save.activeItems,type);
+                Save.activeItems[index[0]] = null;
+                Save.inventory.add(type);
+                InventoryWorld world = (InventoryWorld) getWorld();
+                world.update();
             }
         }
     }    
-    
+
     public void setPicture()
     {
         if(type.startsWith("AttackSpeed"))
@@ -61,6 +69,12 @@ public class InventoryItem extends Actor
             String number = type.substring(9,type.length());
             number = Utilities.intToRomanNumerals(Integer.valueOf(number));
             setImage(new GreenfootImage("BossBonus " + number,30,Color.BLACK,new Color(0,0,0,0)));
+        }
+        else if(type.startsWith("HighCaliber"))
+        {
+            String number = type.substring(11,type.length());
+            number = Utilities.intToRomanNumerals(Integer.valueOf(number));
+            setImage(new GreenfootImage("HighCaliber " + number,30,Color.BLACK,new Color(0,0,0,0)));
         }
     }
 }

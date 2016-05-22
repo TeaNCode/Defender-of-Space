@@ -22,7 +22,7 @@ public class PlayerShip extends GoodShip
         penetrate = false;
         burst = false;
         movementCount = 0;
-        
+
         //Apply the active items the user has
         applyItems();
     }
@@ -153,7 +153,7 @@ public class PlayerShip extends GoodShip
                         setLocation(500,750);
                         spawnProtection = 50;
                         if(attackSpeed)
-                        reloadDelayCount += 20;
+                            reloadDelayCount += 20;
                         gunReloadTime = reloadDelayCount;
                         attackSpeed = false;
                         speed -= movementCount * 2;
@@ -187,6 +187,11 @@ public class PlayerShip extends GoodShip
                     speed += 1;
                 else if(active.startsWith("BossBonus"))
                     bossBonus += 2;
+                else if(active.startsWith("HighCaliber"))
+                {
+                    bossBonus += 3;
+                    gunReloadTime += 4;
+                }
             }
         }
     }

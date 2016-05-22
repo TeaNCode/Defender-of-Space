@@ -18,9 +18,11 @@ public class ShopWorld extends World
         for(int i = 1; i < 6; i++)
             addObject(new ShopButton("AttackSpeed" + String.valueOf(i),i * 700),i * 200 - 100,100);
         for(int i = 1; i < 6; i++)
-            addObject(new ShopButton("Movement" + String.valueOf(i),i * 500 + 200),i * 200 - 100,200);
+            addObject(new ShopButton("Movement" + String.valueOf(i),i * 500 + 500),i * 200 - 100,200);
         for(int i = 1; i < 6; i++)
             addObject(new ShopButton("BossBonus" + String.valueOf(i),i * 900 - 300),i * 200 - 100,300);
+        for(int i = 1; i < 6; i++)
+            addObject(new ShopButton("HighCaliber" + String.valueOf(i),i * 600 + 300),i * 200 - 100,400);
         addObject(new MoneyCounter(),500,19);
     }
 

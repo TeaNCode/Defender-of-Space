@@ -36,7 +36,7 @@ public class InventoryWorld extends World
                     y += 100;
                     x = 100;
                 }
-                addObject(new InventoryItem(item,false,counter),x,y);
+                addObject(new InventoryItem(item,false),x,y);
                 x += 200;
                 counter++;
             }
@@ -54,7 +54,7 @@ public class InventoryWorld extends World
                     y += 100;
                     x = 200;
                 }
-                addObject(new InventoryItem(item,true,counter),x,y);
+                addObject(new InventoryItem(item,true),x,y);
                 x += 300;
                 counter++;
             }
@@ -65,5 +65,16 @@ public class InventoryWorld extends World
     {
         removeObjects(getObjects(InventoryItem.class));
         populateWorld();
+    }
+    
+    /**
+     * Opens the command console when '~' is pressed
+     */
+    public void act()
+    {
+        if(Greenfoot.isKeyDown("`"))
+        {
+            DevConsole.showConsole();
+        }
     }
 }
