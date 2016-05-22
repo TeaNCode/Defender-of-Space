@@ -7,15 +7,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class EnemyBoss1 extends EnemyBoss
 {
-    public int hits = 0;
-    public int rand1 = 500;
-    public int rand2 = 500;
-    public int actCycle = 0;
+    public int hits;
+    public int rand1;
+    public int rand2;
     public EnemyHealthBar health;
     public EnemyBoss1()
     {
         setImage("Boss.png");
-
+        hits = 0;
+        rand1 = 500;
+        rand2 = 500;
+        health = new EnemyHealthBar(10 - hits, 10);
+    }
+    
+    protected void addedToWorld(World w)
+    {
+        getWorld().addObject(health, 90, 90);
     }
 
     public void act() 
@@ -66,18 +73,6 @@ public class EnemyBoss1 extends EnemyBoss
             rand2 = 300;
         }
         else rand2--;
-
-        if(actCycle!= 1)
-        {
-            actCycle += 1;
-        }
-        else if(actCycle == 1)
-        {
-            health = new EnemyHealthBar();
-            getWorld().addObject(health, 90, 90);
-            actCycle = 2;
-        }
-        
     }    
 
     /**
@@ -87,18 +82,18 @@ public class EnemyBoss1 extends EnemyBoss
     {
         if(hitee.owner instanceof GoodShip)
         {
-            if(hits == 10){
+            if(hits == 9){
                 GoodShip killer = (GoodShip) (hitee.owner);
                 getWorld().removeObject(this);
                 killer.score = killer.score + 1500;
                 killer.enemiesKilled++;
                 addPowerup();
-                health.updateHealthBar(10);
+                health.updateHealthBar(-1);
             }
             else {
                 hits++;
                 hitee.delete();
-                health.updateHealthBar(10);
+                health.updateHealthBar(-1);
             }
         }
     }
