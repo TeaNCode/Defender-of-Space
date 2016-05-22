@@ -81,6 +81,7 @@ public abstract class Save
                     while(!next.equals("]") && i < 6)
                     {
                         activeItems[i] = next;
+                        if(activeItems[i].equals("null")) activeItems[i] = null;
                         i++;
                         next = save.next();
                     }

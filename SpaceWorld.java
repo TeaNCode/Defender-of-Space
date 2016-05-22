@@ -23,42 +23,13 @@ public class SpaceWorld extends World
     private Player2Ship player2;
     //If the player is doing an endless run
     public boolean endless;
-    public SpaceWorld(int players, Wave[] waves)
+    public SpaceWorld(int players, boolean endless, Wave[] waves)
     {
         super(1000, 800, 1);
         setBackground("space1.jpg");
+        this.endless = endless;
         this.waves = waves;
         waves[0].spawnWave(this);
-        waveNumber = 1;
-        showingSummary = false;
-        endless = false;
-        addObject(new Button("teacup"), 25, 15);
-        player1 = new PlayerShip(this);
-        addObject(new Score(player1), 126, 60);
-        addObject(new Display("Player 1",20,Color.WHITE,new Color(0,0,0,0)),64,43);
-        if(players == 1)
-        {
-            addObject(player1,500,750);
-        }
-        else
-        {
-            //Adds info for player 2 and stuff
-            addObject(player1,400,750);
-            player2 = new Player2Ship(this);
-            addObject(new Score(player2), 886, 60);
-            addObject(new Display("Player 2",20,Color.WHITE,new Color(0,0,0,0)),823,43);
-            addObject(player2,600,750);
-            addLives2(3);
-        }
-        addLives(3);
-        Greenfoot.setSpeed(50);
-    }
-
-    public SpaceWorld(int players, boolean endless)
-    {
-        super(1000, 800, 1);
-        setBackground("space1.jpg");
-        this.endless = true;
         waveNumber = 1;
         showingSummary = false;
         addObject(new Button("teacup"), 25, 15);
@@ -203,5 +174,11 @@ public class SpaceWorld extends World
 
             addObject(new Button("world", new HubWorld(false),new GreenfootImage("Continue",60,Color.LIGHT_GRAY,new Color(0,0,0,0))), getWidth() / 2, 700);
         }
+    }
+
+    public SpaceWorld regenerate()
+    {
+        SpaceWorld world = new SpaceWorld(player2 == null ? 1 : 2, endless, waves);
+        return world;
     }
 }

@@ -16,7 +16,7 @@ public class InventoryWorld extends World
         super(1000, 800, 1);
         addObject(new Button("back", backTo),29,789);
         addObject(new Display("Inventory",50,Color.BLACK,new Color(0,0,0,0)),500,20);
-        addObject(new Display("Active Items",50,Color.BLACK,new Color(0,0,0,0)),500,600);
+        addObject(new Display("Active Items",50,Color.BLACK,new Color(0,0,0,0)),500,500);
         populateWorld();
     }
 
@@ -25,7 +25,7 @@ public class InventoryWorld extends World
         String[] inventory = {"have fun"};
         inventory = Save.inventory.toArray(inventory);
         int counter = 0;
-        int y = 100;
+        int y = 0;
         int x = 100;
         for(String item : inventory)
         {
@@ -38,6 +38,24 @@ public class InventoryWorld extends World
                 }
                 addObject(new InventoryItem(item,false,counter),x,y);
                 x += 200;
+                counter++;
+            }
+        }
+        
+        x = 200;
+        y = 500;
+        counter = 0;
+        for(String item : Save.activeItems)
+        {
+            if(item != null)
+            {
+                if(counter % 3 == 0)
+                {
+                    y += 100;
+                    x = 200;
+                }
+                addObject(new InventoryItem(item,true,counter),x,y);
+                x += 300;
                 counter++;
             }
         }

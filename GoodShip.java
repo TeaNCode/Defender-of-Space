@@ -43,4 +43,6 @@ public abstract class GoodShip extends Destroyable
     public int burstShots;
     //Chance to do extra damage to bosses
     public int bossBonus;
+    //Counts how many movement buffs have been recieved
+    public int movementCount;
 }

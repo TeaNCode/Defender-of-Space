@@ -44,7 +44,7 @@ public class Button extends Actor
             {
                 case "teacup": type = "teancodetext"; setPicture(); break;
                 case "teancodetext": type = "teacup"; setPicture(); break;
-                case "world": world();; break;
+                case "world": world(); break;
                 case "back": Greenfoot.setWorld(world); break;
                 case "help": Greenfoot.setWorld(new HelpWorld(world)); break;
                 case "newgame": Greenfoot.setWorld(new HubWorld(false)); break;
@@ -78,6 +78,11 @@ public class Button extends Actor
             InventoryWorld wurld = (InventoryWorld) world;
             wurld.update();
             world = wurld;
+        }
+        else if(world instanceof SpaceWorld)
+        {
+            SpaceWorld wurld = (SpaceWorld) world;
+            world = wurld.regenerate();
         }
         Greenfoot.setWorld(world);
     }

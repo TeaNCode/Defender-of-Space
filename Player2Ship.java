@@ -21,6 +21,7 @@ public class Player2Ship extends GoodShip
         bossBonus = 0;
         penetrate = false;
         burst = false;
+        movementCount = 0;
     }
 
     /**
@@ -43,7 +44,7 @@ public class Player2Ship extends GoodShip
                 }
                 else
                 {
-                    gunReloadTime += 30;
+                    gunReloadTime += 20;
                     attackSpeed = false;
                 }
             }
@@ -143,16 +144,17 @@ public class Player2Ship extends GoodShip
                     int lives = world.lives2.toArray().length;
                     getWorld().removeObject(world.lives2.get(lives - 1));
                     world.lives2.remove(lives - 1);
+                    //checks if final death
                     if(lives > 1)
                     {
-                        //checks if final death
+                        //Reset stats
                         setLocation(500,750);
                         spawnProtection = 50;
-                        spawnProtection = 50;
-                        gunReloadTime = 65;
-                        reloadDelayCount = 65;
+                        if(attackSpeed)
+                        reloadDelayCount += 20;
+                        gunReloadTime = reloadDelayCount;
                         attackSpeed = false;
-                        speed = 5;
+                        speed -= movementCount * 2;
                         penetrate = false;
                         burst = false;
                         penShots = 0;
