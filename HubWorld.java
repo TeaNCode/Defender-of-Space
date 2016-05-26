@@ -24,14 +24,15 @@ public class HubWorld extends World
         //Whether or not to load from a save
         if(load)
             Save.loadSave("Save.sav");
-        addObject(new Button("world",new SpaceWorld(1,getLevel(Save.level)),new GreenfootImage("\n\nFly solo",50,Color.WHITE,Color.BLACK)),200,200);
-        addObject(new Button("world",new SpaceWorld(2,getLevel(Save.level)),new GreenfootImage("\n\nTeamwork makes the dreamwork",50,Color.WHITE,Color.BLACK)),434,376);
+        addObject(new Button("world",new SpaceWorld(1,false,getLevel(Save.level)),new GreenfootImage("\n\nFly solo",50,Color.WHITE,Color.BLACK)),200,200);
+        addObject(new Button("world",new SpaceWorld(2,false,getLevel(Save.level)),new GreenfootImage("\n\nTeamwork makes the dreamwork",50,Color.WHITE,Color.BLACK)),434,376);
         addObject(new Button("world",new ShopWorld(this),new GreenfootImage("\n\nShop",50,Color.WHITE,Color.BLACK)),634,200);
-        addObject(new Button("world",new SpaceWorld(1,true),new GreenfootImage("\n\nTrek through heck",50,Color.WHITE,Color.BLACK)),574,549);
+        addObject(new Button("world",new SpaceWorld(1,true,getRandomLevel(0,true)),new GreenfootImage("\n\nTrek through heck",50,Color.WHITE,Color.BLACK)),574,549);
         addObject(new Display("High Score (kills): " + String.valueOf(Save.endlessHighScore),40,Color.BLACK,new Color(0,0,0,0)),545,654);
         addObject(new Button("save"), 206,574);
         addObject(new Display("Current level: " + String.valueOf(Save.level),40,Color.BLACK,new Color(0,0,0,0)),233,626);
         addObject(new MoneyCounter(),229, 663);
+        addObject(new Button("world",new InventoryWorld(this), new GreenfootImage("\n\nInventory",50,Color.WHITE,Color.BLACK)),419,200);
     }
 
     /**
@@ -231,20 +232,20 @@ public class HubWorld extends World
         int times = random.nextInt(30) + 1 + (int)(Math.pow(level,2) / 2);
         for(int i = 0; i < times; i++)
         {
-            int enemyType = random.nextInt(4);
-            if(enemyType == 0)
+            int enemyType = random.nextInt(6);
+            if(enemyType <= 1)
             {
                 wave1.add(new SpawnableEntity(new EnemyShip1(random.nextInt(2) + 1),random.nextInt(701) + 161,random.nextInt(301) + 10));
             }
-            else if(enemyType == 1)
+            else if(enemyType <= 3)
             {
                 wave1.add(new SpawnableEntity(new EnemyShip2(random.nextInt(2) + 1),random.nextInt(701) + 161,random.nextInt(301) + 10));
             }
-            else if(enemyType == 2)
+            else if(enemyType == 4)
             {
                 wave1.add(new SpawnableEntity(new EnemyShip3(),random.nextInt(701) + 161,random.nextInt(301) + 10));
             }
-            else if(enemyType == 3)
+            else if(enemyType == 5)
             {
                 wave1.add(new SpawnableEntity(new EnemyShip4(random.nextInt(2) + 1),random.nextInt(701) + 161,random.nextInt(301) + 10));
             }

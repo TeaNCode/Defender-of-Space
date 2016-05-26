@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 /**
  * class for saving the game
  * 
@@ -62,10 +63,33 @@ public abstract class Save
                     endlessHighScore = save.nextInt();
                 if(save.hasNextBoolean())
                     winner = save.nextBoolean();
+                if(save.hasNext())
+                {
+                    save.next();
+                    String next = save.next();
+                    while(!next.equals(")"))
+                    {
+                        inventory.add(next);
+                        next = save.next();
+                    }
+                }
+                if(save.hasNext())
+                {
+                    save.next();
+                    String next = save.next();
+                    int i = 0;
+                    while(!next.equals("]") && i < 6)
+                    {
+                        activeItems[i] = next;
+                        if(activeItems[i].equals("null")) activeItems[i] = null;
+                        i++;
+                        next = save.next();
+                    }
+                }
             }
             catch(FileNotFoundException e)
             {
-
+                
             }
         }
     }
@@ -82,7 +106,8 @@ public abstract class Save
     static String prepareString()
     {
         //returns save
-        String toReturn = String.valueOf(level) + " " + String.valueOf(money) + " " + String.valueOf(endlessHighScore) + " " + String.valueOf(winner);
+        String toReturn = String.valueOf(level) + " " + String.valueOf(money) + " " + String.valueOf(endlessHighScore) + " "
+            + String.valueOf(winner) +  " ( " + Utilities.arrayListToString(inventory) + " ) [ " + Utilities.arrayToString(activeItems) + " ] ";
         return toReturn;
     }
 
@@ -93,6 +118,12 @@ public abstract class Save
         money = 0;
         endlessHighScore = 0;
         winner = false;
+        inventory = new ArrayList<String>();
+        activeItems = new String[6];
+        for(int i = 0; i < activeItems.length; i++)
+        {
+            activeItems[i] = null;
+        }
     }
 
     static boolean loaded;
@@ -100,4 +131,6 @@ public abstract class Save
     static int money;
     static int endlessHighScore;
     static boolean winner;
+    static ArrayList<String> inventory;
+    static String[] activeItems;
 }

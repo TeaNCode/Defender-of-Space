@@ -11,14 +11,17 @@ public class Player2Ship extends GoodShip
     public Player2Ship(SpaceWorld world)
     {
         setImage("player2Ship.png");
-        reloadDelayCount = gunReloadTime;
         delete = false;
+        //Protects player from being hit
         spawnProtection = 50;
-        reloadDelayCount = 65;
         gunReloadTime = 65;
+        //Player can fire instantly
+        reloadDelayCount = gunReloadTime;
         speed = 5;
+        bossBonus = 0;
         penetrate = false;
         burst = false;
+        movementCount = 0;
     }
 
     /**
@@ -33,7 +36,7 @@ public class Player2Ship extends GoodShip
             {
                 spawnProtection--;
             }
-            
+
             if(attackSpeed){
                 if(attackBoostedTime != 0)
                 {
@@ -41,7 +44,7 @@ public class Player2Ship extends GoodShip
                 }
                 else
                 {
-                    gunReloadTime = 65;
+                    gunReloadTime += 20;
                     attackSpeed = false;
                 }
             }
@@ -82,6 +85,11 @@ public class Player2Ship extends GoodShip
                             getWorld().addObject(new PlayerRocket(-100, this,true),getX(),getY());
                             shots += 2;
                             penShots -= 2;
+                            burstShots--;
+
+                            //Checks if we should stop bursting
+                            if(burstShots <= 0)
+                                burst = false;
                         }
                         else
                         {
@@ -136,18 +144,22 @@ public class Player2Ship extends GoodShip
                     int lives = world.lives2.toArray().length;
                     getWorld().removeObject(world.lives2.get(lives - 1));
                     world.lives2.remove(lives - 1);
+                    //checks if final death
                     if(lives > 1)
                     {
-                        //checks if final death
+                        //Reset stats
                         setLocation(500,750);
                         spawnProtection = 50;
-                        spawnProtection = 50;
-                        gunReloadTime = 65;
-                        reloadDelayCount = 65;
+                        if(attackSpeed)
+                        reloadDelayCount += 20;
+                        gunReloadTime = reloadDelayCount;
                         attackSpeed = false;
-                        speed = 5;
+                        speed -= movementCount * 2;
                         penetrate = false;
                         burst = false;
+                        penShots = 0;
+                        burstShots = 0;
+                        attackBoostedTime = 0;
                     }
                     else
                         delete = true;

@@ -18,8 +18,13 @@ public class PlayerShip extends GoodShip
         //Player can fire instantly
         reloadDelayCount = gunReloadTime;
         speed = 5;
+        bossBonus = 0;
         penetrate = false;
         burst = false;
+        movementCount = 0;
+
+        //Apply the active items the user has
+        applyItems();
     }
 
     /**
@@ -43,13 +48,13 @@ public class PlayerShip extends GoodShip
                 }
                 else
                 {
-                    gunReloadTime = 65;
+                    gunReloadTime += 20;
                     attackSpeed = false;
                 }
             }
-            
+
             reloadDelayCount++;//keeps you from firing to often
-            
+
             if (Greenfoot.isKeyDown("a"))
             {
                 //moves right
@@ -85,6 +90,11 @@ public class PlayerShip extends GoodShip
                             getWorld().addObject(new PlayerRocket(-100, this,true),getX(),getY());
                             shots += 2;
                             penShots -= 2;
+                            burstShots--;
+
+                            //Checks if we should stop bursting
+                            if(burstShots <= 0)
+                                burst = false;
                         }
                         else
                         {
@@ -136,19 +146,23 @@ public class PlayerShip extends GoodShip
                     int lives = world.lives.toArray().length;
                     getWorld().removeObject(world.lives.get(lives - 1));
                     world.lives.remove(lives - 1);
+                    //checks if final death
                     if(lives > 1)
                     {
                         //Reset stats
                         setLocation(500,750);
                         spawnProtection = 50;
-                        gunReloadTime = 65;
-                        reloadDelayCount = 65;
+                        if(attackSpeed)
+                            reloadDelayCount += 20;
+                        gunReloadTime = reloadDelayCount;
                         attackSpeed = false;
-                        speed = 5;
+                        speed -= movementCount * 2;
                         penetrate = false;
                         burst = false;
+                        penShots = 0;
+                        burstShots = 0;
+                        attackBoostedTime = 0;
                     }
-                    //No more players
                     else
                         delete = true;
                 }
@@ -156,6 +170,27 @@ public class PlayerShip extends GoodShip
                 {
                     shielded = false;
                     shield.delete();
+                }
+            }
+        }
+    }
+
+    public void applyItems()
+    {
+        for(String active : Save.activeItems)
+        {
+            if(active != null)
+            {
+                if(active.startsWith("AttackSpeed"))
+                    gunReloadTime -= 3;
+                else if(active.startsWith("Movement"))
+                    speed += 1;
+                else if(active.startsWith("BossBonus"))
+                    bossBonus += 2;
+                else if(active.startsWith("HighCaliber"))
+                {
+                    bossBonus += 3;
+                    gunReloadTime += 4;
                 }
             }
         }
