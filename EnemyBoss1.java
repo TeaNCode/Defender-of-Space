@@ -92,6 +92,9 @@ public class EnemyBoss1 extends EnemyBoss
                 health.updateHealthBar(-1);
             }
             else {
+                GoodShip hiter = (GoodShip) hitee.owner;
+                if(Greenfoot.getRandomNumber(100) + 1 >= hiter.bossBonus)
+                hits++;
                 hits++;
                 hitee.delete();
                 health.updateHealthBar(-1);
