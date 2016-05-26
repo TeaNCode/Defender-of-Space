@@ -28,8 +28,8 @@ public class EnemyHealthBar extends Actor
 
     public void updateHealthBar(int healthChange)
     {
-        currentHealth += healthChange;  // Note: you can add health by passing in a positive change
-        healthPercent = currentHealth / maxHealth;
+        currentHealth += healthChange; //calculates change
+        healthPercent = currentHealth / maxHealth; //makes it a precent
         // Redraw health bar to match current health
         if(healthPercent > 0)
         {

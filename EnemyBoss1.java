@@ -88,6 +88,7 @@ public class EnemyBoss1 extends EnemyBoss
                 killer.score = killer.score + 1500;
                 killer.enemiesKilled++;
                 addPowerup();
+                hitee.delete();
                 health.updateHealthBar(-1);
             }
             else {
