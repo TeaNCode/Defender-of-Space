@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.*;
+import java.lang.*;
 /**
  * Write a description of class EnemyHealthBar here.
  * 
@@ -8,26 +9,43 @@ import java.awt.*;
  */
 public class EnemyHealthBar extends Actor
 {
-    public int barWidth;
-    public int barHeight;
-    public int scale;
-    public EnemyHealthBar(int scale)
+    private double currentHealth;
+    private double maxHealth;
+    private double healthPercent;
+    public GreenfootImage hb;
+    public EnemyHealthBar(int currentHealth, int maxHealth)
     {
-        barWidth = 100 * scale;
-        barHeight = 10;
+        this.currentHealth = currentHealth;
+        this.maxHealth = maxHealth;
+        healthPercent = currentHealth / maxHealth;
+        hb = new GreenfootImage((int)healthPercent * 100, 20);
     }
 
-    /**
-     * Act - do whatever the EnemyHealthBar wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
+    protected void addedToWorld(World w)
     {
-        // Add your action code here.
-    }    
+        updateHealthBar(0);        
+    }
 
-    public void draw(EnemyBoss owner)
+    public void updateHealthBar(int healthChange)
     {
+        currentHealth += healthChange; //calculates change
+        healthPercent = currentHealth / maxHealth; //makes it a precent
+        // Redraw health bar to match current health
+        if(healthPercent > 0)
+        {
+            hb.scale((int)(healthPercent * 100), 20);
+            if (healthPercent >= .3)
+                hb.setColor(Color.GREEN);
+            else if (healthPercent < .3 && healthPercent > .1)
+                hb.setColor(Color.YELLOW);
+            else if (healthPercent <= .1)
+                hb.setColor(Color.RED);
 
+            hb.fill();
+            setImage(hb);     
+            setLocation(getImage().getWidth()/2 + 40, getY());
+        }
+        else
+            getWorld().removeObject(this);
     }
 }
