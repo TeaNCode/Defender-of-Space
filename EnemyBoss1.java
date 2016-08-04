@@ -5,12 +5,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * 
  * @author Tea N' Code
  */
-public class EnemyBoss1 extends EnemyShip
+public class EnemyBoss1 extends EnemyBoss
 {
-    public int hits = 0;
+    public int hits;
+    public int rand1;
+    public int rand2;
+    public EnemyHealthBar health;
     public EnemyBoss1()
     {
         setImage("Boss.png");
+        hits = 0;
+        rand1 = 500;
+        rand2 = 500;
+        health = new EnemyHealthBar(10 - hits, 10);
+    }
+    
+    protected void addedToWorld(World w)
+    {
+        getWorld().addObject(health, 90, 90);
     }
 
     public void act() 
@@ -19,17 +31,17 @@ public class EnemyBoss1 extends EnemyShip
         {
             //Moves right
             if(getX() + 3 >= 849)
-            setLocation(849,getY());
+                setLocation(849,getY());
             else
-            setLocation(getX() + 3, getY());
+                setLocation(getX() + 3, getY());
         }
         else
         {
             //Moves left
             if(getX() - 3 <= 229)
-            setLocation(229,getY());
+                setLocation(229,getY());
             else
-            setLocation(getX() - 3, getY());
+                setLocation(getX() - 3, getY());
         }
 
         //Check if we need to change direction
@@ -43,20 +55,24 @@ public class EnemyBoss1 extends EnemyShip
         }
 
         //Shoot and spawn enemies
-        if(Greenfoot.getRandomNumber(500) + 1 <= 1 * DevConsole.specialMultiplier)
+        if(Greenfoot.getRandomNumber(rand1) + 1 <= 1 * DevConsole.specialMultiplier)
         {
             getWorld().addObject(new HighVelocityRocket(90,this), getX(), getY());
             getWorld().addObject(new EnemyShip4(1), getX(), getY() + 140);
-            getWorld().addObject(new EnemyShip1(1), getX() + 20, getY()+ 120);
-            getWorld().addObject(new EnemyShip1(1), getX() - 20, getY()+ 120);
+            //getWorld().addObject(new EnemyShip1(1), getX() + 20, getY()+ 120);
+            //getWorld().addObject(new EnemyShip1(1), getX() - 20, getY()+ 120);
+            rand1 = 500;
         }
-        if(Greenfoot.getRandomNumber(300) + 1 <= 1 * DevConsole.specialMultiplier)
+        else rand1--;
+        if(Greenfoot.getRandomNumber(rand2) + 1 <= 1 * DevConsole.specialMultiplier)
         {
             getWorld().addObject(new HighVelocityRocket(80,this), getX(), getY());
             getWorld().addObject(new HighVelocityRocket(85,this), getX(), getY() + 10);
             getWorld().addObject(new HighVelocityRocket(95,this), getX(), getY() + 10);
             getWorld().addObject(new HighVelocityRocket(100,this), getX(), getY());
+            rand2 = 300;
         }
+        else rand2--;
     }    
 
     /**
@@ -66,12 +82,14 @@ public class EnemyBoss1 extends EnemyShip
     {
         if(hitee.owner instanceof GoodShip)
         {
-            if(hits == 10){
+            if(hits == 9){
                 GoodShip killer = (GoodShip) (hitee.owner);
                 getWorld().removeObject(this);
                 killer.score = killer.score + 1500;
                 killer.enemiesKilled++;
                 addPowerup();
+                hitee.delete();
+                health.updateHealthBar(-1);
             }
             else {
                 GoodShip hiter = (GoodShip) hitee.owner;
@@ -79,6 +97,7 @@ public class EnemyBoss1 extends EnemyShip
                 hits++;
                 hits++;
                 hitee.delete();
+                health.updateHealthBar(-1);
             }
         }
     }
