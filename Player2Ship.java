@@ -151,8 +151,8 @@ public class Player2Ship extends GoodShip
                         setLocation(500,750);
                         spawnProtection = 50;
                         if(attackSpeed)
-                        reloadDelayCount += 20;
-                        gunReloadTime = reloadDelayCount;
+                        gunReloadTime += 20;
+                        reloadDelayCount = gunReloadTime;
                         attackSpeed = false;
                         speed -= movementCount * 2;
                         penetrate = false;
