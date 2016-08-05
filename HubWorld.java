@@ -230,7 +230,7 @@ public class HubWorld extends World
             }
         }
 
-        int times = random.nextInt(30) + 1 + (int)(Math.pow(level,2) / 2);
+        int times = random.nextInt(30) + 1 + (int)(Math.pow(level,2.5) - Math.pow(level,2.4));
         for(int i = 0; i < times; i++)
         {
             int enemyType = random.nextInt(6);
